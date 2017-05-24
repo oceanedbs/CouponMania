@@ -1,0 +1,37 @@
+        
+<div class="container">
+    <div class="row">
+                            
+	      <?php foreach ($this->topCategories as $category) {
+		     echo ' <div class="grid_4">
+                            <div class="banner">
+                            <div class="gall_block">
+                            <img src="logo.png">
+                            <div class="bann_title">
+                            <a href=' . $this->url(array('controller' => 'public',
+                                                        'action' => 'index',
+                                                        'selTopCat' => $category->catId), 
+                                                        'default', true) . 
+                 '> Sconti su ' . $category->name . '</a></div></div></div></div>';
+	      }
+	      ?>
+	      
+	      </div>
+	   
+	   
+	   <?php if (!is_null($this->selectedTopCat)) :?>
+	      <h2><?php echo 'In ' . $this->selectedTopCat ?></h2>
+	        <?php foreach ($this->subCategories as $subCategory) {
+		       echo '<li><a href=' . $this->url(array('controller' => 'public',
+		     										  'action' => 'index',
+                                                      'selTopCat' => $subCategory->parId, 
+		       										  'selCat' => $subCategory->catId), 'default', true) . 
+                 '>'. $subCategory->name . '</a><span>' . $subCategory->desc .  '</span></li>';
+	  		 }
+			?>
+		<?php endif ?>
+	  </ul>
+	  </div>
+<!-- fine sezione laterale -->
+
+
