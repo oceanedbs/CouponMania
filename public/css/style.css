@@ -174,8 +174,8 @@ a:hover {
 
 .btn {
     display: inline-block;
-    border: 1px solid #969696;
-    color: #969696;
+    border: 1px solid #ccc;
+    color: #ccc;
     margin-top: 5px;
     padding: 5px 5px 11px;
     font: bold 20px/20px 'Economica', sans-serif;
