@@ -23,7 +23,7 @@ class PublicController extends Zend_Controller_Action
 									  'parId'=>'0',
 									  'image' =>'page1_img2.jpg'),
                                 (object) array('catId'=>'3',
-							 		  'name'=>' Cibo',
+							 		  'name'=>' Alimenti',
 									  'parId'=>'0',
 									  'image' => 'page1_img3.jpg')
 					   );
