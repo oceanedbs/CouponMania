@@ -15,16 +15,19 @@ class PublicController extends Zend_Controller_Action
     {    	    	
     	//  Categorie Top    	    	
 		$topCats=array((object) array('catId'=>'1',
-							 		  'name'=>'Abbigliamento',
+							 		  'name'=>'sull\'Abbigliamento',
 									  'parId'=>'0',
+                                                                          'logo' =>'icon1.png',                                                                             
 									  'image' => 'page1_img1.jpg',),
                                 (object) array('catId'=>'2',
-							 		  'name'=>'Articoli Sportivi',
+							 		  'name'=>'su Articoli Sportivi',
 									  'parId'=>'0',
+                                                                           'logo' =>'icon2.png',                                                     
 									  'image' =>'page1_img2.jpg'),
                                 (object) array('catId'=>'3',
-							 		  'name'=>' Alimenti',
+							 		  'name'=>' sugli Alimenti <br> ',
 									  'parId'=>'0',
+									  'logo' =>'icon3.png',
 									  'image' => 'page1_img3.jpg')
 					   );
 					   
