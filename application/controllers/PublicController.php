@@ -40,7 +40,7 @@ class PublicController extends Zend_Controller_Action
 
 
   
-                                        
+            
         $this->view->assign(array(
             		'topCategories' => $topCats,
                         'products' => $prods,)

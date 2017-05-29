@@ -44,6 +44,6 @@ class Application_Model_Catalog extends App_Model_Abstract
     
     public function getAziende()
     {
-        return $this->getResource('Azienda')->getAziende();
+        return $this->getResource('Aziende')->getAziende();
     }
 }

@@ -2,7 +2,7 @@
 
 class Application_Resource_Azienda extends Zend_Db_Table_Abstract
 {
-    protected $_name    = 'azienda';
+    protected $_name    = 'aziende';
     protected $_primary  = 'P_Iva';
     protected $_rowClass = 'Application_Resource_Azienda_Item';
     
