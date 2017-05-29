@@ -60,7 +60,7 @@ class PublicController extends Zend_Controller_Action
   
                                         
         $this->view->assign(array(
-            		'Aziende' => $aziende,)
+            		'aziende' => $aziende,)
         );
     
     	
