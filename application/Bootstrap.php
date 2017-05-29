@@ -17,11 +17,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	$this->_logger->info('Bootstrap ' . __METHOD__);
     }
 
-
     protected function _initRequest()
 	// Aggiunge un'istanza di Zend_Controller_Request_Http nel Front_Controller
 	// che permette di utilizzare l'helper baseUrl() nel Bootstrap.php
-	// Necessario solo se la Document-root di Apache non è la cartella public/
+    	// Necessario solo se la Document-root di Apache non è la cartella public/
     {
         $this->bootstrap('FrontController');
         $front = $this->getResource('FrontController');
@@ -43,10 +42,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
        $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/custom.css'));
        $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/error.css'));
        $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/style.css'));
-
-    
         
         
         $this->_view->headTitle('CouponMania');
     }
+    
+    protected function _initDefaultModuleAutoloader()
+    {
+    	$loader = Zend_Loader_Autoloader::getInstance();
+		$loader->registerNamespace('App_');
+        $this->getResourceLoader()
+             ->addResourceType('modelResource','models/resources','Resource');  
+  	}
 }

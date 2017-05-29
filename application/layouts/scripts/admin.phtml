@@ -1,0 +1,32 @@
+<?php echo $this->doctype() ?>
+<html>
+<head>
+	<?= $this->headMeta(); ?>
+    <?= $this->headLink(); ?>
+    <?= $this->headTitle(); ?>
+</head>
+<body id="bodyadmin">
+<div id="wrapper">
+	<div id="menu">
+        <?= $this->render('_topnavadmin.phtml') ?>
+	</div>
+
+	<!-- end #menu -->
+	<div id="page">
+  	  <div id="page-bgtop">
+    	<div id="page-bgbtm">
+	  	  <?php echo $this->layout()->content; ?>
+      	<div style="clear: both;">&nbsp;</div>
+	    </div>
+  	  </div>
+	</div>
+
+	<!-- end #content -->
+	<div id="footer">
+		<br>
+		<p>universit&agrave; politecnica delle marche - Corso di  <a href="http://www.dii.univpm.it/C3I110NA/">tecnologie web</a>.</p>
+	</div>
+	<!-- end #footer -->
+</div>
+</body>
+</html>

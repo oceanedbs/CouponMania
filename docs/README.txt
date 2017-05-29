@@ -1,30 +1,20 @@
-Variazioni rispetto al progetto precedente (ZendProject0)
+Variazioni rispetto al progetto precedente (ZendProject2)
 ======
-- Eliminazione cartella tests/
-- Scelta layout: Exploitable by Free CSS Template
-- In public/
-	+ creazione cartelle css/ e images/ con gli elementi del tema scelto
-- In application.ini:
-	+ placeholder doctype()
-	+ definizione path cartella layouts
-- In Bootstrap.php:
-	+ inizializzazione placeholders in _initViewSettings()
-	+ definizione _initRequest() per poter usare il corretto baseUrl() in _initViewSettings().
-- Creazione cartella application/layouts
-	+ sottocartella script: creazione main.phtml e _topnavmain.phtml
-- Controllers:
-	+ modifica indexController per attivazione publicController di default
-	+ modifica errorController per disattivazione layout
-	+ definizione publicController
-- View Scripts
-	+ eliminazione index.phtml e relativa cartella
-	+ modifica views/scripts/error/error.phtml per aggiungere placeholder doctype()
-	+ creazione: 
-		- views/scripts/public/index.phtml
-		- views/scripts/public/who.phtml
-		- views/scripts/public/where.phtml
-	+ view-helper:
-		- views/helpers/ProductImg.phtml
-		- views/helpers/ProductPrice.phtml
-- Modalità 'development' in .htaccess
-- In Bootstrap.php definizione logger FireBug 
+- Layout admin
+	+ Eliminato <div> header rispetto a main
+	+ CSS per <body> (id=bodyadmin)
+	+ Creati _topnavadmin.phtml e _topnavmain.phtml
+- Creazione Form: forms/Admin/Products/Add.php
+    NOTE:
+	+ Validators: array('Count', false, 1); secondo parametro a true=non attivare i 
+	  validators seguenti
+	+ Validatore Float: specifico il filtro per trasformare il separatore dei
+	  decimali da vigola a punto (altrimenti non posso registrare correttamente il 
+	  valore in MySQL), ma conseguentemente debbo definire il locale en_US per il
+	  validatore (N.B. prima ZF applica i filtri e poi valida il dato!)
+- Creazione AdminController
+- Creazion modello models/Admin.php
+	+ Aggiunta metodo insertProduct() in models/resources/Product.php
+- Viste aggiunte:
+	+ views/scripts/admin/index.phtml
+	+ views/scripts/admin/newproduct.phtml

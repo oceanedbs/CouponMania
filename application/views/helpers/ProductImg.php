@@ -16,5 +16,4 @@ class Zend_View_Helper_ProductImg extends Zend_View_Helper_HtmlElement
 		$tag = '<img src="' . $this->view->baseUrl('images/products/' . $imgFile) . '" ' . $_attrs . '>';
 		return $tag;
 	}
-	
 }
