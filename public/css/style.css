@@ -14,6 +14,7 @@
 
 html {
     width: 100%;
+    font-family: 'Economica', sans-serif;
 }
 a[href^="tel:"] {
  color: inherit;
@@ -27,7 +28,7 @@ a[href^="tel:"] {
 body {
     position: relative;
     background-color: #adacac;
-    color: #969696;
+    color: #999999;
     font: 300 14px/20px 'Open Sans', sans-serif;
 }
 
