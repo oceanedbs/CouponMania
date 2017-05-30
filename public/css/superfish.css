@@ -128,7 +128,7 @@ nav {
 .sf-menu>li ul {
 	left: 0;
 	z-index: 999; 
-	width: 150%;
+	width: 200%;
 	background-color: #cccccc;
 	top: 33px;
 	padding-bottom: 1px;
@@ -153,6 +153,8 @@ nav {
 	left: 100%;
 	width: 157px;
 	top: -40px;
+	top: 0px;
+
 }
 
 

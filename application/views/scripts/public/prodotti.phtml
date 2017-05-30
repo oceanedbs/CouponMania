@@ -1,41 +1,41 @@
-      <div id="content">  
-      <?php foreach ($this->topCategories as $categorie) :?>
-            <div class="container">
-                <div class="row">
-                     <div style="float:left; width:27%"><?php echo'<h2 class="title">' . $categorie->name . '</h2>' ?></div>
-                      <div style="margin-left:27%">
-                        <a class="btn" href=" <?= $this->url(array( 'controller' => 'public',
-                                                        'action'     => 'index',), 
-                                                'default',true
-                                                ); 
-                                ?>"
-                        title="Prodotti">Vedere tutto</a></div>
-		<br>
-                <br>
+<section class="content gallery pad1">
+  <div class="container">
+    <div class="row">
+    <?php foreach ($this->products as $products) :?>
+        <div class="grid_4">
+           <div class="gall_block">
+                <div class="maxheight">
+                    <?php echo $this->productImg($products->image, array('class' => 'imagefrm')) ?>         
+                    <div class="gall_bot">
+                    <div class="text1"><a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+		title="Product"><?php echo'<h3 class="title">' . $products->prodotto . '</h3>' ?></a></div> 
+                <?php echo  $products->descShort  ?>
+
+		<a class="btn" href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+		title="Info Prodotto">More</a>
+
+
+                    </div>
                 </div>
-                <div class="gallery">
-
-                        <?php foreach ($this->products as $products) :?>
-                            <div class="grid_4">
-                                <?php echo $this->productImg($products->image, array('class' => 'imagefrm')) ?>
-                                <h3><a href=" <?= $this->url(array('controller' => 'public',
-                                                                    'action'     => 'index',), 
-                                                                    'default',true
-                                                            );
-                                            ?>"
-                                            title="Home"><?php echo'<h3 class="title">' . $products->name . '</h3>' ?></a></h3>
-                                            <?php echo  $products->descShort  ?>
-                            <br>
-                            <br>
-                        </div>
-                      <?php endforeach ?>
             </div>
+        </div>
 
-            </div>
-	  <?php endforeach ?>
-	  
-	  
-	  </div>
-	  
-  
+                            
+		  
+     <?php endforeach ?>
 
+        </div>
+    </div>
+</section>
