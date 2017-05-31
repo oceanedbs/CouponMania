@@ -51,17 +51,5 @@ class Application_Resource_Product extends Zend_Db_Table_Abstract
     {
     	$this->insert($info);
     }
-
-
-	// Estrae tutti i prodotti
-    public function getProds()
-    {
-        $select = $this->select();
-        
-        return $this->fetchAll($select);
-
-
-       
-    } 
-
 }
+

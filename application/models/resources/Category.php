@@ -19,7 +19,9 @@ class Application_Resource_Category extends Zend_Db_Table_Abstract
 	// Estrae tutte le categorie Top
     public function getTopCats()
     {
-		$select = $this->select();
+		$select = $this->select()
+					   ->where('parId = 0')
+                       ->order('name');
         return $this->fetchAll($select);
     }
 

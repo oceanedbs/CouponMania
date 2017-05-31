@@ -1,0 +1,178 @@
+<?php echo $this->doctype() ?>
+<html>
+<head>
+    <?= $this->headMeta(); ?>
+    <?= $this->headLink(); ?>
+    <?= $this->headTitle(); ?>
+    <?= $this->headScript() ; ?>
+</head>
+<body>
+ <section id="stuck_container">
+    <div class="container">
+      <div class="row">
+        <div class="grid_12">
+            <h1>
+               <a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>">
+                <img src="<?=$this->baseUrl('images/logo.png')?>" alt="Logo alt">
+                </a>
+            </h1>  
+       
+            
+
+	<!-- end #header -->
+    <div class="navigation">
+            <nav>
+                <?= $this->render('_topnavuser.phtml') ?>
+            </nav>
+    </div>
+    <div class="clear"></div>
+  </div>
+   </div>
+     </div>   
+</section>
+
+	<!-- end #menu -->
+     
+    <div class="content">
+  	  <div class="container">
+	  	  <?php echo $this->layout()->content; ?>
+        </div>
+        
+    </div>
+	           
+  
+
+	<!-- end #content -->
+    <div class="container">
+    <div class="footer">
+        <div style="text-align: left; float:left; width:17%" class="container">
+            <h3><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?>"
+		title="faq">FAQ</a></h3>
+    
+            <ul class="socials">
+               <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?>">
+                Come posso cambiare i miei dati?</a></li>
+                
+                
+               <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?>" >
+                Come ottengo i coupon?</a></li>
+                
+                
+               <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?> ">
+                Come utilizzare il mio coupon?</a></li>
+                
+                
+               <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?>">
+                Quali sono le aziende convenzionate?</a></li>
+                
+                
+               <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?>">
+                Newsletter: iscrizioni e modifiche</a></li>
+                
+                
+               <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'faq'), 
+                    'default',true
+                ); 
+                ?>">
+                Quando scade il mio coupon?</a></li>
+             </ul>
+    </div>
+    <div style="margin-left:17%" >
+        <div class="container" style="width:100%" >
+                <div class="grid_11">
+                    <h3>Contact Form</h3>
+                    <form id="form" >
+                        <div class="form_spinner" >
+                            <img src="images/Preloader_4.gif" alt="">
+                        </div>
+                        <div class="modal fade response-message" >
+                            <div class="modal-dialog" >
+                                <div class="modal-content" >
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+                                        <h4 class="modal-title">Modal title</h4>
+                                    </div>
+                                    <div class="modal-body"></div>      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="response-error-message"></div>
+                        <label class="name">
+                            <input type="text" name="name" placeholder="Name:" value="" data-constraints="@Required @JustLetters" />
+                            <span class="empty-message">*This field is required.</span>
+                            <span class="error-message">*This is not a valid name.</span>
+                        </label>         
+                        <label class="email">
+                            <input type="text" name="email" placeholder="E-mail:" value="" data-constraints="@Required @Email" />
+                            <span class="empty-message">*This field is required.</span>
+                            <span class="error-message">*This is not a valid email.</span>
+                        </label>
+                        <label class="phone">
+                            <input type="text" name="phone" placeholder="Phone:" value="" data-constraints="@Required @JustNumbers"/>
+                            <span class="empty-message">*This field is required.</span>
+                            <span class="error-message">*This is not a valid phone.</span>
+                        </label>
+                        <label class="message">
+                            <textarea name="message" placeholder="Message:" data-constraints='@Required @Length(min=20,max=999999)'></textarea>
+                            <span class="empty-message">*This field is required.</span>
+                            <span class="error-message">*The message is too short.</span>
+                        </label>
+                        <br>
+                        <div class="btns" style="margin-left:20%">
+                            <a href="#" data-type="reset" class="btn">clear</a>
+                            <a href="#" data-type="submit" class="btn">send</a>
+                        </div>
+                    </form>   
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+	<!-- end #footer -->
+</body>
+</html>

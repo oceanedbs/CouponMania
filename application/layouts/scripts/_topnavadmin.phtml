@@ -45,4 +45,14 @@
                     ); 
                  ?>"
 		title="Cancella Prodotti">Cancella</a></li>
+                <li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'logout',
+                         ), 
+                        'default', true
+                    ); 
+                 ?>"
+		title="Esce dall'Area Amministratore">Logout</a></li>
 </ul>

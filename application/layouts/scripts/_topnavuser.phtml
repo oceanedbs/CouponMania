@@ -1,6 +1,6 @@
 <ul class="sf-menu">
 	<li><a href=" <?= $this->url(array(
-                        'controller' => 'public',
+                        'controller' => 'user',
                         'action'     => 'index',
                         ), 
                         'default',true
@@ -9,7 +9,7 @@
 		title="Home">home</a></li>
 		
             <li><a href=" <?= $this->url(array(
-                    'controller' => 'public',
+                    'controller' => 'user',
                     'action'     => 'prodotti',
                     ), 
                     'default',true
@@ -18,7 +18,7 @@
             title="Prodotti">prodotti</a>
             <ul>
                 <li><a href=" <?= $this->url(array(
-                    'controller' => 'public',
+                    'controller' => 'user',
                     'action'     => 'prodotti',
                     ), 
                     'default',true
@@ -27,7 +27,7 @@
                 title="Categoria">categorie di prodotti</a></li>
                 
                 <li><a href=" <?= $this->url(array(
-                        'controller' => 'public',
+                        'controller' => 'user',
                         'action'     => 'offerte',
                         ), 
                         'default',true
@@ -38,7 +38,7 @@
             </ul></li>
             
             <li><a href=" <?= $this->url(array(
-                    'controller' => 'public',
+                    'controller' => 'user',
                     'action'     => 'aziende',
                     ), 
                     'default',true
@@ -47,7 +47,7 @@
             title="Azienda">aziende</a></li>
             
             <li><a href=" <?= $this->url(array(
-                    'controller' => 'public',
+                    'controller' => 'user',
                     'action'     => 'index',
                     ), 
                     'default',true
@@ -57,17 +57,24 @@
             
             <li><a
             href="<?= $this->url(array(
-                    'controller' => 'public',
+                    'controller' => 'user',
                     'action'     => 'viewstatic',
                     'staticPage' => 'where'), 
                     'default',true
                 ); 
                 ?>"
             title="Il nostro profilo aziendale">chi siamo</a></li>
-         
+          <li><a href=" <?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'index',
+                    ), 
+                    'default',true
+                ); 
+                ?>"
+            title="Area riservata">Il mio profilo</a></li> 
             <li><a href=" <?= $this->url(array(
-                    'controller' => 'public',
-                    'action'     => 'login',
+                    'controller' => 'user',
+                    'action'     => 'index',
                     ), 
                     'default',true
                 ); 
