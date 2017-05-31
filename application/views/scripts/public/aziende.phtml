@@ -9,7 +9,7 @@
                     <div class="gall_bot">
                     <div class="text1"><a href=" <?= $this->url(array(
                         'controller' => 'public',
-                        'action'     => 'index',
+                        'action'     => 'infoazienda',
                         ), 
                         'default',true
                     ); 
@@ -18,7 +18,7 @@
 		
 		<a class="btn" href=" <?= $this->url(array(
                         'controller' => 'public',
-                        'action'     => 'index',
+                        'action'     => 'infoazienda',
                         ), 
                         'default',true
                     ); 
@@ -33,8 +33,14 @@
 
                             
 		  
-     <?php endforeach ?>
+        <?php endforeach ?>
 
-        </div>
     </div>
+    
+    </div>
+    <br>
+    <?php if($this->aziende instanceof Zend_Paginator) {
+                echo $this->paginationControl($this->aziende,'Sliding','public/_paginatoraziende.phtml');
+	  } 
+      ?>
 </section>

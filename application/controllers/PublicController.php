@@ -47,10 +47,9 @@ class PublicController extends Zend_Controller_Action
 		//	Nessuna selezione: estrae tutti i prodotti in sconto
 			foreach ($topCats as $topCat) {
 				$topCatsList[] = $topCat->catId;
-			}
-			$prods=$this->_catalogModel->getProds($topCatsList, $paged);			   	
-		}
-		  		   
+                        }
+                        $prods=$this->_catalogModel->getProds($topCatsList, $paged);			   	
+        }
 
     
         $topCats=$this->_catalogModel->getTopCats($paged);
@@ -68,21 +67,22 @@ class PublicController extends Zend_Controller_Action
     	
     }
     
-     public function aziendeAction () {
+    public function aziendeAction () {
     
         
-       // $paged = $this->_getParam('page', 1);
+        $paged = $this->_getParam('page', 1);
         
-      $aziende=$this->_catalogModel->getAziende();
+        $aziende=$this->_catalogModel->getAziende($paged);
 
-
-  
                                         
         $this->view->assign(array(
             		'aziende' => $aziende,)
         );
     
     	
+    }
+    
+    public function infoaziendaAction ()  {
     }
     
 }

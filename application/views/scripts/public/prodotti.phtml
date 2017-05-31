@@ -80,7 +80,16 @@
                             
 		  
      <?php endforeach ?>
+     
+    
 
         </div>
+        <?php if($this->products instanceof Zend_Paginator) {
+	  		echo $this->paginationControl($this->products,'Sliding','public/_paginator.phtml');
+	  } 
+      ?>
     </div>
+    
 </section>
+
+  

@@ -113,6 +113,12 @@ h5 {
 .page1 h2 {
     padding-top: 31px;
     margin-bottom: 39px;
+
+}
+
+#pagination {
+    margin-bottom:-50px;
+    text-align:center;
 }
 
 /****Lists****/

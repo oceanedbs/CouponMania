@@ -45,13 +45,13 @@ class Application_Model_Catalog extends App_Model_Abstract
        return $this->getResource('Promozione')->getProdsByCat($catId, $paged, $order);
     }
     
-     public function getProds()
+     public function getProds($topCatsList, $paged)
     {
-        return $this->getResource('Promozione')->getProds($paged=null);
+        return $this->getResource('Promozione')->getProds($topCatsList, $paged);
     }
     
-    public function getAziende()
+    public function getAziende($paged)
     {
-        return $this->getResource('Aziende')->getAziende();
+        return $this->getResource('Aziende')->getAziende($paged);
     }
 }
