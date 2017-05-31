@@ -8,10 +8,18 @@ class Application_Model_Catalog extends App_Model_Abstract
 		$this->_logger = Zend_Registry::get('log');  	
 	}
 
-    public function getTopCats()
+    public function getTopCats($paged)
     {
-		return $this->getResource('Category')->getTopCats();
+		return $this->getResource('Category')->getTopCats($paged);
     }
+    
+    public function getTopOfferte($paged)
+    {
+                return $this->getResource('Category')->getTopOfferte($paged);
+
+    }
+    
+    
     public function getCatById($id)
     {
         return $this->getResource('Category')->getCatById($id);
@@ -29,17 +37,17 @@ class Application_Model_Catalog extends App_Model_Abstract
             $ids[] = $catId;
 			$catId = $ids;
         }       
-    		return $this->getResource('Product')->getDiscProds($catId, $paged, $order);
+    		return $this->getResource('Promozione')->getDiscProds($catId, $paged, $order);
     }    
     
-    public function getProdsByCat($catId, $paged=null, $order=null, $deep=true)
+    public function getProdsByCat($catId, $paged=null, $order=null)
     {
-       return $this->getResource('Product')->getProdsByCat($catId, $paged, $order);
+       return $this->getResource('Promozione')->getProdsByCat($catId, $paged, $order);
     }
     
      public function getProds()
     {
-        return $this->getResource('Product')->getProds();
+        return $this->getResource('Promozione')->getProds($paged=null);
     }
     
     public function getAziende()

@@ -1,6 +1,6 @@
 <?php
 
-class Application_Resource_Product_Item extends Zend_Db_Table_Row_Abstract
+class Application_Resource_Promozione_Item extends Zend_Db_Table_Row_Abstract
 {       
     public function getPrice($withDiscount=false)
     {

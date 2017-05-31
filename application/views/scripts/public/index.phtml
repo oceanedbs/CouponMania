@@ -16,13 +16,19 @@
                                                         'action' => 'index',
                                                         'selTopCat' => $category->catId), 
                                                         'default', true) . 
-                 '> Sconti ' . $category->name . '</a></h2></div></div></div></div></div></div></div>';
+                 '> ' . $category->name . '</a></h2></div></div></div></div></div></div></div>';
 	      }
 	      ?>
 	      
 	      </div>
 	  
 	  </div>
+	  
+	    <?php if($this->category instanceof Zend_Paginator) {
+	  		echo $this->paginationControl($this->category,'Sliding','public/_paginator.phtml');
+	  } 
+	  ?>
+
 </section>
 <!-- fine sezione laterale -->
 

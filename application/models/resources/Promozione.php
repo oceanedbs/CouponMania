@@ -1,10 +1,10 @@
 <?php
 
-class Application_Resource_Product extends Zend_Db_Table_Abstract
+class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 {
-    protected $_name    = 'product';
-    protected $_primary  = 'prodId';
-    protected $_rowClass = 'Application_Resource_Product_Item';
+    protected $_name    = 'promozione';
+    protected $_primary  = 'cod_promozione';
+    protected $_rowClass = 'Application_Resource_Promozione_Item';
 
 	public function init()
     {
@@ -14,17 +14,11 @@ class Application_Resource_Product extends Zend_Db_Table_Abstract
     public function getProdsByCat($categoryId, $paged=null, $order=null)
     {
         $select = $this->select()
-        				->where('catId IN(?)', $categoryId);
+                        ->where('catId IN(?)', $categoryId);
         if (true === is_array($order)) {
             $select->order($order);
         }
-		if (null !== $paged) {
-			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
-			$paginator = new Zend_Paginator($adapter);
-			$paginator->setItemCountPerPage(1)
-		          	  ->setCurrentPageNumber((int) $paged);
-			return $paginator;
-		}
+		
         return $this->fetchAll($select);
     } 
 

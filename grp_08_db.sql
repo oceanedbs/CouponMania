@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 30 Mai 2017 à 16:40
+-- Généré le :  Mer 31 Mai 2017 à 17:51
 -- Version du serveur :  5.7.18-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `Zend_Db`
+-- Base de données :  `grp_08_db`
 --
 
 -- --------------------------------------------------------
@@ -90,7 +90,10 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`catId`, `name`, `parId`, `desc`, `image`, `logo`) VALUES
 (1, 'Cibo', 0, 'jeoizhb', 'page1.jpg', 'icon3.png'),
 (2, 'Abbigliamento', 0, 'gzoirgh', 'page3.jpg', 'icon1.png'),
-(3, 'Sport', 0, 'greah', 'page2.jpg', 'icon2.png');
+(3, 'Sport', 0, 'greah', 'page2.jpg', 'icon2.png'),
+(4, '3 x 2', 1, '3 x 2', '', ''),
+(5, '2 x 1', 1, '2 x 1', '', ''),
+(6, ' - 50 %', 1, '50%', '', '');
 
 -- --------------------------------------------------------
 
@@ -159,7 +162,7 @@ CREATE TABLE `promozione` (
   `data_inizio` date NOT NULL,
   `data_fine` date NOT NULL,
   `prodotto` varchar(30) NOT NULL,
-  `categoria` varchar(30) NOT NULL,
+  `catId` int(11) NOT NULL,
   `descrizione` text NOT NULL,
   `parole chiave` text NOT NULL,
   `immagine` varchar(40) NOT NULL,
@@ -171,13 +174,13 @@ CREATE TABLE `promozione` (
 -- Contenu de la table `promozione`
 --
 
-INSERT INTO `promozione` (`cod_promozione`, `tipo_prom`, `data_inizio`, `data_fine`, `prodotto`, `categoria`, `descrizione`, `parole chiave`, `immagine`, `P_Iva`, `prezzo_unitario_prod`) VALUES
-('1', 'tipo 1', '2017-05-15', '2017-06-15', 'prodotto 1', 'abbigliamento', 'hrzhetzj\'', 'ghrejhtjtrz', 'page1_img4.jpg', '00000000000', 45),
-('2', 'tipo 2', '2017-03-14', '2017-07-07', 'prodotto 2', 'cibo', 'ghreaherajht', 'hreah', 'page1_img5.jpg', '00000000002', 32),
-('3', 'tipo 1', '2017-05-19', '2017-07-14', 'prodotto 3', 'abbigliamento', 'ghreha', 'ugez_ohoa', 'page1_img6.jpg', '00000000000', 67),
-('4', 'tipo 1', '2017-05-26', '2017-11-08', 'prodotto 4', 'sport', 'fhjeiozhgm', 'grzjioh', 'page2_img1.jpg', '00000000001', 12),
-('5', 'tipo 3', '2017-05-10', '2017-07-08', 'prodotto 5', 'Sport', 'higoezhagù', 'ngjezabg', 'page3_img3.jpg', '00000000001', 43),
-('6', 'tipo 1', '2017-05-19', '2017-07-14', 'prodotto 3', 'abbigliamento', 'ghreha', 'ugez_ohoa', 'page1_img6.jpg', '00000000000', 67);
+INSERT INTO `promozione` (`cod_promozione`, `tipo_prom`, `data_inizio`, `data_fine`, `prodotto`, `catId`, `descrizione`, `parole chiave`, `immagine`, `P_Iva`, `prezzo_unitario_prod`) VALUES
+('1', 'tipo 1', '2017-05-15', '2017-06-15', 'prodotto 1', 1, 'hrzhetzj\'', 'ghrejhtjtrz', 'page1_img4.jpg', '00000000000', 45),
+('2', 'tipo 2', '2017-03-14', '2017-07-07', 'prodotto 2', 5, 'ghreaherajht', 'hreah', 'page1_img5.jpg', '00000000002', 32),
+('3', 'tipo 1', '2017-05-19', '2017-07-14', 'prodotto 3', 3, 'ghreha', 'ugez_ohoa', 'page1_img6.jpg', '00000000000', 67),
+('4', 'tipo 1', '2017-05-26', '2017-11-08', 'prodotto 4', 2, 'fhjeiozhgm', 'grzjioh', 'page2_img1.jpg', '00000000001', 12),
+('5', 'tipo 3', '2017-05-10', '2017-07-08', 'prodotto 5', 1, 'higoezhag', 'ngjezabg', 'page2_img3.jpg', '00000000001', 43),
+('6', 'tipo 1', '2017-05-19', '2017-07-14', 'prodotto 3', 5, 'ghreha', 'ugez_ohoa', 'page1_img6.jpg', '00000000000', 67);
 
 -- --------------------------------------------------------
 
@@ -288,7 +291,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `product`
 --
