@@ -1,0 +1,46 @@
+<section class="content gallery pad1">
+  <div class="container">
+    <div class="row">
+    <?php foreach ($this->aziende as $aziende) :?>
+        <div class="grid_4">
+           <div class="gall_block">
+                <div class="maxheight">
+                    <?php echo $this->productImg($aziende->logo, array('class' => 'imagefrm')) ?>         
+                    <div class="gall_bot">
+                    <div class="text1"><a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'infoazienda',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+		title="Azienda"><?php echo'<h3 class="title">' . $aziende->nome . '</h3>' ?></a></div> 
+		
+		<a class="btn" href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'infoazienda',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>"
+		title="InfoAzienda">More</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                            
+		  
+        <?php endforeach ?>
+
+    </div>
+    
+    </div>
+    <br>
+    <?php if($this->aziende instanceof Zend_Paginator) {
+                echo $this->paginationControl($this->aziende,'Sliding','public/_paginatoraziende.phtml');
+	  } 
+      ?>
+</section>

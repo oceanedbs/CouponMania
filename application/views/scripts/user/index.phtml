@@ -1,0 +1,35 @@
+<section class="content">
+<div class="container">  
+    <div class="row">
+                            
+	      <?php foreach ($this->topCategories as $category) {
+		     echo ' <div class="grid_4"> 
+                            <div class="banner">
+                            <div class="gall_block">'; 
+                   echo $this->productImg($category->image, array('class' => 'imagefrm')) ;
+                    echo '<div class="bann_capt">
+                        <div class="maxheight">
+                        <div class="box-inner">';
+                    echo $this->productImg($category->logo, array('class' => 'imagefrm')) ;
+                    echo ' <div class="bann_title">
+                           <h2> <a href=' . $this->url(array('controller' => 'public',
+                                                        'action' => 'index',
+                                                        'selTopCat' => $category->catId), 
+                                                        'default', true) . 
+                 '> ' . $category->name . '</a></h2></div></div></div></div></div></div></div>';
+	      }
+	      ?>
+	      
+	      </div>
+	  
+	  </div>
+	  
+	    <?php if($this->category instanceof Zend_Paginator) {
+	  		echo $this->paginationControl($this->category,'Sliding','public/_paginator.phtml');
+	  } 
+	  ?>
+
+</section>
+<!-- fine sezione laterale -->
+
+

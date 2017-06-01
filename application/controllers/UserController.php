@@ -1,16 +1,29 @@
 <?php
 
-class PublicController extends Zend_Controller_Action
+class UserController extends Zend_Controller_Action
 {
-	protected $_catalogModel;
+        
+    protected $_catalogModel;
+    protected $_authService;
+	
 	
     public function init()
     {
-        $this->_helper->layout->setLayout('main');
-        $this->_catalogModel = new Application_Model_Catalog();
+		$this->_helper->layout->setLayout('user');
+                $this->_catalogModel = new Application_Model_Catalog();
+		$this->_authService = new Application_Service_Auth();
+		$this->view->loginForm = $this->getLoginForm();
     }
 
-    public function indexAction()
+
+
+    //public function logoutAction()
+	//{
+	//	$this->_authService->clear();
+	//	return $this->_helper->redirector('index','public');	
+	//}
+	
+       public function indexAction()
     {    	    	
     	//  Estrae le Categorie Top    	    	
     	
@@ -93,4 +106,3 @@ class PublicController extends Zend_Controller_Action
     }
     
 }
-
