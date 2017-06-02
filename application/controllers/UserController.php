@@ -12,7 +12,6 @@ class UserController extends Zend_Controller_Action
 		$this->_helper->layout->setLayout('user');
                 $this->_catalogModel = new Application_Model_Catalog();
 		$this->_authService = new Application_Service_Auth();
-		$this->view->loginForm = $this->getLoginForm();
     }
 
 

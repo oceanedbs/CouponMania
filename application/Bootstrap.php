@@ -55,7 +55,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
              ->addResourceType('modelResource','models/resources','Resource');  
   	}
   	
-      protected function _initFrontControllerPlugin()
+    protected function _initFrontControllerPlugin()
     {
     	$front = Zend_Controller_Front::getInstance();
     	$front->registerPlugin(new App_Controller_Plugin_Acl());
