@@ -65,4 +65,9 @@ class Application_Model_Catalog extends App_Model_Abstract
     {
         return $this->getResource('Promozione')->getPromobyAzienda($idazienda);
     }
+    
+    public function getInfoprodotto($idprodotto) 
+    {
+        return $this->getResource('Promozione')->getInfoprodotto($idprodotto);
+    }
 }

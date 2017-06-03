@@ -39,6 +39,9 @@ class PublicController extends Zend_Controller_Action
         $paged = $this->_getParam('page', 1);
         $cat = $this->_getParam('selTopCat', null);
         $topCats=$this->_catalogModel->getTopCats($paged);
+        $idprodotto = $this->_getParam('idprodotto', null);
+        $infoprodotto='';
+
 
         
         if (!is_null($cat)) {
@@ -54,6 +57,11 @@ class PublicController extends Zend_Controller_Action
                         $prods=$this->_catalogModel->getProds($topCatsList, $paged);			   	
         }
 
+        if (!is_null($idprodotto)) {
+			
+            $infoprodotto=$this->_catalogModel->getInfoprodotto($idprodotto);
+			
+         }
     
         $topCats=$this->_catalogModel->getTopCats($paged);
         
@@ -64,7 +72,9 @@ class PublicController extends Zend_Controller_Action
          $this->view->assign(array(
             		'topCategories' => $topCats,
                         'products' => $prods,
-                        'topOfferte' => $topOfferte,)
+                        'topOfferte' => $topOfferte,
+                        'idprodotto' => $idprodotto,
+                        'infoprodotto' => $infoprodotto,)
         );
     
     	
@@ -99,6 +109,7 @@ class PublicController extends Zend_Controller_Action
     
     	
     }
+
     
 
     

@@ -72,5 +72,14 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
                         ->where('P_Iva IN(?)', $idazienda);
         return $this->fetchAll($select);
     }
+    
+    public function getInfoprodotto($idprodotto)
+    {
+         $select = $this->select()
+                        ->where('cod_promozione IN(?)', $idprodotto);
+        return $this->fetchAll($select);
+
+    
+    }
 
 }
