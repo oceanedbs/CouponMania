@@ -65,5 +65,12 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 
        
     } 
+    
+    public function getPromobyAzienda($idazienda)
+    {
+        $select = $this->select()
+                        ->where('P_Iva IN(?)', $idazienda);
+        return $this->fetchAll($select);
+    }
 
 }

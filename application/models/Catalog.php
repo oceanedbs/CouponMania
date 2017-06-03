@@ -55,9 +55,14 @@ class Application_Model_Catalog extends App_Model_Abstract
         return $this->getResource('Aziende')->getAziende($paged);
     }
     
-    public function getInfoAzienda($idAzienda)
+    public function getInfoAzienda($idazienda)
     {
-        return $this->getResource('Aziende')->getInfoAzienda($idAzienda);
+        return $this->getResource('Aziende')->getInfoAzienda($idazienda);
 
+    }
+    
+    public function getPromobyAzienda($idazienda)
+    {
+        return $this->getResource('Promozione')->getPromobyAzienda($idazienda);
     }
 }

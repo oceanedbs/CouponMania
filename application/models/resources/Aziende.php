@@ -24,10 +24,10 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
         return $this->fetchAll($select);
     }
         
-    public function getInfoAzienda($idAzienda){
+    public function getInfoAzienda($idazienda){
     
         $select = $this->select()
-                         ->where('P_Iva IN(?)', $idAzienda);
+                         ->where('P_Iva IN(?)', $idazienda);
         return $this->fetchAll($select);
 
     

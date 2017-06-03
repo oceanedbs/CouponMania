@@ -72,28 +72,35 @@ class PublicController extends Zend_Controller_Action
     
     public function aziendeAction () {
     
-        
+            
         $paged = $this->_getParam('page', 1);
+        $idazienda = $this->_getParam('idazienda', null);
+        $infoazienda='';
+        $promoazienda='';
+
         
         $aziende=$this->_catalogModel->getAziende($paged);
-
-                                        
+        
+        if (!is_null($idazienda)) {
+			
+            $infoazienda=$this->_catalogModel->getInfoAzienda($idazienda);
+            $promoazienda=$this->_catalogModel->getPromobyAzienda($idazienda);
+			
+         }
+         
         $this->view->assign(array(
-            		'aziende' => $aziende,)
+            		'aziende' => $aziende,
+            		'idazienda' => $idazienda,
+            		'infoazienda' => $infoazienda,
+            		'promoazienda'=> $promoazienda,)
         );
+        
+        
     
     	
     }
     
-    public function infoaziendaAction ()  {
-    
-        $idAzienda = $this ->_getParam('P_Iva', null);
-        
-         $this->view->assign(array(
-            		'idazienda' => $idAzienda,)
-        );
-    
-    }
+
     
      public function loginAction()
     {}
