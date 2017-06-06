@@ -11,6 +11,9 @@ class PublicController extends Zend_Controller_Action
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_authService = new Application_Service_Auth();
         $this->view->loginForm = $this->getLoginForm();
+        $this->view->ricercareForm = $this->getRicercaForm();
+      //  $this->layout->contactForm = $this->getContactForm();
+
     }
 
     public function indexAction()
@@ -104,20 +107,15 @@ class PublicController extends Zend_Controller_Action
             		'infoazienda' => $infoazienda,
             		'promoazienda'=> $promoazienda,)
         );
-        
-        
-    
     	
     }
 
     
-
-    
-     public function loginAction()
+    public function loginAction()
     {}
 
     public function authenticateAction()
-	{        
+    {        
         $request = $this->getRequest();
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
@@ -133,10 +131,10 @@ class PublicController extends Zend_Controller_Action
         }
         $role = $this->_authService->getIdentity()->role;
         return $this->_helper->redirector('index',$role );
-	}
+    }
 	
     private function getLoginForm()
-        {
+    {
     		$urlHelper = $this->_helper->getHelper('url');
 		$this->_form = new Application_Form_Public_Auth_Login();
     		$this->_form->setAction($urlHelper->url(array(
@@ -145,7 +143,44 @@ class PublicController extends Zend_Controller_Action
 			'default'
 		));
 		return $this->_form;
-    }   	
+    }  
+    
+    private function getRicercaForm()
+    {
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_Public_Ricercare_Ricerca();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'public',
+			'action' => 'ricercare'),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+    
+    public function ricercaAction ()
+    {}
+    
+    private function getContactForm()
+    {
+
+               // $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_Public_Contact_Contact();
+                $this->view->placeholder('contactForm')->set($this->_form);
+
+    		//$this->_form->setAction($urlHelper->url(array(
+		//	'controller' => 'public',
+		//	'action' => 'contact'),
+		//	'default'
+		//));
+		//return $this->_form;
+    
+    }
+    
+    public function contactAction () 
+    {}
+    
+  
     
 }
 

@@ -16,7 +16,6 @@ class Application_Model_Catalog extends App_Model_Abstract
     public function getTopOfferte($paged)
     {
                 return $this->getResource('Category')->getTopOfferte($paged);
-
     }
     
     
@@ -24,11 +23,13 @@ class Application_Model_Catalog extends App_Model_Abstract
     {
         return $this->getResource('Category')->getCatById($id);
     }
+    
 
     public function getCatsByParId($parId)
     {
         return $this->getResource('Category')->getCatsByParId($parId);
     }
+    
        
     public function getDiscProds($catId, $paged=null, $order=null, $deep=true)
     {

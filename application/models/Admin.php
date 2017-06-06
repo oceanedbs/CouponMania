@@ -16,4 +16,8 @@ class Application_Model_Admin extends App_Model_Abstract
     {
     	return $this->getResource('Product')->insertProduct($info);
     }
+     public function getUserByName($info)
+    {
+    	return $this->getResource('User')->getUserByName($info);
+    }
 }
