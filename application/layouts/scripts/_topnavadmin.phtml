@@ -1,48 +1,53 @@
-<ul>
-	<li><a href=" <?= $this->url(array(
-                        'controller' => 'admin',
+<ul class="sf-menu">
+	<li><a class="active-menu" href=" <?= $this->url(array(
+                        'controller' => 'user',
                         'action'     => 'index',
                         ), 
-                        'default', true
+                        'default',true
                     ); 
                  ?>"
-		title="Va alla Home di Admin">Home</a></li>
-	<li><a href=" <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"
-		title="Torna al Catalogo">Catalogo</a></li>
-	<li><a
-		href="
-                <?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'newproduct',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"
-		title="Inserisce nuovi prodotti">Inserisci</a></li>
-	<li><a
-		href="
-                <?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'index',
-                                        ), 
-                        'default', true
-                    ); 
-                 ?>"
-		title="Modifica Prodotti">Modifica</a></li>
-	<li><a
-		href="
-                <?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'index',
-                                        ), 
-                        'default', true
-                    ); 
-                 ?>"
-		title="Cancella Prodotti">Cancella</a></li>
+		title="Home">home</a></li>
+		
+        <li><a href=" <?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'prodotti',
+                    ), 
+                    'default',true
+                ); 
+            ?>"
+            title="Prodotti">prodotti</a></li>
+         
+            <li><a href=" <?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'aziende',
+                    ), 
+                    'default',true
+                ); 
+            ?>"
+            title="Azienda">aziende</a></li>
+            
+            <li><a href=" <?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'index',
+                    ), 
+                    'default',true
+                ); 
+            ?>"
+            title="Ricerca">ricerca</a></li>
+            
+            <li><a
+            href="<?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'viewstatic',
+                    'staticPage' => 'where'), 
+                    'default',true
+                ); 
+                ?>"
+            title="Il nostro profilo aziendale">chi siamo</a></li>
+         
+          <li>Benvenuto</li>          
+            
+            
+		
+	
 </ul>

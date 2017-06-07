@@ -10,7 +10,7 @@ class AdminController extends Zend_Controller_Action
 	{
 		$this->_helper->layout->setLayout('admin');
 		$this->_adminModel = new Application_Model_Admin();
-		$this->view->productForm = $this->getProductForm();
+		//$this->view->productForm = $this->getProductForm();
 	}
 
 	public function indexAction()

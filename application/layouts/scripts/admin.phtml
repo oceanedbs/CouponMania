@@ -1,32 +1,60 @@
 <?php echo $this->doctype() ?>
 <html>
 <head>
-	<?= $this->headMeta(); ?>
+    <?= $this->headMeta(); ?>
     <?= $this->headLink(); ?>
     <?= $this->headTitle(); ?>
 </head>
-<body id="bodyadmin">
 <div id="wrapper">
-	<div id="menu">
-        <?= $this->render('_topnavadmin.phtml') ?>
-	</div>
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">LOGO</a>
+            </div>
 
-	<!-- end #menu -->
-	<div id="page">
-  	  <div id="page-bgtop">
-    	<div id="page-bgbtm">
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="assets/img/user.png" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                Jhon Deo Alex
+                            <br />
+                                <small>Last Login : 2 Weeks Ago </small>
+                            </div>
+                        </div>
+
+                    </li>
+                    
+                    
+                        <?= $this->render('_topnavadmin.phtml') ?>
+                    
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+      <div id="page-wrapper">
+    <div id="page-inner">
+            
+    <div class="content">
+  	  <div class="container">
 	  	  <?php echo $this->layout()->content; ?>
-      	<div style="clear: both;">&nbsp;</div>
-	    </div>
-  	  </div>
-	</div>
+        </div>
+        </div>
+        </div>
+        
+    </div>
+        
 
-	<!-- end #content -->
-	<div id="footer">
-		<br>
-		<p>universit&agrave; politecnica delle marche - Corso di  <a href="http://www.dii.univpm.it/C3I110NA/">tecnologie web</a>.</p>
-	</div>
-	<!-- end #footer -->
-</div>
+    <div id="footer-sec">
+        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
+    </div>
+    <!-- /. FOOTER  -->
+
 </body>
 </html>
