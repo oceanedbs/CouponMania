@@ -1,0 +1,48 @@
+<ul>
+	<li><a href=" <?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"
+		title="Va alla Home di Admin">Home</a></li>
+	<li><a href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"
+		title="Torna al Catalogo">Catalogo</a></li>
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'newproduct',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"
+		title="Inserisce nuovi prodotti">Inserisci</a></li>
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                                        ), 
+                        'default', true
+                    ); 
+                 ?>"
+		title="Modifica Prodotti">Modifica</a></li>
+	<li><a
+		href="
+                <?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                                        ), 
+                        'default', true
+                    ); 
+                 ?>"
+		title="Cancella Prodotti">Cancella</a></li>
+</ul>
