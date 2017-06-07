@@ -55,7 +55,7 @@ class Application_Service_Auth
 			'password'
 		);
 		$authAdapter->setIdentity($values['username']);
-		$authAdapter->setCredential($values['password']);
+		$authAdapter->setCredential($values['passwd']);
         return $authAdapter;
     }
 }

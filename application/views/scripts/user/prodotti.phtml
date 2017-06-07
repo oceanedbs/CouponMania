@@ -1,93 +1,126 @@
 <section class="content gallery pad1">
   <div class="container">
-    <div class="row_top">
-    
-             <div class="grid_5">
-                <div class="gall_block">
+  
+    <?php if( null == $this->idprodotto) :?>
+        <div class="row_top">
+        
+                <div class="grid_5">
+                    <div class="gall_block">
 
 
-	      <h2>Tipo di Prodotti</h2>
-	      <ul>
-	      <?php foreach ($this->topCategories as $category) {
-		     echo '<li><h3><a href=' . $this->url(array('controller' => 'public',
-                                                                'action' => 'prodotti',
-                                                    'selTopCat' => $category->catId), 'default', true) . 
-                 '>' . $category->name . '</a></h3></li>';
-	      }
-	      ?>
-	      </ul>
-	      
-	      </div>
-	      
-	      </div>
-	      
-	       <div class="grid_5">
-                <div class="gall_block">
-	      
-	      <h2>Tipo di Offerte </h2>
-	      <ul>
-	      <?php foreach ($this->topOfferte as $offerte) {
-		     echo '<li><h3><a href=' . $this->url(array('controller' => 'public',
-                                                                'action' => 'prodotti',
-                                                    'selTopCat' => $offerte->catId), 'default', true) . 
-                 '>' . $offerte->name . '</a></h3></li>';
-	      }
-	      ?>
-	      </ul>
-	    
-	    </div>
-	    </div>
-	    </div>
-	    </div>
-	    
-	    <hr>
-	    
-	    
-	    
-    <?php foreach ($this->products as $products) :?>
-        <div class="grid_4">
-           <div class="gall_block">
-                <div class="maxheight">
-                    <?php echo $this->productImg($products->immagine, array('class' => 'imagefrm')) ?>         
-                    <div class="gall_bot">
-                    <div class="text1"><a href=" <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'index',
-                        ), 
-                        'default',true
-                    ); 
-                 ?>"
-		title="Product"><?php echo'<h3 class="title">' . $products->prodotto . '</h3>' ?></a></div> 
-                <?php echo  $products->descrizione  ?><br>
+                <h2>Tipo di Prodotti</h2>
+                <ul>
+                <?php foreach ($this->topCategories as $category) {
+                        echo '<li><h3><a href=' . $this->url(array('controller' => 'public',
+                                                                    'action' => 'prodotti',
+                                                        'selTopCat' => $category->catId), 'default', true) . 
+                                '>' . $category->name . '</a></h3></li>';
+                }
+                ?>
+                </ul>
+                
+                </div>
+                
+                </div>
+                
+                <div class="grid_5">
+                    <div class="gall_block">
+                
+                <h2>Tipo di Offerte </h2>
+                <ul>
+                <?php foreach ($this->topOfferte as $offerte) {
+                        echo '<li><h3><a href=' . $this->url(array('controller' => 'public',
+                                                                    'action' => 'prodotti',
+                                                        'selTopCat' => $offerte->catId), 'default', true) . 
+                    '>' . $offerte->name . '</a></h3></li>';
+                }
+                ?>
+                </ul>
+                
+                </div>
+                </div>
+                </div>
+                </div>
+                
+                <hr>
+                
+                
+                
+        <?php foreach ($this->products as $products) :?>
+            <div class="grid_4">
+            <div class="gall_block">
+                    <div class="maxheight">
+                        <?php echo $this->productImg($products->immagine, array('class' => 'imagefrm')) ?>         
+                        <div class="gall_bot">
+                        <div class="text1"><a href=" <?= $this->url(array(
+                            'controller' => 'public',
+                            'action'     => 'prodotti',
+                            'idprodotto' => $products->cod_promozione,
+                            ), 
+                            'default',true
+                        ); 
+                    ?>"
+                    title="Product"><?php echo'<h3 class="title">' . $products->prodotto . '</h3>' ?></a></div> 
+                    <?php echo  $products->descrizione  ?><br>
 
-		<a class="btn" href=" <?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'index',
-                        ), 
-                        'default',true
-                    ); 
-                 ?>"
-		title="Info Prodotto">More</a>
+                    <a class="btn" href=" <?= $this->url(array(
+                            'controller' => 'public',
+                            'action'     => 'prodotti',
+                            'idprodotto' => $products->cod_promozione,
+
+                            ), 
+                            'default',true
+                        ); 
+                    ?>"
+                    title="Info Prodotto">More</a>
 
 
+                        </div>
                     </div>
                 </div>
+                <br>
             </div>
-            <br>
-        </div>
+            
+
+                                
+                    
+        <?php endforeach ?>
+        
         
 
-                            
-		  
-     <?php endforeach ?>
-     
-    
+            </div>
+            <?php if($this->products instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->products,'Sliding','public/_paginator.phtml');
+            } 
+        ?>
+        
+     <?php elseif( !null == $this->idprodotto) :?>
+              
+              
+            <?php foreach($this->infoprodotto as $infoprodotto) :?>
+                <div class="grid_4">
+                    <?php echo $this->productImg($infoprodotto->immagine, array('class' => 'imagefrm')) ?>     
+                    
+                </div>
+                
+                <div class="grid_4">
+                    <h3>  Nome : <?= $infoprodotto->prodotto ; ?></h3><br>
+                    Tipo di promozione : <?= $infoprodotto->tipo_prom ; ?><br>
+                    Data Inizio : <?= $infoprodotto->data_inizio ; ?><br>
+                    Data Fine : <?= $infoprodotto->data_fine ; ?><br>
+                    Descrizione : <?= $infoprodotto->descrizione ; ?><br>
+                    Prezzo : <?= $infoprodotto->prezzo_unitario_prod ; ?> € <br>
+                </div>
+                        
+                        
+            <?php endforeach ?>
+                       
+            
+            
+    <?php endif ?>
 
-        </div>
-        <?php if($this->products instanceof Zend_Paginator) {
-	  		echo $this->paginationControl($this->products,'Sliding','public/_paginator.phtml');
-	  } 
-      ?>
+        
+
     </div>
     
 </section>

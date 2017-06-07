@@ -48,6 +48,9 @@ class UserController extends Zend_Controller_Action
         $paged = $this->_getParam('page', 1);
         $cat = $this->_getParam('selTopCat', null);
         $topCats=$this->_catalogModel->getTopCats($paged);
+        $idprodotto = $this->_getParam('idprodotto', null);
+        $infoprodotto='';
+
 
         
         if (!is_null($cat)) {
@@ -63,6 +66,11 @@ class UserController extends Zend_Controller_Action
                         $prods=$this->_catalogModel->getProds($topCatsList, $paged);			   	
         }
 
+        if (!is_null($idprodotto)) {
+			
+            $infoprodotto=$this->_catalogModel->getInfoprodotto($idprodotto);
+			
+         }
     
         $topCats=$this->_catalogModel->getTopCats($paged);
         
@@ -73,7 +81,9 @@ class UserController extends Zend_Controller_Action
          $this->view->assign(array(
             		'topCategories' => $topCats,
                         'products' => $prods,
-                        'topOfferte' => $topOfferte,)
+                        'topOfferte' => $topOfferte,
+                        'idprodotto' => $idprodotto,
+                        'infoprodotto' => $infoprodotto,)
         );
     
     	
@@ -81,27 +91,32 @@ class UserController extends Zend_Controller_Action
     
     public function aziendeAction () {
     
-        
+            
         $paged = $this->_getParam('page', 1);
+        $idazienda = $this->_getParam('idazienda', null);
+        $infoazienda='';
+        $promoazienda='';
+
         
         $aziende=$this->_catalogModel->getAziende($paged);
-
-                                        
+        
+        if (!is_null($idazienda)) {
+			
+            $infoazienda=$this->_catalogModel->getInfoAzienda($idazienda);
+            $promoazienda=$this->_catalogModel->getPromobyAzienda($idazienda);
+			
+         }
+         
         $this->view->assign(array(
-            		'aziende' => $aziende,)
+            		'aziende' => $aziende,
+            		'idazienda' => $idazienda,
+            		'infoazienda' => $infoazienda,
+            		'promoazienda'=> $promoazienda,)
         );
+        
+        
     
     	
-    }
-    
-    public function infoaziendaAction ()  {
-    
-        $idAzienda = $this ->_getParam('P_Iva', null);
-        
-         $this->view->assign(array(
-            		'idazienda' => $idAzienda,)
-        );
-    
     }
     
 }
