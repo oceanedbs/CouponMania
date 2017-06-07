@@ -1,53 +1,290 @@
-<ul class="sf-menu">
-	<li><a class="active-menu" href=" <?= $this->url(array(
-                        'controller' => 'user',
+<ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="<?=$this->baseUrl('images/user.png')?>" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                Il Nostro Amministratore
+                            <br />
+                                <small>ciaone</small>
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>UI Elements <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
                         'action'     => 'index',
                         ), 
-                        'default',true
+                        'default', true
                     ); 
-                 ?>"
-		title="Home">home</a></li>
-		
-        <li><a href=" <?= $this->url(array(
-                    'controller' => 'user',
-                    'action'     => 'prodotti',
-                    ), 
-                    'default',true
-                ); 
-            ?>"
-            title="Prodotti">prodotti</a></li>
-         
-            <li><a href=" <?= $this->url(array(
-                    'controller' => 'user',
-                    'action'     => 'aziende',
-                    ), 
-                    'default',true
-                ); 
-            ?>"
-            title="Azienda">aziende</a></li>
-            
-            <li><a href=" <?= $this->url(array(
-                    'controller' => 'user',
-                    'action'     => 'index',
-                    ), 
-                    'default',true
-                ); 
-            ?>"
-            title="Ricerca">ricerca</a></li>
-            
-            <li><a
-            href="<?= $this->url(array(
-                    'controller' => 'user',
-                    'action'     => 'viewstatic',
-                    'staticPage' => 'where'), 
-                    'default',true
-                ); 
-                ?>"
-            title="Il nostro profilo aziendale">chi siamo</a></li>
-         
-          <li>Benvenuto</li>          
-            
-            
-		
-	
-</ul>
+                 ?>"><i class="fa fa-toggle-on"></i>Tabs & Panels</a>
+                            </li>
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-bell "></i>Notifications</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-circle-o "></i>Progressbars</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-code "></i>Buttons</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-bug "></i>Icons</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-bug "></i>Wizard</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-edit "></i>Typography</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-eyedropper "></i>Grid</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-yelp "></i>Extra Pages <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-coffee"></i>Invoice</a>
+                            </li>
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-flash "></i>Pricing</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-key "></i>Components</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-send "></i>Social</a>
+                            </li>
+                            
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-recycle "></i>Messages & Tasks</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-flash "></i>Data Tables </a>
+                        
+                    </li>
+                     <li>
+                        <a href="#"><i class="fa fa-bicycle "></i>Forms <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                           
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-desktop "></i>Basic </a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-code "></i>Advance</a>
+                            </li>
+                             
+                           
+                        </ul>
+                    </li>
+                      <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-anchor "></i>Gallery</a>
+                    </li>
+                     <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-bug "></i>Error Page</a>
+                    </li>
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-sign-in "></i>Login Page</a>
+                    </li>
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-sitemap "></i>Multilevel Link <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-bicycle "></i>Second Level Link</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-flask "></i>Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Second Level Link<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-plus "></i>Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-comments-o "></i>Third Level Link</a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                   
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-square-o "></i>Blank Page</a>
+                    </li>
+                </ul>

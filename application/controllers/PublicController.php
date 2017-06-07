@@ -11,7 +11,6 @@ class PublicController extends Zend_Controller_Action
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_authService = new Application_Service_Auth();
         $this->view->loginForm = $this->getLoginForm();
-        $this->view->registraForm = $this->getRegistraForm();
     }
 
     public function indexAction()
@@ -146,7 +145,10 @@ class PublicController extends Zend_Controller_Action
 			'default'
 		));
 		return $this->_form;
-    }   
+    }   	
+    
+
+
     public function registraAction()
     {}
    
