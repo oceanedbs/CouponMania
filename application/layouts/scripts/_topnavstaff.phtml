@@ -1,48 +1,134 @@
-<ul>
-	<li><a href=" <?= $this->url(array(
-                        'controller' => 'staff',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"
-		title="Va alla Home di Admin">Home</a></li>
-	<li><a href=" <?= $this->url(array(
+
+<ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="<?=$this->baseUrl('images/user.png')?>" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                Il Nostro Amministratore
+                            <br />
+                                <small>ciaone</small>
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    
+                    <li>
+                        <a href="<?= $this->url(array(
                         'controller' => 'public',
                         'action'     => 'index',
                         ), 
                         'default', true
                     ); 
-                 ?>"
-		title="Torna al Catalogo">Catalogo</a></li>
-	<li><a
-		href="
-                <?= $this->url(array(
+                 ?>">  Home </a>
+                         
+                    </li>
+                     <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Catalogo </a>
+                 <!-- sottonav
+                 
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-coffee"></i>Invoice</a>
+                            </li>
+                            <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-flash "></i>Pricing</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-key "></i>Components</a>
+                            </li>
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-send "></i>Social</a>
+                            </li>
+                            
+                             <li>
+                                <a href="<?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>"><i class="fa fa-recycle "></i>Messages & Tasks</a>
+                            </li>
+                            
+                           
+                        </ul> -->
+                    </li>
+                    <li>
+                        <a href="<?= $this->url(array(
                         'controller' => 'staff',
                         'action'     => 'newproduct',
                         ), 
                         'default', true
                     ); 
-                 ?>"
-		title="Inserisce nuovi prodotti">Inserisci</a></li>
-	<li><a
-		href="
-                <?= $this->url(array(
+                 ?>">Inserisci </a>
+                        
+                    </li>
+                     
+                           
+                             <li>
+                                <a href="<?= $this->url(array(
                         'controller' => 'staff',
                         'action'     => 'index',
-                                        ), 
+                        ), 
                         'default', true
                     ); 
-                 ?>"
-		title="Modifica Prodotti">Modifica</a></li>
-	<li><a
-		href="
-                <?= $this->url(array(
+                 ?>"></i>Modifica </a>
+                            </li>
+                         
+                      <li>
+                        <a href="<?= $this->url(array(
                         'controller' => 'staff',
                         'action'     => 'index',
-                                        ), 
+                        ), 
                         'default', true
                     ); 
-                 ?>"
-		title="Cancella Prodotti">Cancella</a></li>
-</ul>
+                 ?>">Cancella</a>
+                    </li>
+                     <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'staff',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Logout</a>
+                    </li>
+                    
+                        </ul>
+                    </li>
+                   
+                    
+               

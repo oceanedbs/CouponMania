@@ -5,7 +5,7 @@ class Application_Form_Staff_Product_Add extends Zend_Form
 
 	public function init()
 	{
-		$this->_adminModel = new Application_Model_Staff();
+		$this->_staffModel = new Application_Model_Staff();
 		$this->setMethod('post');
 		$this->setName('addproduct');
 		$this->setAction('');
@@ -20,7 +20,7 @@ class Application_Form_Staff_Product_Add extends Zend_Form
 		));
 
 		$categories = array();
-		$cats = $this->_adminModel->getSubCats();
+		$cats = $this->_staffModel->getSubCats();
 		foreach ($cats as $cat) {
 			$categories[$cat -> catId] = $cat->name;
 		}
