@@ -45,6 +45,7 @@ class PublicController extends Zend_Controller_Action
         $infoprodotto='';
 
 
+
         
         if (!is_null($cat)) {
 			
@@ -200,7 +201,21 @@ class PublicController extends Zend_Controller_Action
         }
         $role = $this->_authService->getIdentity()->role;
         return $this->_helper->redirector('index',$role );
-	}          
+	}  
+	
+	 private function getStampareForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_User_Stampare();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'public',
+			'action' => ''),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+
     
 }
 

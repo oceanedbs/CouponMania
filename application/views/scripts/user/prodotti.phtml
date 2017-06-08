@@ -11,7 +11,7 @@
                 <h2>Tipo di Prodotti</h2>
                 <ul>
                 <?php foreach ($this->topCategories as $category) {
-                        echo '<li><h3><a href=' . $this->url(array('controller' => 'public',
+                        echo '<li><h3><a href=' . $this->url(array('controller' => 'user',
                                                                     'action' => 'prodotti',
                                                         'selTopCat' => $category->catId), 'default', true) . 
                                 '>' . $category->name . '</a></h3></li>';
@@ -29,7 +29,7 @@
                 <h2>Tipo di Offerte </h2>
                 <ul>
                 <?php foreach ($this->topOfferte as $offerte) {
-                        echo '<li><h3><a href=' . $this->url(array('controller' => 'public',
+                        echo '<li><h3><a href=' . $this->url(array('controller' => 'user',
                                                                     'action' => 'prodotti',
                                                         'selTopCat' => $offerte->catId), 'default', true) . 
                     '>' . $offerte->name . '</a></h3></li>';
@@ -53,7 +53,7 @@
                         <?php echo $this->productImg($products->immagine, array('class' => 'imagefrm')) ?>         
                         <div class="gall_bot">
                         <div class="text1"><a href=" <?= $this->url(array(
-                            'controller' => 'public',
+                            'controller' => 'user',
                             'action'     => 'prodotti',
                             'idprodotto' => $products->cod_promozione,
                             ), 
@@ -64,7 +64,7 @@
                     <?php echo  $products->descrizione  ?><br>
 
                     <a class="btn" href=" <?= $this->url(array(
-                            'controller' => 'public',
+                            'controller' => 'user',
                             'action'     => 'prodotti',
                             'idprodotto' => $products->cod_promozione,
 
@@ -110,6 +110,13 @@
                     Data Fine : <?= $infoprodotto->data_fine ; ?><br>
                     Descrizione : <?= $infoprodotto->descrizione ; ?><br>
                     Prezzo : <?= $infoprodotto->prezzo_unitario_prod ; ?> € <br>
+                </div>
+                
+                <div class="grid_4">
+                
+                    <?=$this->stampareForm; ?>
+
+                    
                 </div>
                         
                         

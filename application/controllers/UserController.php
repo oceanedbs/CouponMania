@@ -10,6 +10,8 @@ class UserController extends Zend_Controller_Action
 	
     public function init()
     {
+                $this->view->ricercareForm = $this->getRicercaForm(); 
+                $this->view->stampareForm = $this->getStampareForm();
 		$this->_helper->layout->setLayout('user');
                 $this->_catalogModel = new Application_Model_Catalog();
 		$this->_authService = new Application_Service_Auth();
@@ -50,6 +52,8 @@ class UserController extends Zend_Controller_Action
         $topCats=$this->_catalogModel->getTopCats($paged);
         $idprodotto = $this->_getParam('idprodotto', null);
         $infoprodotto='';
+        $role = $this->_authService->getIdentity()->role;
+
 
 
         
@@ -83,7 +87,8 @@ class UserController extends Zend_Controller_Action
                         'products' => $prods,
                         'topOfferte' => $topOfferte,
                         'idprodotto' => $idprodotto,
-                        'infoprodotto' => $infoprodotto,)
+                        'infoprodotto' => $infoprodotto,
+                        'role'=> $role,)
         );
     
     	
@@ -118,5 +123,36 @@ class UserController extends Zend_Controller_Action
     
     	
     }
+    
+    private function getRicercaForm() 
+    { 
+                $urlHelper = $this->_helper->getHelper('url'); 
+    $this->_form = new Application_Form_Public_Ricercare_Ricerca(); 
+        $this->_form->setAction($urlHelper->url(array( 
+      'controller' => 'public', 
+      'action' => 'ricercare'), 
+      'default' 
+    )); 
+    return $this->_form; 
+     
+    } 
+     
+    public function ricercaAction () 
+    {} 
+
+    
+    private function getStampareForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_User_Stampare();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'user',
+			'action' => ''),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+
     
 }

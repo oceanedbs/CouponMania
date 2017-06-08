@@ -37,7 +37,7 @@
            
             <br>
             <?php if($this->aziende instanceof Zend_Paginator) {
-                    echo $this->paginationControl($this->aziende,'Sliding','user/_paginatoraziende.phtml');
+                    echo $this->paginationControl($this->aziende,'Sliding','public/_paginatoraziende.phtml');
                     } 
             ?>
 
@@ -60,7 +60,8 @@
                                         <div class="gall_bot">
                                         <div class="text1"><a href=" <?= $this->url(array(
                                             'controller' => 'user',
-                                            'action'     => 'index',
+                                            'action'     => 'prodotti',
+                                            'idprodotto' => $promoazienda->cod_promozione,
                                             ), 
                                             'default',true
                                         ); 
@@ -70,7 +71,9 @@
 
                                     <a class="btn" href=" <?= $this->url(array(
                                             'controller' => 'user',
-                                            'action'     => 'index',
+                                            'action'     => 'prodotti',
+                                            'idprodotto' => $promoazienda->cod_promozione,
+
                                             ), 
                                             'default',true
                                         ); 
