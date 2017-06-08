@@ -7,6 +7,8 @@ class PublicController extends Zend_Controller_Action
 	
     public function init()
     {
+        $this->view->registraForm = $this->getRegistraForm();
+        $this->view->ricercareForm = $this->getRicercaForm(); 
         $this->_helper->layout->setLayout('main');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_authService = new Application_Service_Auth();
@@ -145,7 +147,24 @@ class PublicController extends Zend_Controller_Action
 			'default'
 		));
 		return $this->_form;
-    }   	
+    } 
+    
+    private function getRicercaForm() 
+    { 
+                $urlHelper = $this->_helper->getHelper('url'); 
+    $this->_form = new Application_Form_Public_Ricercare_Ricerca(); 
+        $this->_form->setAction($urlHelper->url(array( 
+      'controller' => 'public', 
+      'action' => 'ricercare'), 
+      'default' 
+    )); 
+    return $this->_form; 
+     
+    } 
+     
+    public function ricercaAction () 
+    {} 
+
     
 
 

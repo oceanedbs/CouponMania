@@ -8,7 +8,13 @@
 <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">LOGO</a>
+                <h1><a class="navbar-brand" href=" <?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>">CouponMania</a></h1>
             </div>
 
         </nav>
@@ -16,18 +22,7 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-                    <li>
-                        <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-thumbnail" />
-
-                            <div class="inner-text">
-                                Jhon Deo Alex
-                            <br />
-                                <small>Last Login : 2 Weeks Ago </small>
-                            </div>
-                        </div>
-
-                    </li>
+                    
                     
                     
                         <?= $this->render('_topnavadmin.phtml') ?>
