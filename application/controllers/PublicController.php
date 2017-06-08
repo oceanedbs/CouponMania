@@ -3,7 +3,9 @@
 class PublicController extends Zend_Controller_Action
 {
 	protected $_catalogModel;
+        protected $_publicModel;
 	protected $_authService;
+        protected $_form;
 	
     public function init()
     {
@@ -11,6 +13,7 @@ class PublicController extends Zend_Controller_Action
         $this->view->ricercareForm = $this->getRicercaForm(); 
         $this->_helper->layout->setLayout('main');
         $this->_catalogModel = new Application_Model_Catalog();
+        $this->_publicModel = new Application_Model_Public();
         $this->_authService = new Application_Service_Auth();
         $this->view->loginForm = $this->getLoginForm();
     }
@@ -172,7 +175,22 @@ class PublicController extends Zend_Controller_Action
     public function registraAction()
     {}
    
-     private function getRegistraForm()
+     
+                
+       public function authenticateregAction()
+	{        
+        if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form;
+		if (!$form->isValid($_POST)) {
+			return $this->render('registra');
+		}
+		$values = $form->getValues();
+		$this->_publicModel->saveUtente($values);
+		$this->_helper->redirector('index');
+	}          
+    private function getRegistraForm()
         {
     		$urlHelper = $this->_helper->getHelper('url');
 		$this->_form = new Application_Form_Public_Registra();
@@ -183,25 +201,6 @@ class PublicController extends Zend_Controller_Action
 		));
 		return $this->_form;
         }
-                
-       public function authenticateregAction()
-	{        
-        $request = $this->getRequest();
-        if (!$request->isPost()) {
-            return $this->_helper->redirector('registra');
-        }
-        $form = $this->_form;
-        if (!$form->isValid($request->getPost())) {
-            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
-        	    return $this->render('registra');
-        }
-        if (false === $this->_authService->authenticate($form->getValues())) {
-            $form->setDescription('Registrazione fallita. Riprova');
-            return $this->render('registra');
-        }
-        $role = $this->_authService->getIdentity()->role;
-        return $this->_helper->redirector('index',$role );
-	}  
 	
 	 private function getStampareForm(){
     

@@ -2,13 +2,15 @@
 
 class Application_Form_Public_Registra extends App_Form_Abstract
 {
+    protected $_publicModel;
 	public function init()
     {               
+        $this->_publicModel = new Application_Model_Public();
         $this->setMethod('post');
-        $this->setName('registra');
+        $this->setName('authenticatereg');
         $this->setAction('');
         
-    	 $this->addElement('text', 'name', array(
+    	 $this->addElement('text', 'nome', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(1, 25))
@@ -18,7 +20,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
          
-          $this->addElement('text', 'surname', array(
+          $this->addElement('text', 'cognome', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(1, 25))
@@ -35,7 +37,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
                'decorators' => $this->elementDecorators,
 		));
            
-           $this->addElement('text', 'datanas', array(
+           $this->addElement('text', 'data_nascita', array(
             'label' => 'Data di nascita',
                 'required'   => true,
             'placeholder'=>'aaaa-mm-gg',
@@ -48,6 +50,27 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             ),
                 'required'   => true,
             'label'      => 'Telefono',
+            'decorators' => $this->elementDecorators,
+            ));
+           
+           $this->addElement('text', 'e-mail', array(
+            'filters'    => array('StringTrim'),
+            'validators' => array(
+                array('StringLength', true, array(3, 25),
+                 'EmailAddress' )
+            ),
+            'required'   => true,
+            'label'      => 'E-mail',
+            'decorators' => $this->elementDecorators,
+            ));
+           
+           $this->addElement('hidden', 'role', array(
+            'filters'    => array('StringTrim'),
+            'validators' => array(
+                array('StringLength', true, array(1, 25))
+            ),         
+            
+            'value'      =>'user',
             'decorators' => $this->elementDecorators,
             ));
            
@@ -70,7 +93,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
         
-        $this->addElement('password', 'passwd', array(
+        $this->addElement('password', 'password', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(3, 25))
@@ -80,8 +103,8 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
 
-        $this->addElement('submit', 'login', array(
-            'label'    => 'Login',
+        $this->addElement('submit', 'registra', array(
+            'label'    => 'Registrati',
             'decorators' => $this->buttonDecorators,
         ));
 

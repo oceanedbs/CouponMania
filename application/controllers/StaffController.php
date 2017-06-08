@@ -12,7 +12,8 @@ class StaffController extends Zend_Controller_Action
 	{
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
-                $this->_authService = new Application_Service_Auth();       
+		$this->view->productForm = $this->getProductForm();
+        $this->_authService = new Application_Service_Auth();       
                 
 	}
 
@@ -40,7 +41,7 @@ class StaffController extends Zend_Controller_Action
 			return $this->render('newproduct');
 		}
 		$values = $form->getValues();
-		$this->_adminModel->saveProduct($values);
+		$this->_staffModel->saveProduct($values);
 		$this->_helper->redirector('index');
 	}
 

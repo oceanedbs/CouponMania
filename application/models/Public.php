@@ -16,4 +16,9 @@ class Application_Model_Public extends App_Model_Abstract
     {
     	return $this->getResource('Product')->insertProduct($info);
     }
+    
+    public function saveUtente($info)
+    {
+    	return $this->getResource('Utente')->insertUtente($info);
+    }
 }
