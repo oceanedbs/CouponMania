@@ -2,8 +2,8 @@
 
 class Application_Resource_Product extends Zend_Db_Table_Abstract
 {
-    protected $_name    = 'product';
-    protected $_primary  = 'prodId';
+    protected $_name    = 'promozione';
+    protected $_primary  = 'cod_promozione';
     protected $_rowClass = 'Application_Resource_Product_Item';
 
 	public function init()

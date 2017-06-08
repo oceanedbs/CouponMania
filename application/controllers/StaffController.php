@@ -10,7 +10,7 @@ class StaffController extends Zend_Controller_Action
 	{
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
-		//$this->view->productForm = $this->getProductForm();
+		$this->view->productForm = $this->getProductForm();
                 
 	}
 
@@ -32,7 +32,7 @@ class StaffController extends Zend_Controller_Action
 			return $this->render('newproduct');
 		}
 		$values = $form->getValues();
-		$this->_adminModel->saveProduct($values);
+		$this->_staffModel->saveProduct($values);
 		$this->_helper->redirector('index');
 	}
 
