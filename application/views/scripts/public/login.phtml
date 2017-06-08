@@ -2,4 +2,18 @@
  <h3>login</h3>
  <p>Utilizza questa form per l'autenticazione</p>
  <?=$this->loginForm; ?>
+ 
+ Not register ? click <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'registra',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>" > here </a> or go to <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'index',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>" > Home </a>
 </div>

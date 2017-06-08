@@ -2,15 +2,17 @@
 
 class StaffController extends Zend_Controller_Action
 {
-	 protected $_staffModel;
+        protected $_staffModel;
 	protected $_form;
+        protected $_authService;
+
 
 
 	public function init()
 	{
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
-		//$this->view->productForm = $this->getProductForm();
+                $this->_authService = new Application_Service_Auth();       
                 
 	}
 
@@ -18,6 +20,12 @@ class StaffController extends Zend_Controller_Action
 	{
           
         }
+        
+        public function logoutAction()
+	{
+		$this->_authService->clear();
+		return $this->_helper->redirector('index','public');	
+	}
 
 	public function newproductAction()
 	{}

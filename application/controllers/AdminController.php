@@ -3,6 +3,7 @@
 class AdminController extends Zend_Controller_Action
 {
 	protected $_adminModel;
+        protected $_authService;
 	protected $_form;
 
 
@@ -10,11 +11,18 @@ class AdminController extends Zend_Controller_Action
 	{
 		$this->_helper->layout->setLayout('admin');
 		$this->_adminModel = new Application_Model_Admin();
-		//$this->view->productForm = $this->getProductForm();
+                $this->_authService = new Application_Service_Auth();       
+
 	}
 
 	public function indexAction()
 	{}
+	
+	public function logoutAction()
+	{
+		$this->_authService->clear();
+		return $this->_helper->redirector('index','public');	
+	}
 
 	public function newproductAction()
 	{}

@@ -5,6 +5,7 @@ class UserController extends Zend_Controller_Action
         
     protected $_catalogModel;
     protected $_authService;
+
 	
 	
     public function init()
@@ -16,12 +17,11 @@ class UserController extends Zend_Controller_Action
 
 
 
-    //public function logoutAction()
-	//{
-	//	$this->_authService->clear();
-	//	return $this->_helper->redirector('index','public');	
-	//}
-	
+    public function logoutAction()
+	{
+		$this->_authService->clear();
+		return $this->_helper->redirector('index','public');	
+	}
        public function indexAction()
     {    	    	
     	//  Estrae le Categorie Top    	    	

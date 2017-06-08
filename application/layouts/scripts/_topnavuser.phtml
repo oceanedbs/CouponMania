@@ -45,7 +45,28 @@
                 ?>"
             title="Il nostro profilo aziendale">chi siamo</a></li>
          
-          <li>Benvenuto</li>          
+           <li><a href=" <?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'index',
+                    ), 
+                    'default',true
+                ); 
+                ?>"
+            title="Registra">Profil</a>
+            
+            <ul>
+                <li><a href=" <?= $this->url(array(
+                    'controller' => 'user',
+                    'action'     => 'logout',
+                    ), 
+                    'default',true
+                ); 
+                ?>"
+            title="Registra">Logout</a>
+                
+                </li>
+            
+            </ul></li>        
             
             
 		

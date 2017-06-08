@@ -1,4 +1,5 @@
 <section class="content">
+<h2> Benvenuto  <?php echo $this->authInfo('nome') . ' ' . $this->authInfo('cognome'); ?> ! </h2>
 <div class="container">  
     <div class="row">
                             
@@ -10,7 +11,7 @@
                     echo '<div class="bann_capt">
                         <div class="maxheight">
                         <div class="box-inner">';
-                    echo $this->categorieImg($category->logo, array('class' => 'imagefrm')) ;
+                    echo $this->categorieImg($category->logo, array('class' => 'symbole')) ;
                     echo ' <div class="bann_title">
                            <h2> <a href=' . $this->url(array('controller' => 'public',
                                                         'action' => 'prodotti',
