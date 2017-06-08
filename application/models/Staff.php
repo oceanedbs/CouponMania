@@ -7,10 +7,10 @@ class Application_Model_Staff extends App_Model_Abstract
     {
     }
 
-    public function getSubCats()
+    /*public function getSubCats()
     {
         return $this->getResource('Category')->getSubCats();
-    }
+    }*/
     
     public function saveProduct($info)
     {

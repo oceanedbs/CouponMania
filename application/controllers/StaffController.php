@@ -10,11 +10,14 @@ class StaffController extends Zend_Controller_Action
 	{
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
-		$this->view->productForm = $this->getProductForm();
+		//$this->view->productForm = $this->getProductForm();
+                
 	}
 
 	public function indexAction()
-	{}
+	{
+          
+        }
 
 	public function newproductAction()
 	{}

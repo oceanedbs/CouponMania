@@ -42,6 +42,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
        $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/custom.css'));
        $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/error.css'));
        $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/style.css'));
+       $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/font-awesome_admin.css'));
         
         
         $this->_view->headTitle('CouponMania');

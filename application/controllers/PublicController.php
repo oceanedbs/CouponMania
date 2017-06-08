@@ -52,7 +52,7 @@ class PublicController extends Zend_Controller_Action
 		
          }else {
 			
-		//	Nessuna selezione: estrae tutti i prodotti in sconto
+		//	Nessuna selezione: estrae tutti i prodotti 
 			foreach ($topCats as $topCat) {
 				$topCatsList[] = $topCat->catId;
                         }
