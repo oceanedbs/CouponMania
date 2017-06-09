@@ -5,9 +5,9 @@
                             <img src="<?=$this->baseUrl('images/user.png')?>" class="img-thumbnail" />
 
                             <div class="inner-text">
-                                Il Nostro Amministratore
+                                Amministratore :
                             <br />
-                                <small>ciaone</small>
+                                <small><?php echo $this->authInfo('nome') . ' ' . $this->authInfo('cognome'); ?> </small>
                             </div>
                         </div>
 
@@ -17,7 +17,7 @@
                     
                     <li>
                         <a href="<?= $this->url(array(
-                        'controller' => 'public',
+                        'controller' => 'admin',
                         'action'     => 'index',
                         ), 
                         'default', true

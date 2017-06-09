@@ -11,11 +11,11 @@ class PublicController extends Zend_Controller_Action
     {
         $this->view->registraForm = $this->getRegistraForm();
         $this->view->ricercareForm = $this->getRicercaForm(); 
+        $this->view->loginForm = $this->getLoginForm();
         $this->_helper->layout->setLayout('main');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
         $this->_authService = new Application_Service_Auth();
-        $this->view->loginForm = $this->getLoginForm();
     }
 
     public function indexAction()
@@ -188,7 +188,7 @@ class PublicController extends Zend_Controller_Action
 		}
 		$values = $form->getValues();
 		$this->_publicModel->saveUtente($values);
-		$this->_helper->redirector('index');
+		$this->_helper->redirector('index', 'public');
 	}          
     private function getRegistraForm()
         {

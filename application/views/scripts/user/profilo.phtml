@@ -1,0 +1,20 @@
+
+<section class="content">
+
+<h2> Profilo   </h2>
+
+<h3> Nome :   <?php echo $this->authInfo('nome')?>  </h3>
+<h3> Cognome : <?php echo $this->authInfo('cognome')?>  </h3> 
+<h3> Username: <?php echo $this->authInfo('username')?> </h3>
+<h3> Citta : <?php echo $this->authInfo('citta')?> </h3>
+<h3> Telefono : <?php echo $this->authInfo('telefono')?> </h3>
+<h3> E-mail : <?php echo $this->authInfo('email')?> </h3>
+<h3> Data di Nascita : <?php echo $this->authInfo('data_nascita')?>  </h3>
+
+ <?=$this->profiloForm; ?>
+
+
+
+
+
+</section>

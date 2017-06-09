@@ -12,6 +12,8 @@ class UserController extends Zend_Controller_Action
     {
                 $this->view->ricercareForm = $this->getRicercaForm(); 
                 $this->view->stampareForm = $this->getStampareForm();
+                $this->view->profiloForm = $this->getProfiloForm();
+                $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
 		$this->_helper->layout->setLayout('user');
                 $this->_catalogModel = new Application_Model_Catalog();
 		$this->_authService = new Application_Service_Auth();
@@ -124,6 +126,11 @@ class UserController extends Zend_Controller_Action
     	
     }
     
+    public function profiloAction(){
+    
+    }
+
+    
     private function getRicercaForm() 
     { 
                 $urlHelper = $this->_helper->getHelper('url'); 
@@ -147,10 +154,54 @@ class UserController extends Zend_Controller_Action
 		$this->_form = new Application_Form_User_Stampare();
     		$this->_form->setAction($urlHelper->url(array(
 			'controller' => 'user',
-			'action' => ''),
+			'action' => 'coupon'),
 			'default'
 		));
 		return $this->_form;
+    
+    }
+    
+    public function couponAction(){
+    
+        
+    
+        $this->_helper->layout->disableLayout();
+    
+    }
+    
+    private function getProfiloForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_User_Profilo();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'user',
+			'action' => 'cambiareprofilo'),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+    
+    public function cambiareprofiloAction() {
+    
+//        
+    
+    }
+    
+    private function getCambiareprofiloForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_User_Cambiareprofilo();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'user',
+			'action' => 'cambia'),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+    
+    public function cambiaAction(){
     
     }
 

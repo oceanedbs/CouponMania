@@ -28,7 +28,7 @@ class Application_Form_Admin_Staff_Add extends Zend_Form
                $this->addElement('select', 'sesso', array(
             'label' => 'Sesso',
                 'required'   => true,
-            'multiOptions' => array('1' => 'M', '0' => 'F'),
+            'multiOptions' => array('m' => 'M', 'f' => 'F'),
 		));
                 
                  $this->addElement('text', 'data_nascita', array(

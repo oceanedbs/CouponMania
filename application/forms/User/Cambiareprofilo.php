@@ -1,13 +1,11 @@
 <?php
 
-class Application_Form_Public_Registra extends App_Form_Abstract
+class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
 {
-    //protected $_publicModel;
 	public function init()
     {               
-        //$this->_publicModel = new Application_Model_Public();
         $this->setMethod('post');
-        $this->setName('authenticatereg');
+        $this->setName('cambiareprofilo');
         $this->setAction('');
         
     	 $this->addElement('text', 'nome', array(
@@ -33,7 +31,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
            $this->addElement('select', 'sesso', array(
             'label' => 'Sesso',
                 'required'   => true,
-            'multiOptions' => array('1' => 'M', '0' => 'F'),
+            'multiOptions' => array('m' => 'M', 'f' => 'F'),
                'decorators' => $this->elementDecorators,
 		));
            
@@ -103,8 +101,8 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
 
-        $this->addElement('submit', 'registra', array(
-            'label'    => 'Registrati',
+        $this->addElement('submit', 'cambiareprofilo', array(
+            'label'    => 'Cambiare',
             'decorators' => $this->buttonDecorators,
         ));
 
@@ -114,5 +112,9 @@ class Application_Form_Public_Registra extends App_Form_Abstract
         		array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
+        
+        $this->nome->setValue('nome');
+        $this->sesso->setValue('f');
     }
+    
 }
