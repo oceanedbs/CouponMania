@@ -12,7 +12,7 @@ class AdminController extends Zend_Controller_Action
 		$this->_helper->layout->setLayout('admin');
 		$this->_adminModel = new Application_Model_Admin();
                 $this->_authService = new Application_Service_Auth();       
-
+                $this->view->staffForm = $this->getStaffForm();
 	}
 
 	public function indexAction()
@@ -24,30 +24,30 @@ class AdminController extends Zend_Controller_Action
 		return $this->_helper->redirector('index','public');	
 	}
 
-	public function newproductAction()
+	public function newstaffAction()
 	{}
 
-	public function addproductAction()
+	public function addstaffAction()
 	{
 		if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
 		$form=$this->_form;
 		if (!$form->isValid($_POST)) {
-			return $this->render('newproduct');
+			return $this->render('newstaff');
 		}
 		$values = $form->getValues();
-		$this->_adminModel->saveProduct($values);
+		$this->_adminModel->saveStaff($values);
 		$this->_helper->redirector('index');
 	}
 
-	private function getProductForm()
+	private function getStaffForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Admin_Product_Add();
+		$this->_form = new Application_Form_Admin_Staff_Add();
 		$this->_form->setAction($urlHelper->url(array(
 				'controller' => 'admin',
-				'action' => 'addproduct'),
+				'action' => 'addstaff'),
 				'default'
 				));
 		return $this->_form;
