@@ -166,6 +166,27 @@ class UserController extends Zend_Controller_Action
     public function couponAction(){
     
         $this->_helper->layout->disableLayout();
+        
+        $idprodotto = $this->_getParam('idprodotto', null);
+        $iduser= $this->_authService->getIdentity()->ID_utente;
+
+        
+        $infoprodotto=$this->_catalogModel->getInfoprodotto($idprodotto);
+        
+        $data = array('cod_promozione' => $idprodotto,
+                    'ID_utente' => $iduser,);
+
+        $this->_publicModel->registraCoupon($data);
+
+        
+        $this->view->assign(array(
+                        'infoprodotto' => $infoprodotto,)
+        );
+        
+        $this->_publicModel->registraCoupon($idprodotto);
+
+
+        
     
     }
     

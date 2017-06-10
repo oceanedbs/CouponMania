@@ -29,4 +29,8 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Utente')->modificaUtente($values);
     }
+    public function registraCoupon($data)
+    {
+        return $this->getResource('Coupon')->registraCoupon($data);
+    }
 }
