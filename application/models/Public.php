@@ -21,4 +21,12 @@ class Application_Model_Public extends App_Model_Abstract
     {
     	return $this->getResource('Utente')->insertUtente($info);
     }
+     public function getInfoUtente()
+    {
+    	return $this->getResource('Utente')->getInfoUtente();
+    }
+    public function modficaUtente($values)
+    {
+        return $this->getResource('Utente')->modificaUtente($values);
+    }
 }

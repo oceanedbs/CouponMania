@@ -5,6 +5,7 @@ class UserController extends Zend_Controller_Action
         
     protected $_catalogModel;
     protected $_authService;
+    protected $_publicModel;
 
 	
 	
@@ -17,6 +18,7 @@ class UserController extends Zend_Controller_Action
 		$this->_helper->layout->setLayout('user');
                 $this->_catalogModel = new Application_Model_Catalog();
 		$this->_authService = new Application_Service_Auth();
+		$this->_publicModel = new Application_Model_Public();
     }
 
 
@@ -163,8 +165,6 @@ class UserController extends Zend_Controller_Action
     
     public function couponAction(){
     
-        
-    
         $this->_helper->layout->disableLayout();
     
     }
@@ -184,6 +184,8 @@ class UserController extends Zend_Controller_Action
     
     public function cambiareprofiloAction() {
     
+            
+    
 //        
     
     }
@@ -201,9 +203,18 @@ class UserController extends Zend_Controller_Action
     
     }
     
-    public function cambiaAction(){
-    
-    }
+   public function cambiaAction() {
+   
+      if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form;
+		if (!$form->isValid($_POST)) {
+			return $this->render('cambiareprofilo');
+		}
+		$values = $form->getValues();
+		$this->_publicModel->modficaUtente($values);
+		$this->_helper->redirector('index');
 
-    
+    }
 }
