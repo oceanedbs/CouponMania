@@ -1,11 +1,9 @@
 <?php
 
-class Application_Form_Public_Registra extends App_Form_Abstract
+class Application_Form_Public_Registrare_Registra extends App_Form_Abstract
 {
-    //protected $_publicModel;
 	public function init()
     {               
-        //$this->_publicModel = new Application_Model_Public();
         $this->setMethod('post');
         $this->setName('authenticatereg');
         $this->setAction('');
@@ -33,7 +31,7 @@ class Application_Form_Public_Registra extends App_Form_Abstract
            $this->addElement('select', 'sesso', array(
             'label' => 'Sesso',
                 'required'   => true,
-            'multiOptions' => array('1' => 'M', '0' => 'F'),
+            'multiOptions' => array('m' => 'M', 'f' => 'F'),
                'decorators' => $this->elementDecorators,
 		));
            
@@ -53,10 +51,10 @@ class Application_Form_Public_Registra extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
            
-           $this->addElement('text', 'e-mail', array(
+           $this->addElement('text', 'email', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
-                array('StringLength', true, array(3, 25),
+                array('StringLength', true, array(3, 50),
                  'EmailAddress' )
             ),
             'required'   => true,

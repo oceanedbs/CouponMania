@@ -1,0 +1,62 @@
+ <section class="content gallery pad1">
+
+ <?= $this->parole; ?>
+     
+ <?php $size=count($this->risultati); ?>
+ 
+ <?php if($size ==0) :?>
+ 
+ <h2>Non ci sono risultati per questa ricerca.</h2>
+ 
+ <?php else :?>
+
+ <?php foreach ($this->risultati as $result) :?>
+ 
+                
+       
+            <div class="grid_4">
+            <div class="gall_block">
+                    <div class="maxheight">
+                        <?php echo $this->productImg($result->immagine, array('class' => 'imagefrm')) ?>         
+                        <div class="gall_bot">
+                        <div class="text1"><a href=" <?= $this->url(array(
+                            'controller' => 'user',
+                            'action'     => 'prodotti',
+                            'idprodotto' => $result->cod_promozione,
+                            ), 
+                            'default',true
+                        ); 
+                    ?>"
+                    title="Product"><?php echo'<h3 class="title">' . $result->prodotto . '</h3>' ?></a></div> 
+                    <?php echo  $result->descrizione  ?><br>
+
+                    <a class="btn" href=" <?= $this->url(array(
+                            'controller' => 'user',
+                            'action'     => 'prodotti',
+                            'idprodotto' => $result->cod_promozione,
+
+                            ), 
+                            'default',true
+                        ); 
+                    ?>"
+                    title="Info Prodotto">More</a>
+
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+                    
+        <?php endforeach ?>
+        
+    <?php endif ?>
+        
+         <?php if($this->risultati instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->risultati,'Sliding','user/_paginatorricerca.phtml');
+            } 
+        ?>
+
+        
+    </section>

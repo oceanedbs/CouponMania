@@ -4,28 +4,28 @@
 
 <!-- Link alla prima pagina -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'user', 'action' => 'aziende', 'page' => $this->first)); ?>">Inizio</a> |
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'risultati', 'page' => $this->first)); ?>">Inizio</a> |
 <?php else: ?>
   Inizio |
 <?php endif; ?>
 
 <!-- Link alla pagina precedente -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'user', 'action' => 'aziende', 'page' => $this->previous)); ?>">&lt; Precedente</a> |
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'risultati', 'page' => $this->previous)); ?>">&lt; Precedente</a> |
 <?php else: ?>
   &lt; Precedente |
 <?php endif; ?>
 
 <!-- Link alla pagina successiva -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'user', 'action' => 'aziende', 'page' => $this->next)); ?>">Successivo &gt;</a> |
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'risultati', 'page' => $this->next)); ?>">Successivo &gt;</a> |
 <?php else: ?>
   Successivo &gt; |
 <?php endif; ?>
 
 <!-- Link all'ultima pagina -->
 <?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'user', 'action' => 'aziende', 'page' => $this->last)); ?>">Fine</a>
+  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'risultati', 'page' => $this->last)); ?>">Fine</a>
 <?php else: ?>
   Fine
 <?php endif; ?>

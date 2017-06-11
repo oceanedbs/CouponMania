@@ -14,7 +14,7 @@ class Application_Resource_Coupon extends Zend_Db_Table_Abstract
 
     public function registraCoupon($data)
     {
-        // $this->insert($data);
+         $this->insert($data);
          
     
     }
