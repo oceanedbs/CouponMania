@@ -409,11 +409,12 @@ header h1 a img {
 
 /**Footer**/
 
-#footer {
+.footer {
     display: block;
     padding: 50px 0 40px;
     color: #999999;
     font-size: 14px;
+    background-color : #b9b8b8;
     line-height: 18px;
 }
 
