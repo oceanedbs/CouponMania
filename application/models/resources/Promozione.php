@@ -53,6 +53,8 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
         }
         
         return $this->fetchAll($select);
+        
+        
 
 
        

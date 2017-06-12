@@ -17,9 +17,14 @@ class Application_Model_Staff extends App_Model_Abstract
     {
 		return $this->getResource('Category')->getTopCats($paged);
     }
+    public function getProds($paged)
+    {
+       return $this->getResource('Promozione')->getProds($paged);
+       
+    } 
     public function saveProduct($info)
     {
-    	return $this->getResource('Product')->insertProduct($info);
+    	return $this->getResource('Promozione')->insertProduct($info);
     }
     
     public function getAziende($paged)

@@ -1,5 +1,5 @@
 <?php
-class Application_Form_User_Profilo extends Zend_Form
+class Application_Form_Staff_Profile_Profilo extends Zend_Form
 {
 
 	public function init()
