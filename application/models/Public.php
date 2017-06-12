@@ -86,4 +86,9 @@ class Application_Model_Public extends App_Model_Abstract
     {
         return $this->getResource('Promozione')->getRisultatiRicerca2($catId,$parole, $paged);
     }
+    
+    public function verificareCoupon($idprodotto, $idutente)
+    {
+        return $this->getResource('Coupon')->verificareCoupon($idprodotto, $idutente);
+    }
 }

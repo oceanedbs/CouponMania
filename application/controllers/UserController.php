@@ -200,19 +200,30 @@ class UserController extends Zend_Controller_Action
         
         $idprodotto = $this->_getParam('idprodotto', null);
         $iduser= $this->_authService->getIdentity()->ID_utente;
-
+        $messagio=0;
         
         $infoprodotto=$this->_publicModel->getInfoprodotto($idprodotto);
         
         $data = array( 'cod_promozione' => $idprodotto ,
                       'ID_utente' =>$iduser  );
-
-        $this->_publicModel->registraCoupon($data);
+                      
+        $verificare= $this->_publicModel->verificareCoupon($idprodotto, $iduser);
+                      
+        if( $verificare == 0)
+        {
+            $messagio=1;
+        }
+        else 
+        {
+            $this->_publicModel->registraCoupon($data);
+        }
 
         
         $this->view->assign(array(
                         'infoprodotto' => $infoprodotto,
-                        'idprodotto' =>$idprodotto,)
+                        'idprodotto' =>$idprodotto,
+                        'messagio' => $messagio,
+                        'verificare' => $verificare,)
         );
         
 
