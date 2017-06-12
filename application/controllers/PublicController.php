@@ -8,6 +8,7 @@ class PublicController extends Zend_Controller_Action
         protected $_form1;
         protected $_form2;
         protected $_form3;
+        
 	
     public function init()
     {
