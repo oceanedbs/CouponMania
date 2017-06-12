@@ -31,4 +31,12 @@ class Application_Model_Staff extends App_Model_Abstract
     {
         return $this->getResource('Aziende')->getAziende($paged);
     }
+     public function getInfoUtente()
+    {
+    	return $this->getResource('Utente')->getInfoUtente();
+    }
+     public function modficaUtente($values)
+    {
+        return $this->getResource('Utente')->modificaUtente($values);
+    }
 }

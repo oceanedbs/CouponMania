@@ -2,11 +2,20 @@
 
 class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
 {
+
+    protected $_staffModel;
+
+            
 	public function init()
     {               
         $this->setMethod('post');
         $this->setName('cambiareprofilo');
         $this->setAction('');
+        $this->_staffModel = new Application_Model_Public();
+        
+        $info = $this->_staffModel->getInfoUtente();
+
+
         
     	 $this->addElement('text', 'nome', array(
             'filters'    => array('StringTrim'),
@@ -68,7 +77,7 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
                 array('StringLength', true, array(1, 25))
             ),         
             
-            'value'      =>'user',
+            'value'      =>'staff',
             'decorators' => $this->elementDecorators,
             ));
            
@@ -91,7 +100,7 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
         
-        $this->addElement('password', 'password', array(
+        $this->addElement('text', 'password', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(3, 25))
@@ -113,8 +122,15 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
             'Form'
         ));
         
-        $this->nome->setValue('nome');
-        $this->sesso->setValue('f');
+        $this->nome->setValue($info->nome);
+        $this->cognome->setValue($info->cognome);
+        $this->sesso->setValue($info->sesso);
+        $this->data_nascita->setValue($info->data_nascita);
+        $this->telefono->setValue($info->telefono);
+        $this->email->setValue($info->email);
+        $this->citta->setValue($info->citta);
+        $this->username->setValue($info->username);
+        $this->password->setValue($info->password);
     }
     
 }
