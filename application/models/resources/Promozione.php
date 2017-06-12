@@ -48,7 +48,7 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 
 
 	// Estrae tutti i prodotti
-    public function getProds($topCatsList, $paged)
+    public function getProds($paged)
     {
         $select = $this->select();
         
@@ -61,6 +61,8 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
         }
         
         return $this->fetchAll($select);
+        
+        
 
 
        

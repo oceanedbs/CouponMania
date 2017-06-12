@@ -14,7 +14,7 @@ class Application_Model_Public extends App_Model_Abstract
     
     public function saveProduct($info)
     {
-    	return $this->getResource('Product')->insertProduct($info);
+    	return $this->getResource('Promozione')->insertProduct($info);
     }
     
     public function saveUtente($info)

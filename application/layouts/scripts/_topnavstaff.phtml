@@ -5,9 +5,9 @@
                             <img src="<?=$this->baseUrl('images/user.png')?>" class="img-thumbnail" />
 
                             <div class="inner-text">
-                                Il Nostro Amministratore
+                               <h3> Benvenuto  <?php echo $this->authInfo('nome') . ' ' . $this->authInfo('cognome'); ?> ! </h3>
                             <br />
-                                <small>ciaone</small>
+                                
                             </div>
                         </div>
 
@@ -17,7 +17,7 @@
                     
                     <li>
                         <a href="<?= $this->url(array(
-                        'controller' => 'public',
+                        'controller' => 'staff',
                         'action'     => 'index',
                         ), 
                         'default', true
@@ -33,58 +33,7 @@
                         'default', true
                     ); 
                  ?>">Catalogo </a>
-                 <!-- sottonav
                  
-                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?= $this->url(array(
-                        'controller' => 'staff',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"><i class="fa fa-coffee"></i>Invoice</a>
-                            </li>
-                            <li>
-                                <a href="<?= $this->url(array(
-                        'controller' => 'staff',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"><i class="fa fa-flash "></i>Pricing</a>
-                            </li>
-                             <li>
-                                <a href="<?= $this->url(array(
-                        'controller' => 'staff',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"><i class="fa fa-key "></i>Components</a>
-                            </li>
-                             <li>
-                                <a href="<?= $this->url(array(
-                        'controller' => 'staff',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"><i class="fa fa-send "></i>Social</a>
-                            </li>
-                            
-                             <li>
-                                <a href="<?= $this->url(array(
-                        'controller' => 'staff',
-                        'action'     => 'index',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>"><i class="fa fa-recycle "></i>Messages & Tasks</a>
-                            </li>
-                            
-                           
-                        </ul> -->
                     </li>
                     <li>
                         <a href="<?= $this->url(array(
@@ -101,21 +50,21 @@
                              <li>
                                 <a href="<?= $this->url(array(
                         'controller' => 'staff',
-                        'action'     => 'index',
+                        'action'     => 'visualizzapromo',
                         ), 
                         'default', true
                     ); 
-                 ?>"></i>Modifica </a>
+                 ?>"> Gestione Promozioni </a>
                             </li>
                          
                       <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'staff',
-                        'action'     => 'index',
+                        'action'     => 'profilo',
                         ), 
                         'default', true
                     ); 
-                 ?>">Cancella</a>
+                 ?>">Profilo</a>
                     </li>
                      <li>
                         <a href="<?= $this->url(array(

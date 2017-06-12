@@ -48,7 +48,7 @@ class Application_Form_Staff_Product_Add extends Zend_Form
 		}
 		$this->addElement('select', 'P_Iva', array(
             'label' => 'Azienda',
-            'required' => $true,
+            'required' => true,
 			'multiOptions' => $aziende,
 		));
 		$this->addElement('file', 'immagine', array(

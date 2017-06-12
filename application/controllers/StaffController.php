@@ -5,6 +5,7 @@ class StaffController extends Zend_Controller_Action
         protected $_staffModel;
 	protected $_form;
         protected $_authService;
+        protected $_radio;
 
 
 
@@ -12,8 +13,11 @@ class StaffController extends Zend_Controller_Action
 	{
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
+                $this->view->profiloForm = $this->getProfiloForm();
 		$this->view->productForm = $this->getProductForm();
-        $this->_authService = new Application_Service_Auth();       
+                $this->view->selezionaForm = $this->getSelezionaForm();
+                $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
+                $this->_authService = new Application_Service_Auth();       
                 
 	}
 
@@ -27,7 +31,7 @@ class StaffController extends Zend_Controller_Action
 		$this->_authService->clear();
 		return $this->_helper->redirector('index','public');	
 	}
-
+//aggiunta promozioni
 	public function newproductAction()
 	{}
 
@@ -56,4 +60,76 @@ class StaffController extends Zend_Controller_Action
 				));
 		return $this->_form;
 	}
+        //gestione profilo
+        public function profiloAction(){
+    
+    }
+private function getProfiloForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_Staff_Profile_Profilo();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'staff',
+			'action' => 'cambiareprofilo'),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+    //modifica profilo
+    public function cambiareprofiloAction() {
+    
+        
+    
+    }
+    
+    private function getCambiareprofiloForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form = new Application_Form_Staff_Profile_Cambiareprofilo();
+    		$this->_form->setAction($urlHelper->url(array(
+			'controller' => 'staff',
+			'action' => 'cambia'),
+			'default'
+		));
+		return $this->_form;
+    
+    }
+    
+    public function cambiaAction(){
+    
+    }
+
+    //visualizzazione promozioni
+    public function visualizzapromoAction(){
+    $page=null;
+    $prodotti=$this->_staffModel->getProds($page);
+    
+    $this->view->assign(array(
+            		'prodotto' => $prodotti,
+                        )
+            );
+		
+    }
+    private function getSelezionaForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_radio = new Application_Form_Staff_Seleziona();
+                
+    		$this->_radio->setAction($urlHelper->url(array(
+			'controller' => 'staff',
+			'action' => 'sel'),
+			'default'
+		));
+		return $this->_radio;
+    
+    }
+    public function selAction(){
+    
+        
+    
+        $this->_helper->layout->disableLayout();
+    
+    }
+    
 }
