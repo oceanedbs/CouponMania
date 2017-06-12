@@ -4,8 +4,8 @@ class UserController extends Zend_Controller_Action
 {
     protected $_authService;
     protected $_publicModel;
-    protected $_form1;
     protected $_form;
+    protected $_form2;
     protected $_form3;
     protected $_form4;
 
@@ -122,13 +122,13 @@ class UserController extends Zend_Controller_Action
    private function getRicercaForm() 
     { 
         $urlHelper = $this->_helper->getHelper('url'); 
-        $this->_form1 = new Application_Form_User_Ricerca(); 
-        $this->_form1->setAction($urlHelper->url(array( 
+        $this->_form = new Application_Form_User_Ricerca(); 
+        $this->_form->setAction($urlHelper->url(array( 
             'controller' => 'user', 
             'action' => 'risultati'), 
             'default' 
     )); 
-    return $this->_form1; 
+    return $this->_form; 
      
     } 
      
@@ -140,23 +140,23 @@ class UserController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
                 $this->_helper->redirector('index');
         }
-        $form=$this->_form1;
+        $form=$this->_form;
         $risultati=array();
         if($form->isValid($this->getRequest()->getPost())){
 
            if(empty($form->getValue('paroleChiave'))){
-                   /** if($form->getValue('catId') === '0')
+                    if($form->getValue('catId') === '0')
                     {
                         $paged = $this->_getParam('page', 1);
                         $risultati=$this->_publicModel->getProds($paged);
                     }
-                    else{**/
+                    else{
 
                         $paged = $this->_getParam('page', 1);
                         $catId = $form->getValue('catId');
                         $risultati=$this->_publicModel->getProdsByCat($catId, $paged);
                     }
-          /**  }else{
+            }else{
                 if($form->getValue('catId')=== '0')
                     {
                         $paged = $this->_getParam('page', 1);
@@ -171,21 +171,27 @@ class UserController extends Zend_Controller_Action
                         $risultati = $this->_publicModel->getRisultatiRicerca2($catId, $parole, $paged);
                     
                 }
-            }**/
+            }
+            
         }
+        
+        
+         $this->view->assign(array(
+            		'risultati' => $risultati,)
+            		);
     }
 
     
     private function getStampareForm(){
     
                 $urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_User_Stampare();
-    		$this->_form->setAction($urlHelper->url(array(
+		$this->_form2 = new Application_Form_User_Stampare();
+    		$this->_form2->setAction($urlHelper->url(array(
 			'controller' => 'user',
 			'action' => 'coupon'),
 			'default'
 		));
-		return $this->_form;
+		return $this->_form2;
     
     }
     
