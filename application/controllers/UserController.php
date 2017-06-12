@@ -4,7 +4,7 @@ class UserController extends Zend_Controller_Action
 {
     protected $_authService;
     protected $_publicModel;
-    protected $_form;
+    protected $_form1;
     protected $_form2;
     protected $_form3;
     protected $_form4;
@@ -117,18 +117,17 @@ class UserController extends Zend_Controller_Action
     public function profiloAction(){
     
     }
-
     
-   private function getRicercaForm() 
+    private function getRicercaForm() 
     { 
         $urlHelper = $this->_helper->getHelper('url'); 
-        $this->_form = new Application_Form_User_Ricerca(); 
-        $this->_form->setAction($urlHelper->url(array( 
+        $this->_form1 = new Application_Form_User_Ricerca(); 
+        $this->_form1->setAction($urlHelper->url(array( 
             'controller' => 'user', 
             'action' => 'risultati'), 
             'default' 
     )); 
-    return $this->_form; 
+    return $this->_form1; 
      
     } 
      
@@ -140,7 +139,7 @@ class UserController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
                 $this->_helper->redirector('index');
         }
-        $form=$this->_form;
+        $form=$this->_form1;
         $risultati=array();
         if($form->isValid($this->getRequest()->getPost())){
 
@@ -205,18 +204,17 @@ class UserController extends Zend_Controller_Action
         
         $infoprodotto=$this->_publicModel->getInfoprodotto($idprodotto);
         
-        $data = array('cod_promozione' => $idprodotto,
-                    'ID_utente' => $iduser);
+        $data = array( 'cod_promozione' => $idprodotto ,
+                      'ID_utente' =>$iduser  );
 
         $this->_publicModel->registraCoupon($data);
 
         
         $this->view->assign(array(
-                        'infoprodotto' => $infoprodotto,)
+                        'infoprodotto' => $infoprodotto,
+                        'idprodotto' =>$idprodotto,)
         );
         
-        $this->_publicModel->registraCoupon($idprodotto);
-
 
         
     
