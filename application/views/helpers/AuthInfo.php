@@ -18,7 +18,7 @@ class Zend_View_Helper_AuthInfo extends Zend_View_Helper_Abstract
         return $this->_authService->getIdentity()->$info;
     }
 
-	public function isLoggedIn()
+    public function isLoggedIn()
     {
         return $this->_authService->getAuth()->hasIdentity();
     }
