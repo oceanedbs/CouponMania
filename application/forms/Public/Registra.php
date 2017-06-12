@@ -1,11 +1,13 @@
 <?php
 
-class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
+class Application_Form_Public_Registra extends App_Form_Abstract
 {
+    protected $_publicModel;
 	public function init()
     {               
+        $this->_publicModel = new Application_Model_Public();
         $this->setMethod('post');
-        $this->setName('cambiareprofilo');
+        $this->setName('authenticatereg');
         $this->setAction('');
         
     	 $this->addElement('text', 'nome', array(
@@ -31,7 +33,7 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
            $this->addElement('select', 'sesso', array(
             'label' => 'Sesso',
                 'required'   => true,
-            'multiOptions' => array('m' => 'M', 'f' => 'F'),
+            'multiOptions' => array('1' => 'M', '0' => 'F'),
                'decorators' => $this->elementDecorators,
 		));
            
@@ -51,7 +53,7 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
            
-           $this->addElement('text', 'email', array(
+           $this->addElement('text', 'e-mail', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(3, 25),
@@ -101,8 +103,8 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
             ));
 
-        $this->addElement('submit', 'cambiareprofilo', array(
-            'label'    => 'Cambiare',
+        $this->addElement('submit', 'registra', array(
+            'label'    => 'Registrati',
             'decorators' => $this->buttonDecorators,
         ));
 
@@ -112,9 +114,5 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
         		array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
-        
-        $this->nome->setValue('nome');
-        $this->sesso->setValue('f');
     }
-    
 }
