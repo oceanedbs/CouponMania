@@ -27,6 +27,26 @@ class Application_Model_Admin extends App_Model_Abstract
     	return $this->getResource('Utente')->getUserByName($info);
     }
     
+    public function getUtentiById($paged)
+    {
+       return $this->getResource('Utente')->getUtentiById($paged);
+    } 
+    
+    public function getInfoUtente($idutente){
+        return $this->getResource('Utente')->getInfoUtente($idutente);
+    }
+    
+    public function modificaUtente($values,$idutente)
+    {
+        return $this->getResource('Utente')->modificaUtente($values,$idutente);
+    }
+    
+   public function cancellaUtente($utente)
+    {
+        return $this->getResource('Utente')->cancellaUtente($utente);
+
+    }
+    
     public function getAziende($paged)
     {
        return $this->getResource('Aziende')->getAziende($paged);

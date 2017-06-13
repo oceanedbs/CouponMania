@@ -19,6 +19,22 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
     {
         return $this->fetchRow($this->select()->where('username = ?', $usrName));
     }
+    
+     
+     public function getUtentiById($paged) {
+        $select = $this->select()
+                       ->order('role');
+                       
+        if (null !== $paged) {
+            $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+            $paginator = new Zend_Paginator($adapter);
+            $paginator->setItemCountPerPage(6)
+                        ->setCurrentPageNumber((int) $paged);
+            return $paginator;
+        }
+        return $this->fetchAll($select);
+    }
+    
     public function insertUtente($info)
     {
     	$this->insert($info);
@@ -29,17 +45,22 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
     	$this->insert($info);
     }
     
-    public function getInfoUtente()
-    {
-        $username= $this->_authService->getIdentity()->username;
-        return $this->fetchRow($this->select()->where('username = ?',$username));
-    }
+   public function getInfoUtente($idutente){
     
-    public function modificaUtente($values)
+        return $this->find($idutente);
+     }
+    
+    public function modificaUtente($values,$idutente)
     {
-        $where="ID_utente = ".$this->_authService->getIdentity()->ID_utente;
+        $where="ID_utente = $idutente";
         $this->update($values,$where);
     }
     
+    public function cancellaUtente($utente)
+    {
+        $where="ID_utente = $utente";
+        $this->delete($where);
+        
+    }
 }
 

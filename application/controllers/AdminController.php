@@ -7,6 +7,7 @@ class AdminController extends Zend_Controller_Action
 	protected $_form1;
         protected $_form2;
         protected $_modifica;
+        protected $_form3;
 
 
         public function init()
@@ -19,6 +20,8 @@ class AdminController extends Zend_Controller_Action
                 $this->view->aziendeForm = $this->getAziendeForm();
                 if($this->hasParam('piva'))
                 $this->view->modificaaziendeForm = $this->getModificaAziendeForm();
+                if($this->hasParam('idutente'))
+                $this->view->modificautentiForm = $this->getModificaUtenteForm();
                 
 	}
 
@@ -149,6 +152,59 @@ private function getModificaAziendeForm()
     
     $this->view->assign(array(
             		'azienda' => $aziende,
+                        )
+            );
+    
+		
+    }
+    
+            public function modificautenteAction(){
+    
+    }
+    public function modificauserAction(){
+    if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form3;
+		if (!$form->isValid($_POST)) {
+			return $this->render('modificautenti');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->modificaUtente($values,$this->getParam('idutente'));
+		$this->_helper->redirector('visualizzautenti');
+    }
+private function getModificaUtenteForm()
+	{
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form3 = new Application_Form_Admin_Utenti_Modificautenti();
+		$this->_form3->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificauser'),
+				'default'
+				));
+                $idutente=$this->_getParam('idutente',null);
+                $utente=$this->_adminModel->getInfoUtente($idutente)->current()->toArray();
+		return $this->_form3->populate($utente);
+             
+	}
+
+ public function cancellautenteAction(){
+     $this->_adminModel->cancellaUtente($this->getParam('idutente'));
+     $this->_helper->redirector('visualizzautenti');
+     
+ }
+
+
+    
+    
+
+    //visualizzazione promozioni
+    public function visualizzautentiAction(){
+    $page=null;
+    $utenti=$this->_adminModel->getUtentiById($page);
+    
+    $this->view->assign(array(
+            		'utente' => $utenti,
                         )
             );
     
