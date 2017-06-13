@@ -10,7 +10,7 @@ class StaffController extends Zend_Controller_Action
         protected $_promo;
         protected $_profilo;
         protected $_form3;
-        protected $_insert;
+        
         
 
 
@@ -21,8 +21,7 @@ class StaffController extends Zend_Controller_Action
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
                 $this->view->profiloForm = $this->getProfiloForm();
-		$this->view->productForm = $this->getProductForm(); 
-                $this->view->inserisci = $this->getInsertbutton(); 
+		$this->view->productForm = $this->getProductForm();                 
                 $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
                 if($this->hasParam('codprod'))
                 $this->view->modificapromoForm=$this->getModificaPromoForm();                
@@ -65,7 +64,7 @@ class StaffController extends Zend_Controller_Action
                 $anno = substr($dataFine,6,4);
                 $values['data_fine']="$anno-$mese-$giorno";
 		$this->_staffModel->saveProduct($values);
-		$this->_helper->redirector('index');
+		$this->_helper->redirector('visualizzapromo');
 	}
 
 	private function getProductForm()
@@ -137,16 +136,9 @@ private function getModificaPromoForm()
 		
     }
     
-   public function getInsertbutton(){
-       $urlHelper = $this->_helper->getHelper('url');
-		$this->_insert = new Application_Form_Staff_Insertbutton();
-		$this->_insert->setAction($urlHelper->url(array(
-				'controller' => 'staff',
-				'action' => ''),
-				'default'
-				));
+ 
        
-   }
+   
 //gestione profilo
         public function profiloAction(){
     

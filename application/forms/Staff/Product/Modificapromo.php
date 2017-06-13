@@ -63,7 +63,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 			'destination' => APPLICATION_PATH . '/../public/images/products',
 			'validators' => array( 
 			//array('Count', false, 1),
-			array('Size', false, 102400),
+			array('Size', false, 9000000),
 			array('Extension', true, array('jpg', 'gif'))),
 			));
 
