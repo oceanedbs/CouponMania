@@ -32,12 +32,11 @@ class Application_Resource_Coupon extends Zend_Db_Table_Abstract
     }
     public function numeroCoupon()
     {
-        $select=$this->select();
-        
-        $countRowsSelect = $this->getAdapter()->select()
-                                ->from(array('cnt' => $select), array('row_count' => 'COUNT(*)'));
+        $rowset   = $this->fetchAll();
+ 
+        $rowCount = count($rowset);
                                 
-        return  $countRowsSelect->query()->fetchAll();
+        return  $rowCount;
     }
     
 

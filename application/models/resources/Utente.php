@@ -41,5 +41,20 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
         $this->update($values,$where);
     }
     
+     public function numeroUtenti()
+    {
+        $rowset   = $this->fetchAll();
+ 
+        $rowCount = count($rowset);
+                                
+        return  $rowCount;
+    }
+    
+    public function getUtente(){
+        $select= $this->select();
+        
+        return $this->fetchAll($select);
+    }
+    
 }
 

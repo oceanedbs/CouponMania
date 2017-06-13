@@ -31,4 +31,26 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Coupon')->numeroCoupon();
     }
+
+    public function numeroUtenti()
+    {
+        return $this->getResource('Utente')->numeroUtenti();
+    }
+    public function numeroAziende()
+    {
+        return $this->getResource('Aziende')->numeroAziende();
+    }
+    public function getUtente()
+    {
+        return $this->getResource('Utente')->getUtente();
+    }
+    
+    public function getCouponUtente($idutente)
+    {
+        return $this->getResource('Coupon')->getCouponUtente($idutente);
+    }
+     public function getProds($paged)
+    {
+        return $this->getResource('Promozione')->getProds($paged);
+    }
 }

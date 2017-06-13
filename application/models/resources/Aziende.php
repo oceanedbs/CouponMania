@@ -38,6 +38,15 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
     	$this->insert($info);
     }
     
+     public function numeroAziende()
+    {
+        $rowset   = $this->fetchAll();
+ 
+        $rowCount = count($rowset);
+                                
+        return  $rowCount;
+    }
+    
     
     
 }
