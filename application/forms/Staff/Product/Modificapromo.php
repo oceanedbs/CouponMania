@@ -86,20 +86,19 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 
 		$this->addElement('text', 'data_inizio', array(
             'label' => 'Data inizio',
-            'filters' => array('LocalizedToNormalized'),            
+                       
             'required' => true,
             'validators' => array(),
 		));
                 
                 $this->addElement('text', 'data_fine', array(
-            'label' => 'Data fine',
-            'filters' => array('LocalizedToNormalized'),            
+            'label' => 'Data fine',            
             'required' => true,
             'validators' => array(),
 		));
 
 		$this->addElement('submit', 'modifica', array(
-            'label' => 'Modifica Prodotto',
+            'label' => 'Invia',
 		));
 	
         /*
