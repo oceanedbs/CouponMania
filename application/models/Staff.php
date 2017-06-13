@@ -35,6 +35,7 @@ class Application_Model_Staff extends App_Model_Abstract
     {
         return $this->getResource('Aziende')->getAziende($paged);
     }
+
     public function modificaPromo($values,$idpromo)
     {
         return $this->getResource('Promozione')->modificaPromo($values,$idpromo);
@@ -43,6 +44,6 @@ class Application_Model_Staff extends App_Model_Abstract
     public function cancellaPromo ($idpromo)
     {
         return $this->getResource('Promozione')->cancellaPromo($idpromo);
-        
+
     }
 }
