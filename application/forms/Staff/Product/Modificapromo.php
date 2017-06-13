@@ -1,16 +1,23 @@
 <?php
-class Application_Form_Staff_Product_Add extends Zend_Form
+class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 {
 	protected $_staffModel;
 
 	public function init()
 	{
-		$this->_staffModel = new Application_Model_Staff();
+		
 		$this->setMethod('post');
-		$this->setName('addproduct');
+		$this->setName('modificapromo');
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
-
+            $this->_staffModel = new Application_Model_Staff();
+            
+            
+		
+             //   $this->addElement('hidden', 'cod_promozione');
+		
+                
+                
 		$this->addElement('text', 'prodotto', array(
             'label' => 'Nome',
             'filters' => array('StringTrim'),
@@ -18,8 +25,7 @@ class Application_Form_Staff_Product_Add extends Zend_Form
         		
             'validators' => array(array('StringLength',true, array(1,25))),
 		));
-                
-                $page='';
+                $page=null;
 		$categories = array();
 		$cats = $this->_staffModel->getTopCats($page);
 		foreach ($cats as $cat) {
@@ -92,8 +98,21 @@ class Application_Form_Staff_Product_Add extends Zend_Form
             'validators' => array(),
 		));
 
-		$this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Prodotto',
+		$this->addElement('submit', 'modifica', array(
+            'label' => 'Modifica Prodotto',
 		));
-	}
+	
+        /*
+        $this->prodotto->setValue($this->prodotto->prodotto);
+        $this->tipo_prom->setValue($this->prodotto->tipo_prom);
+        $this->catId->setValue($this->prodotto->catId);
+        $this->P_Iva->setValue($this->prodotto->P_Iva);
+        $this->immagine->setValue($this->prodotto->immagine);
+        $this->descrizione->setValue($this->prodotto->descrizione);
+        $this->prezzo_unitario_prod->setValue($this->prodotto->prezzo_unitario_prod);
+        $this->data_inizio->setValue($this->prodotto->data_inizio);
+        $this->data_fine->setValue($this->prodotto->data_fine);
+         */
+         
+}
 }

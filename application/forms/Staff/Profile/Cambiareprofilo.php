@@ -1,20 +1,19 @@
 <?php
 
 class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
-{
 
-    protected $_staffModel;
+{       protected $_publicModel;
 
-            
 	public function init()
     {               
         $this->setMethod('post');
         $this->setName('cambiareprofilo');
         $this->setAction('');
-        $this->_staffModel = new Application_Model_Public();
-        
-        $info = $this->_staffModel->getInfoUtente();
 
+        $this->_publicModel = new Application_Model_Public();
+        
+        
+        $info = $this->_publicModel->getInfoUtente();
 
         
     	 $this->addElement('text', 'nome', array(
@@ -122,9 +121,11 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
             'Form'
         ));
         
-        $this->nome->setValue($info->nome);
+
+      $this->nome->setValue($info->nome);
         $this->cognome->setValue($info->cognome);
-        $this->sesso->setValue($info->sesso);
+        $this->sesso->setValue('f');
+
         $this->data_nascita->setValue($info->data_nascita);
         $this->telefono->setValue($info->telefono);
         $this->email->setValue($info->email);

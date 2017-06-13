@@ -22,6 +22,10 @@ class Application_Model_Staff extends App_Model_Abstract
        return $this->getResource('Promozione')->getProds($paged);
        
     } 
+    public function getInfoprodotto($idprodotto){
+        return $this->getResource('Promozione')->getInfoprodotto($idprodotto);
+    }
+    
     public function saveProduct($info)
     {
     	return $this->getResource('Promozione')->insertProduct($info);
@@ -31,12 +35,15 @@ class Application_Model_Staff extends App_Model_Abstract
     {
         return $this->getResource('Aziende')->getAziende($paged);
     }
-     public function getInfoUtente()
+
+    public function modificaPromo($values,$idpromo)
     {
-    	return $this->getResource('Utente')->getInfoUtente();
+        return $this->getResource('Promozione')->modificaPromo($values,$idpromo);
     }
-     public function modficaUtente($values)
+    
+    public function cancellaPromo ($idpromo)
     {
-        return $this->getResource('Utente')->modificaUtente($values);
+        return $this->getResource('Promozione')->cancellaPromo($idpromo);
+
     }
 }

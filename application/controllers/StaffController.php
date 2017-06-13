@@ -8,20 +8,25 @@ class StaffController extends Zend_Controller_Action
 	protected $_form3;
 	protected $_form4;
         protected $_authService;
-        protected $_radio;
+        protected $_update;
+        protected $_publicModel;
 
 
 
 	public function init()
 	{
+            
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
                 $this->view->profiloForm = $this->getProfiloForm();
 		$this->view->productForm = $this->getProductForm();
-                $this->view->selezionaForm = $this->getSelezionaForm();
-                $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
-                $this->_authService = new Application_Service_Auth();       
                 
+                $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
+                if($this->hasParam('codprod'))
+                    $this->view->modificapromoForm=$this->getModificaPromoForm();
+                
+                $this->_authService = new Application_Service_Auth();       
+                $this->_publicModel = new Application_Model_Public();
 	}
 
 	public function indexAction()
@@ -63,7 +68,45 @@ class StaffController extends Zend_Controller_Action
 				));
 		return $this->_form1;
 	}
-        //gestione profilo
+        
+        public function modificapromoAction(){
+    
+    }
+    public function modificaAction(){
+    if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_update;
+		if (!$form->isValid($_POST)) {
+			return $this->render('modificapromo');
+		}
+		$values = $form->getValues();
+		$this->_staffModel->modificaPromo($values,$this->getParam('codprod'));
+		$this->_helper->redirector('visualizzapromo');
+    }
+private function getModificaPromoForm()
+	{
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_update = new Application_Form_Staff_Product_Modificapromo();
+		$this->_update->setAction($urlHelper->url(array(
+				'controller' => 'staff',
+				'action' => 'modifica'),
+				'default'
+				));
+                $idprodotto=$this->_getParam('codprod',null);
+                $product=$this->_staffModel->getInfoprodotto($idprodotto)->current()->toArray();
+		return $this->_update->populate($product);
+             
+	}
+
+ public function cancellaAction(){
+     $this->_staffModel->cancellaPromo($this->getParam('codprod'));
+     $this->_helper->redirector('visualizzapromo');
+     
+ }
+
+
+//gestione profilo
         public function profiloAction(){
     
     }
@@ -100,17 +143,21 @@ private function getProfiloForm(){
     }
     
     public function cambiaAction(){
+
     
                 if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
 		$form=$this->_form3;
+
 		if (!$form->isValid($_POST)) {
 			return $this->render('cambiareprofilo');
 		}
 		$values = $form->getValues();
+
 		$this->_staffModel->modficaUtente($values);
 		$this->_helper->redirector('index');
+
 
     }
     
@@ -125,27 +172,11 @@ private function getProfiloForm(){
             		'prodotto' => $prodotti,
                         )
             );
+    
 		
     }
-    private function getSelezionaForm(){
     
-                $urlHelper = $this->_helper->getHelper('url');
-		$this->_radio = new Application_Form_Staff_Seleziona();
-                
-    		$this->_radio->setAction($urlHelper->url(array(
-			'controller' => 'staff',
-			'action' => 'sel'),
-			'default'
-		));
-		return $this->_radio;
-    
-    }
-    public function selAction(){
-    
-        
-    
-        $this->_helper->layout->disableLayout();
-    
-    }
+   
+   
     
 }
