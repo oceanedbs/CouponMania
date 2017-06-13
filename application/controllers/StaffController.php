@@ -12,13 +12,15 @@ class StaffController extends Zend_Controller_Action
 
 	public function init()
 	{
+            
 		$this->_helper->layout->setLayout('staff');
 		$this->_staffModel = new Application_Model_Staff();
                 $this->view->profiloForm = $this->getProfiloForm();
 		$this->view->productForm = $this->getProductForm();
                 
                 $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
-                $this->view->modificapromoForm=$this->getModificaPromoForm();
+                if($this->hasParam('codprod'))
+                    $this->view->modificapromoForm=$this->getModificaPromoForm();
                 
                 $this->_authService = new Application_Service_Auth();       
                 $this->_publicModel = new Application_Model_Public();
@@ -76,8 +78,8 @@ class StaffController extends Zend_Controller_Action
 			return $this->render('modificapromo');
 		}
 		$values = $form->getValues();
-		$this->_staffModel->modificaPromo($values);
-		$this->_helper->redirector('index');
+		$this->_staffModel->modificaPromo($values,$this->getParam('codprod'));
+		$this->_helper->redirector('visualizzapromo');
     }
 private function getModificaPromoForm()
 	{
@@ -88,17 +90,17 @@ private function getModificaPromoForm()
 				'action' => 'modifica'),
 				'default'
 				));
-                $idprodotto='';
                 $idprodotto=$this->_getParam('codprod',null);
-                $product=$this->_staffModel->getInfoprodotto($idprodotto);
-		return $this->_update;
-                $this->form->assign(array(
-            		'prodotto' => $product,
-                        )
-            );
+                $product=$this->_staffModel->getInfoprodotto($idprodotto)->current()->toArray();
+		return $this->_update->populate($product);
+             
 	}
 
- 
+ public function cancellaAction(){
+     $this->_staffModel->cancellaPromo($this->getParam('codprod'));
+     $this->_helper->redirector('visualizzapromo');
+     
+ }
 
 
 //gestione profilo

@@ -14,10 +14,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
             
             
 		
-                $this->addElement('text', 'cod_promozione', array(
-            'label' => 'Promozione',
-                    'value'=>$this->prodotto->cod_promozione,
-            ));
+             //   $this->addElement('hidden', 'cod_promozione');
 		
                 
                 
@@ -105,7 +102,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
             'label' => 'Modifica Prodotto',
 		));
 	
-        
+        /*
         $this->prodotto->setValue($this->prodotto->prodotto);
         $this->tipo_prom->setValue($this->prodotto->tipo_prom);
         $this->catId->setValue($this->prodotto->catId);
@@ -115,7 +112,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
         $this->prezzo_unitario_prod->setValue($this->prodotto->prezzo_unitario_prod);
         $this->data_inizio->setValue($this->prodotto->data_inizio);
         $this->data_fine->setValue($this->prodotto->data_fine);
-         
+         */
          
 }
 }

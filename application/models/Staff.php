@@ -35,8 +35,14 @@ class Application_Model_Staff extends App_Model_Abstract
     {
         return $this->getResource('Aziende')->getAziende($paged);
     }
-    public function modificaPromo($values)
+    public function modificaPromo($values,$idpromo)
     {
-        return $this->getResource('Promozione')->modificaPromo($values);
+        return $this->getResource('Promozione')->modificaPromo($values,$idpromo);
+    }
+    
+    public function cancellaPromo ($idpromo)
+    {
+        return $this->getResource('Promozione')->cancellaPromo($idpromo);
+        
     }
 }

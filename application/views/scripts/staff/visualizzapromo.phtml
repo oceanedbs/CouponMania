@@ -20,8 +20,8 @@
                                                         'codprod'=> $prodotto->cod_promozione), 
                                                         'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
               . "<td><a href=" . $this->url(array('controller' => 'staff',
-                                                        'action' => 'modificapromo',
-                                                        ), 
+                                                        'action' => 'cancella',
+                                                        'codprod'=> $prodotto->cod_promozione), 
                                                         'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
   }
  echo '</table>';

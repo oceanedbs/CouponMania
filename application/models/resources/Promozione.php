@@ -77,16 +77,22 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     
     public function getInfoprodotto($idprodotto)
     {
-         $select = $this->select()
-                        ->where('cod_promozione IN(?)', $idprodotto);
-        return $this->fetchAll($select);
+        // metodo find esegue una select * where $primary = parametro passato
+        return $this->find($idprodotto);
 
     
     }
-    public function modificaPromo($idprodotto)
+    public function modificaPromo($values,$idprodotto)
     {
-        $where="cod_promozione = ".$idprodotto;
+        $where="cod_promozione = $idprodotto";
         $this->update($values,$where);
+    }
+    
+    public function cancellaPromo($idprodotto)
+    {
+        $where="cod_promozione = $idprodotto";
+        $this->delete($where);
+        
     }
 
 }

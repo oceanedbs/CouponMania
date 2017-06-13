@@ -23,6 +23,7 @@ class PublicController extends Zend_Controller_Action
     	//  Estrae le Categorie Top    	    	
     	
         $paged = $this->_getParam('page', 1);
+        
     	$topCats=$this->_catalogModel->getTopCats($paged);
     	
 
