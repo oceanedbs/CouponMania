@@ -3,13 +3,12 @@
 class StaffController extends Zend_Controller_Action
 {
         protected $_staffModel;
-	protected $_form1;
-	protected $_form2;
-	protected $_form3;
-	protected $_form4;
+	
         protected $_authService;
         protected $_update;
         protected $_publicModel;
+        protected $_promo;
+        
 
 
 
@@ -48,11 +47,25 @@ class StaffController extends Zend_Controller_Action
 		if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form1;
+
+		$form=$this->_promo;
+                print_r($form->getValues());
+
 		if (!$form->isValid($_POST)) {
 			return $this->render('newproduct');
 		}
 		$values = $form->getValues();
+                $dataInizio = $values['data_inizio'];
+                $dataFine = $values['data_fine'];
+       
+                $giorno = substr($dataInizio,0,2);
+                $mese = substr($dataInizio,3,2);
+                $anno = substr($dataInizio,6,4);
+                $values['data_inizio']="$anno-$mese-$giorno";
+                $giorno = substr($dataFine,0,2);
+                $mese = substr($dataFine,3,2);
+                $anno = substr($dataFine,6,4);
+                $values['data_fine']="$anno-$mese-$giorno";
 		$this->_staffModel->saveProduct($values);
 		$this->_helper->redirector('index');
 	}
@@ -60,13 +73,17 @@ class StaffController extends Zend_Controller_Action
 	private function getProductForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form1 = new Application_Form_Staff_Product_Add();
-		$this->_form1->setAction($urlHelper->url(array(
+
+		$this->_promo = new Application_Form_Staff_Product_Modificapromo();
+		$this->_promo->setAction($urlHelper->url(array(
+
 				'controller' => 'staff',
 				'action' => 'addproduct'),
 				'default'
 				));
-		return $this->_form1;
+
+		return $this->_promo;
+
 	}
         
         public function modificapromoAction(){
