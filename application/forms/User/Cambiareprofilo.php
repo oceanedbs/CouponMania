@@ -124,7 +124,7 @@ class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
         
         $this->nome->setValue($info->nome);
         $this->cognome->setValue($info->cognome);
-        $this->sesso->setValue('f');
+        $this->sesso->setValue($info->sesso);
         $this->data_nascita->setValue($info->data_nascita);
         $this->telefono->setValue($info->telefono);
         $this->email->setValue($info->email);

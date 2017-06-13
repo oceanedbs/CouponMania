@@ -46,7 +46,46 @@
                 
                 
                 
-        <?php foreach ($this->products as $products) :?>
+        <?php foreach ($this->products1 as $products) :?>
+            <div class="grid_4">
+            <div class="gall_block">
+                    <div class="maxheight">
+                        <?php echo $this->productImg($products->immagine, array('class' => 'imagefrm')) ?>         
+                        <div class="gall_bot">
+                        <div class="text1"><a href=" <?= $this->url(array(
+                            'controller' => 'user',
+                            'action'     => 'prodotti',
+                            'idprodotto' => $products->cod_promozione,
+                            ), 
+                            'default',true
+                        ); 
+                    ?>"
+                    title="Product"><?php echo'<h3 class="title">' . $products->prodotto . '</h3>' ?></a></div> 
+                    <?php echo  $products->descrizione  ?><br>
+
+                    <a class="btn" href=" <?= $this->url(array(
+                            'controller' => 'user',
+                            'action'     => 'prodotti',
+                            'idprodotto' => $products->cod_promozione,
+
+                            ), 
+                            'default',true
+                        ); 
+                    ?>"
+                    title="Info Prodotto">More</a>
+
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            
+
+                                
+                    
+        <?php endforeach ?>
+        <?php foreach ($this->products2 as $products) :?>
             <div class="grid_4">
             <div class="gall_block">
                     <div class="maxheight">
@@ -87,10 +126,11 @@
         <?php endforeach ?>
         
         
+        
 
             </div>
-            <?php if($this->products instanceof Zend_Paginator) {
-                            echo $this->paginationControl($this->products,'Sliding','public/_paginator.phtml');
+            <?php if($this->products1 instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->products1,'Sliding','user/_paginator.phtml');
             } 
         ?>
         
@@ -114,11 +154,10 @@
                 
                 <div class="grid_4">
                 
-                    <?=$this->stampareForm; ?>
+                     <?=$this->stampareForm; ?>
 
-                    
                 </div>
-                        
+                                
                         
             <?php endforeach ?>
                        

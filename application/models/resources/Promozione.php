@@ -14,32 +14,24 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     public function getProdsByCat($categoryId, $paged=null, $order=null)
     {
         $select = $this->select()
-                        ->where('catId IN(?)', $categoryId);
+                       ->where('tipo_prom IN(?)', $categoryId);
         if (true === is_array($order)) {
             $select->order($order);
         }
 		
         return $this->fetchAll($select);
     } 
-
-	// Estrae i prodotti IN SCONTO della categoria $categoryId, eventualmente paginati ed ordinati
-    public function getDiscProds($categoryId, $paged=null, $order=null)
-    {
+    
+    public function getProdsByOfferte($cat, $paged, $order){
         $select = $this->select()
-        			   ->where('catId IN(?)', $categoryId)
-        			   ->where('discounted = 1');
+                     ->where('catId IN(?)', $cat);
         if (true === is_array($order)) {
             $select->order($order);
         }
-		if (null !== $paged) {
-			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
-			$paginator = new Zend_Paginator($adapter);
-			$paginator->setItemCountPerPage(2)
-		          	  ->setCurrentPageNumber((int) $paged);
-			return $paginator;
-		}
+		
         return $this->fetchAll($select);
-    } 
+    }
+
     
     public function insertProduct($info)
     {
@@ -55,7 +47,7 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
 			$paginator = new Zend_Paginator($adapter);
-			$paginator->setItemCountPerPage(4)
+			$paginator->setItemCountPerPage(6)
 		          	  ->setCurrentPageNumber((int) $paged);
 			return $paginator;
         }
@@ -82,6 +74,7 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 
     
     }
+
     public function modificaPromo($values,$idprodotto)
     {
         $where="cod_promozione = $idprodotto";
@@ -93,6 +86,42 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
         $where="cod_promozione = $idprodotto";
         $this->delete($where);
         
+
+    
+    public function  getRisultatiRicerca($parole, $paged)
+    {
+    
+        $select=$this->select()
+                    ->where('prodotto IN(?)',$parole)
+                    ->orWhere('descrizione LIKE ?', "%$parole%");
+        return $this->fetchAll($select);
+        
+         if (null !== $paged) {
+			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+			$paginator = new Zend_Paginator($adapter);
+			$paginator->setItemCountPerPage(6)
+		          	  ->setCurrentPageNumber((int) $paged);
+			return $paginator;
+        }
+    }
+    
+     public function  getRisultatiRicerca2($catId, $parole, $paged)
+    {
+    
+        $select=$this->select()
+                    ->where('prodotto IN(?)',$parole)
+                    ->orWhere('descrizione LIKE ?', "%$parole%")
+                    ->where('tipo_prom IN(?)', $catId);
+        return $this->fetchAll($select);
+        
+         if (null !== $paged) {
+			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+			$paginator = new Zend_Paginator($adapter);
+			$paginator->setItemCountPerPage(6)
+		          	  ->setCurrentPageNumber((int) $paged);
+			return $paginator;
+        }
+
     }
 
 }

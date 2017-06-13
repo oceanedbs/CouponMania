@@ -5,13 +5,16 @@ class PublicController extends Zend_Controller_Action
 	protected $_catalogModel;
         protected $_publicModel;
 	protected $_authService;
-        protected $_form;
+        protected $_form1;
+        protected $_form2;
+        protected $_form3;
+        
 	
     public function init()
     {
-        $this->view->registraForm = $this->getRegistraForm();
         $this->view->ricercareForm = $this->getRicercaForm(); 
         $this->view->loginForm = $this->getLoginForm();
+        $this->view->registraForm = $this->getRegistraForm();
         $this->_helper->layout->setLayout('main');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
@@ -46,22 +49,17 @@ class PublicController extends Zend_Controller_Action
         $cat = $this->_getParam('selTopCat', null);
         $topCats=$this->_catalogModel->getTopCats($paged);
         $idprodotto = $this->_getParam('idprodotto', null);
-        $infoprodotto='';
+        $infoprodotto=array();
+        $prods1=array();
+        $prods2=array();
 
-
-
-        
         if (!is_null($cat)) {
 			
-			$prods=$this->_catalogModel->getProdsByCat($cat, $paged);
-		
+			$prods1=$this->_catalogModel->getProdsByCat($cat, $paged);
+			$prods2= $this->_catalogModel->getProdsByOfferte($cat, $paged);
          }else {
-			
-		//	Nessuna selezione: estrae tutti i prodotti 
-			foreach ($topCats as $topCat) {
-				$topCatsList[] = $topCat->catId;
-                        }
-                        $prods=$this->_catalogModel->getProds($topCatsList, $paged);			   	
+                        //estrare tutti i prodotti
+                        $prods1=$this->_catalogModel->getProds($paged);			   	
         }
 
         if (!is_null($idprodotto)) {
@@ -78,7 +76,8 @@ class PublicController extends Zend_Controller_Action
              
          $this->view->assign(array(
             		'topCategories' => $topCats,
-                        'products' => $prods,
+                        'products1' => $prods1,
+                        'products2'=> $prods2,
                         'topOfferte' => $topOfferte,
                         'idprodotto' => $idprodotto,
                         'infoprodotto' => $infoprodotto,)
@@ -118,7 +117,7 @@ class PublicController extends Zend_Controller_Action
     }
 
     
-     public function loginAction()
+    public function loginAction()
     {}
 
     public function authenticateAction()
@@ -127,11 +126,12 @@ class PublicController extends Zend_Controller_Action
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
         }
-        $form = $this->_form;
+        $form = $this->_form1;
         if (!$form->isValid($request->getPost())) {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
         	    return $this->render('login');
         }
+        
         if (false === $this->_authService->authenticate($form->getValues())) {
             $form->setDescription('Autenticazione fallita. Riprova');
             return $this->render('login');
@@ -143,33 +143,79 @@ class PublicController extends Zend_Controller_Action
     private function getLoginForm()
         {
     		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Public_Auth_Login();
-    		$this->_form->setAction($urlHelper->url(array(
+		$this->_form1 = new Application_Form_Public_Auth_Login();
+    		$this->_form1->setAction($urlHelper->url(array(
 			'controller' => 'public',
 			'action' => 'authenticate'),
 			'default'
 		));
-		return $this->_form;
+		return $this->_form1;
     } 
     
     private function getRicercaForm() 
     { 
-                $urlHelper = $this->_helper->getHelper('url'); 
-    $this->_form = new Application_Form_Public_Ricercare_Ricerca(); 
-        $this->_form->setAction($urlHelper->url(array( 
-      'controller' => 'public', 
-      'action' => 'ricercare'), 
-      'default' 
+        $urlHelper = $this->_helper->getHelper('url'); 
+        $this->_form2 = new Application_Form_Public_Ricercare_Ricerca(); 
+        $this->_form2->setAction($urlHelper->url(array( 
+            'controller' => 'public', 
+            'action' => 'risultati'), 
+            'default' 
     )); 
-    return $this->_form; 
+    return $this->_form2; 
      
     } 
      
     public function ricercaAction () 
     {} 
-
     
+    public function risultatiAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+                $this->_helper->redirector('index');
+        }
+        $form=$this->_form2;
+        $risultati=array();
+        if($form->isValid($this->getRequest()->getPost())){
 
+           if(empty($form->getValue('paroleChiave'))){
+                    if($form->getValue('catId') === '0')
+                    {
+                        $paged = $this->_getParam('page', 1);
+                        $risultati=$this->_catalogModel->getProds($paged);
+                    }
+                    else{
+
+                        $paged = $this->_getParam('page', 1);
+                        $catId = $form->getValue('catId');
+                        $risultati=$this->_catalogModel->getProdsByCat($catId, $paged);
+                    }
+            }else{
+                if($form->getValue('catId')=== '0')
+                    {
+                        $paged = $this->_getParam('page', 1);
+                        $parole = $form->getValue('paroleChiave');
+                        $risultati=$this->_catalogModel->getRisultatiRicerca($parole, $paged);
+                    }
+                else{
+                
+                        $paged = $this->_getParam('page', 1);
+                        $parole = $form->getValue('paroleChiave');
+                        $catId = $form->getValue('catId');
+                        $risultati = $this->_catalogModel->getRisultatiRicerca2($catId, $parole, $paged);
+                    
+                }
+            }
+        }
+        
+          
+        $this->view->assign(array(
+            		'risultati' => $risultati,)
+            		);
+            
+    }
+        
+   
+    
 
     public function registraAction()
     {}
@@ -179,27 +225,29 @@ class PublicController extends Zend_Controller_Action
        public function authenticateregAction()
 	{        
         if (!$this->getRequest()->isPost()) {
-			$this->_helper->redirector('index');
+                $this->_helper->redirector('index');
 		}
-		$form=$this->_form;
+		$form=$this->_form3;
 		if (!$form->isValid($_POST)) {
 			return $this->render('registra');
-		}
-		$values = $form->getValues();
-		$this->_publicModel->saveUtente($values);
-		$this->_helper->redirector('index', 'public');
-	}          
+ 		}
+		$data = $form->getValues();
+		$this->_publicModel->saveUtente($data);
+		$this->_helper->redirector('login', 'public');
+	}
+	
     private function getRegistraForm()
         {
     		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Public_Registra();
-    		$this->_form->setAction($urlHelper->url(array(
+		$this->_form3 = new Application_Form_Public_Registrare_Registra();
+    		$this->_form3->setAction($urlHelper->url(array(
 			'controller' => 'public',
 			'action' => 'authenticatereg'),
 			'default'
 		));
-		return $this->_form;
+		return $this->_form3;
         }
+	
 	
 	 private function getStampareForm(){
     

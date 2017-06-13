@@ -3,7 +3,10 @@
 class StaffController extends Zend_Controller_Action
 {
         protected $_staffModel;
-	protected $_form;
+	protected $_form1;
+	protected $_form2;
+	protected $_form3;
+	protected $_form4;
         protected $_authService;
         protected $_update;
         protected $_publicModel;
@@ -45,7 +48,7 @@ class StaffController extends Zend_Controller_Action
 		if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form;
+		$form=$this->_form1;
 		if (!$form->isValid($_POST)) {
 			return $this->render('newproduct');
 		}
@@ -57,13 +60,13 @@ class StaffController extends Zend_Controller_Action
 	private function getProductForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Staff_Product_Add();
-		$this->_form->setAction($urlHelper->url(array(
+		$this->_form1 = new Application_Form_Staff_Product_Add();
+		$this->_form1->setAction($urlHelper->url(array(
 				'controller' => 'staff',
 				'action' => 'addproduct'),
 				'default'
 				));
-		return $this->_form;
+		return $this->_form1;
 	}
         
         public function modificapromoAction(){
@@ -110,13 +113,13 @@ private function getModificaPromoForm()
 private function getProfiloForm(){
     
                 $urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Staff_Profile_Profilo();
-    		$this->_form->setAction($urlHelper->url(array(
+		$this->_form2 = new Application_Form_Staff_Profile_Profilo();
+    		$this->_form2->setAction($urlHelper->url(array(
 			'controller' => 'staff',
 			'action' => 'cambiareprofilo'),
 			'default'
 		));
-		return $this->_form;
+		return $this->_form2;
     
     }
     //modifica profilo
@@ -129,28 +132,36 @@ private function getProfiloForm(){
     private function getCambiareprofiloForm(){
     
                 $urlHelper = $this->_helper->getHelper('url');
-		$this->_form = new Application_Form_Staff_Profile_Cambiareprofilo();
-    		$this->_form->setAction($urlHelper->url(array(
+		$this->_form3 = new Application_Form_Staff_Profile_Cambiareprofilo();
+    		$this->_form3->setAction($urlHelper->url(array(
 			'controller' => 'staff',
 			'action' => 'cambia'),
 			'default'
 		));
-		return $this->_form;
+		return $this->_form3;
     
     }
     
     public function cambiaAction(){
-    if (!$this->getRequest()->isPost()) {
+
+    
+                if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form;
+		$form=$this->_form3;
+
 		if (!$form->isValid($_POST)) {
 			return $this->render('cambiareprofilo');
 		}
 		$values = $form->getValues();
-		$this->_publicModel->modficaUtente($values);
+
+		$this->_staffModel->modficaUtente($values);
 		$this->_helper->redirector('index');
+
+
     }
+    
+    
 
     //visualizzazione promozioni
     public function visualizzapromoAction(){

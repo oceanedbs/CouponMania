@@ -92,7 +92,7 @@ body {
 .user-img-div {
     min-height: 140px;
     padding: 20px;
-    background-color: #4380B8;
+    background-color: #aad4b3;
 }
 
     .user-img-div img {
@@ -184,7 +184,7 @@ body {
 }
 
 .navbar-cls-top {
-    background: #00CA79;
+    background: #aad4b3;
     border-bottom: none;
 }
 
@@ -215,20 +215,7 @@ body {
 /*==============================================
     FOOTER  STYLES    
     =============================================*/
-#footer-sec {
-    background-color:#000;
-    padding:20px 50px;
-    color:#fff;
-    font-size:12px;
-}
 
-    #footer-sec a {
-        color:#fff;
-    }
-    #footer-sec a:hover,a:focus {
-        color:#fff;
-        text-decoration:none;
-    }
 /*==============================================
     MEDIA QUERIES     
     =============================================*/
