@@ -83,5 +83,10 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 
     
     }
+    public function modificaPromo($idprodotto)
+    {
+        $where="cod_promozione = ".$idprodotto;
+        $this->update($values,$where);
+    }
 
 }

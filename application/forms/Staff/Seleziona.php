@@ -8,10 +8,13 @@ class Application_Form_Staff_Seleziona extends Zend_Form
 		$this->setName('seleziona');
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
-
-
+                               
+                       
+                
+		               
+                
             $this->addElement('radio', 'seleziona', array(
-                                
+                   'value'=>""             
 		));
 		
 		
