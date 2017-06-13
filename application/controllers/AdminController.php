@@ -176,7 +176,7 @@ private function getModificaAziendeForm()
                         
             $idutente = $this->_getParam('idutente', null);
             $paged=$this->_getParam('page', null);
-            $idpromo = $this ->_getParam('idpromo', null);
+            $idpromo = $this->_getParam('idpromo', 0);
             
             $promozioni=$this->_adminModel->getProds($paged);
             
