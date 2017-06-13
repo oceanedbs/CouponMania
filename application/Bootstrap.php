@@ -37,7 +37,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/style.css'));
         $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/bootstrap.css'));
         $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/basic.css'));
-
+        $this->_view->headScript()->appendFile($this->_view->baseUrl('js/faq.js'),'text/javascript');
 
 
         

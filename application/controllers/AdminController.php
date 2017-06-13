@@ -6,15 +6,20 @@ class AdminController extends Zend_Controller_Action
         protected $_authService;
 	protected $_form1;
         protected $_form2;
+        protected $_modifica;
 
 
-	public function init()
+        public function init()
 	{
-		$this->_helper->layout->setLayout('admin');
+	        
+                $this->_helper->layout->setLayout('admin');
 		$this->_adminModel = new Application_Model_Admin();
                 $this->_authService = new Application_Service_Auth();       
                 $this->view->staffForm = $this->getStaffForm();
                 $this->view->aziendeForm = $this->getAziendeForm();
+                if($this->hasParam('piva'))
+                $this->view->modificaaziendeForm = $this->getModificaAziendeForm();
+                
 	}
 
 	public function indexAction()
@@ -85,7 +90,7 @@ class AdminController extends Zend_Controller_Action
 		}
 		$values = $form->getValues();
 		$this->_adminModel->saveAziende($values);
-		$this->_helper->redirector('index');
+		$this->_helper->redirector('visualizzaaziende');
 	}
         
         
@@ -100,41 +105,4 @@ class AdminController extends Zend_Controller_Action
 				));
 		return $this->_form2;
 	}
-	public function statAction()
-	{
-	}
-	public function statisticaAction()
-	{
-            $mod=$this->_getParam('mod', null);
-            $couponutente=array();
-            $couponpromo=array();
-            
-            $utente = $this->_adminModel->getUtente();
-                        
-            $idutente = $this->_getParam('idutente', null);
-            $paged=$this->_getParam('page', null);
-            $idpromo = $this ->_getParam('idpromo', null);
-            
-            $promozioni=$this->_adminModel->getProds($paged);
-            
-            if($mod == 2){
-            
-                $couponutente = $this->_adminModel->getCouponUtente($idutente);
-            
-            }
-            else{
-            
-                $couponpromo = $this->_adminModel->getCouponPromo($idpromo);
-            
-            }
-            $this->view->assign(array(
-            		'mod' => $mod,
-            		'utente' => $utente,
-            		'idutente'=>$idutente,
-            		'couponutente' => $couponutente,
-            		'promozioni' => $promozioni,
-            		'idpromo'=> $idpromo,
-                        'couponpromo'=>$couponpromo,)
-            		);
-            }
 }

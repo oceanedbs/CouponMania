@@ -52,6 +52,8 @@ class StaffController extends Zend_Controller_Action
 			return $this->render('newproduct');
 		}
 		$values = $form->getValues();
+                
+                //conversione data
                 $dataInizio = $values['data_inizio'];
                 $dataFine = $values['data_fine'];
        
@@ -109,7 +111,7 @@ private function getModificaPromoForm()
 				));
                 $idprodotto=$this->_getParam('codprod',null);
                 $product=$this->_staffModel->getInfoprodotto($idprodotto)->current()->toArray();
-		return $this->_update->populate($product);
+		return $this->_update->populate($product); //popola la form con i valori presenti nel database
              
 	}
 
