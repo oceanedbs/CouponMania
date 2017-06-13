@@ -1,5 +1,33 @@
-Coupon : 
-<br>
-Codice Utente:
-<br>
-Codice Promozione:
+
+<div class="grid_4">   
+
+    <?php if($this->messagio == 0) :?>
+   
+   
+    <?php foreach($this->infoprodotto as $infoprodotto) :?>
+
+                    <div class="grid_4">
+                        <?php echo $this->productImg($infoprodotto->immagine, array('class' => 'imagefrm')) ?>    
+                        
+                        
+                        
+                    </div>
+                        <h2> Nome :  <?= $infoprodotto->prodotto ; ?> </h2> <br>
+                        Tipo di promozione : <?= $infoprodotto->tipo_prom ; ?><br>
+                        Data Inizio : <?= $infoprodotto->data_inizio ; ?><br>
+                        Data Fine : <?= $infoprodotto->data_fine ; ?><br>
+                        Descrizione : <?= $infoprodotto->descrizione ; ?><br>
+                        Prezzo : <?= $infoprodotto->prezzo_unitario_prod ; ?> € <br>
+                        Codice : <?= $infoprodotto->cod_promozione; ?> <?= $this->authInfo('ID_utente') ?><br>
+                    </div>
+                    
+                    
+        <?php endforeach ?>
+        
+    <?php else :?>
+    
+    <h2> Hai già stampato il coupon </h2>
+    
+    <?php endif ?>
+    
+</div>

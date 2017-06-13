@@ -3,22 +3,20 @@
 class Application_Model_Catalog extends App_Model_Abstract
 { 
 
-	public function __construct()
+    public function __construct()
     {
-		$this->_logger = Zend_Registry::get('log');  	
-	}
+        $this->_logger = Zend_Registry::get('log');  	
+    }
 
     public function getTopCats($paged)
     {
-		return $this->getResource('Category')->getTopCats($paged);
+        return $this->getResource('Category')->getTopCats($paged);
     }
     
     public function getTopOfferte($paged)
     {
-                return $this->getResource('Category')->getTopOfferte($paged);
-
+        return $this->getResource('Category')->getTopOfferte($paged);
     }
-    
     
     public function getCatById($id)
     {
@@ -29,25 +27,21 @@ class Application_Model_Catalog extends App_Model_Abstract
     {
         return $this->getResource('Category')->getCatsByParId($parId);
     }
-       
-    public function getDiscProds($catId, $paged=null, $order=null, $deep=true)
-    {
-        if (true === $deep) {
-            $ids = $this->getResource('Category')->getCatChilIds($catId, true);                       
-            $ids[] = $catId;
-			$catId = $ids;
-        }       
-    		return $this->getResource('Promozione')->getDiscProds($catId, $paged, $order);
-    }    
+
     
     public function getProdsByCat($catId, $paged=null, $order=null)
     {
        return $this->getResource('Promozione')->getProdsByCat($catId, $paged, $order);
     }
     
-     public function getProds($topCatsList, $paged)
+    public function getProdsByOfferte($cat, $paged=null, $order=null)
     {
-        return $this->getResource('Promozione')->getProds($topCatsList, $paged);
+        return $this->getResource('Promozione')->getProdsByOfferte($cat, $paged, $order);
+    }
+    
+    public function getProds($paged)
+    {
+        return $this->getResource('Promozione')->getProds($paged);
     }
     
     public function getAziende($paged)
@@ -58,7 +52,6 @@ class Application_Model_Catalog extends App_Model_Abstract
     public function getInfoAzienda($idazienda)
     {
         return $this->getResource('Aziende')->getInfoAzienda($idazienda);
-
     }
     
     public function getPromobyAzienda($idazienda)
@@ -70,4 +63,16 @@ class Application_Model_Catalog extends App_Model_Abstract
     {
         return $this->getResource('Promozione')->getInfoprodotto($idprodotto);
     }
+    
+    public function getRisultatiRicerca($parole, $paged)
+    {
+        return $this->getResource('Promozione')->getRisultatiRicerca($parole, $paged);
+    }
+    
+    public function getRisultatiRicerca2($catId, $parole, $paged)
+    {
+        return $this->getResource('Promozione')->getRisultatiRicerca2($catId,$parole, $paged);
+    }
+    
+    
 }
