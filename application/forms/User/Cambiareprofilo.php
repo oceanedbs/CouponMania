@@ -77,7 +77,7 @@ class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
                 array('StringLength', true, array(1, 25))
             ),         
             
-            'value'      =>'user',
+            'value'      =>'staff',
             'decorators' => $this->elementDecorators,
             ));
            

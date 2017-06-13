@@ -2,10 +2,27 @@
  <h3>Promozioni</h3>
  <div>
  <?php 
- echo '<table>';
-	echo "<tr><th>Seleziona</th><th>Codice</th><th>Tipo</th><th>Data Inizio</th><th>Data Fine</th><th>Prodotto</th><th>Categoria</th><th>Descrizione</th><th>Immagine</th><th>Azienda</th><th>Prezzo</th></tr>";
+ echo '<table class="tabella">';
+	echo "<tr><th>Codice</th><th>Tipo</th><th>Data Inizio</th><th>Data Fine</th><th>Prodotto</th><th>Categoria</th><th>Descrizione</th><th>Immagine</th><th>Azienda</th><th>Prezzo</th><th>Modifica</th><th>Cancella</th></tr>";
   foreach ($this->prodotto as $prodotto) {
-        echo "<tr><td>$this->_radio</td><td>$prodotto->cod_promozione</td><td>$prodotto->tipo_prom</td><td>$prodotto->data_inizio</td><td>$prodotto->data_fine</td><td>$prodotto->prodotto</td><td>$prodotto->catId</td><td>$prodotto->descrizione</td><td>$prodotto->immagine</td><td>$prodotto->P_Iva</td><td>$prodotto->prezzo_unitario_prod</td></tr>";
+      echo "<tr><td>".$prodotto->cod_promozione."</td>"
+              . "<td>".$prodotto->tipo_prom."</td>"
+              . "<td>".$prodotto->data_inizio."</td>"
+              . "<td>".$prodotto->data_fine."</td>"
+              . "<td>".$prodotto->prodotto."</td>"
+              . "<td>".$prodotto->catId."</td>"
+              . "<td>".$prodotto->descrizione."</td>"
+              . "<td>".$prodotto->immagine."</td>"
+              . "<td>".$prodotto->P_Iva."</td>"
+              . "<td>".$prodotto->prezzo_unitario_prod."</td>"
+              . "<td><a href=" . $this->url(array('controller' => 'staff',
+                                                        'action' => 'modificapromo',
+                                                        'codprod'=> $prodotto->cod_promozione), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
+              . "<td><a href=" . $this->url(array('controller' => 'staff',
+                                                        'action' => 'cancella',
+                                                        'codprod'=> $prodotto->cod_promozione), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
   }
  echo '</table>';
  ?>
