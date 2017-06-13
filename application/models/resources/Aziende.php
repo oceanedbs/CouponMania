@@ -26,19 +26,26 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
         
     public function getInfoAzienda($idazienda){
     
-        $select = $this->select()
-                         ->where('P_Iva IN(?)', $idazienda);
-        return $this->fetchAll($select);
-
-    
-    }
+        return $this->find($idazienda);
+     }
     
     public function insertAziende($info)
     {
     	$this->insert($info);
     }
     
+     public function modificaAziende($values,$idazienda)
+    {
+        $where="P_Iva = $idazienda";
+        $this->update($values,$where);
+    }
     
+     public function cancellaAzienda($idazienda)
+    {
+        $where="P_Iva = $idazienda";
+        $this->delete($where);
+        
+    }
     
 }
  

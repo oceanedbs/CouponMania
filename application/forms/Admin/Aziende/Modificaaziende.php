@@ -1,20 +1,21 @@
 <?php
-class Application_Form_Admin_Aziende_Add extends Zend_Form
+class Application_Form_Admin_Aziende_Modificaaziende extends Zend_Form
 {
 	protected $_adminModel;
 
 	public function init()
 	{
+		
 		$this->_adminModel = new Application_Model_Admin();
 		$this->setMethod('post');
-		$this->setName('addaziende');
+		$this->setName('modificaaziende');
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
 
 		$this->addElement('text', 'P_Iva', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
-                array('StringLength', true, array(1, 10))
+                array('StringLength', true, array(1, 12))
             ),
                     'required'   => true,
             'label'      => 'Partita Iva',
@@ -40,12 +41,12 @@ class Application_Form_Admin_Aziende_Add extends Zend_Form
             'label' => 'Indirizzo',
             'required' => true,
             'filters' => array('StringTrim'),
-            'validators' => array(array('StringLength',true, array(1,30))),
+            'validators' => array(array('StringLength',true, array(1,50))),
 		));
                 
                
                 
-              
+               
                 
             $this->addElement('text', 'citta', array(
             'label' => 'Citta',
@@ -56,17 +57,25 @@ class Application_Form_Admin_Aziende_Add extends Zend_Form
                 
             
             
-            $this->addElement('text', 'descrizione', array(
-            'label' => 'Descrizione Breve',
+            $this->addElement('textarea', 'descrizione', array(
+            'label' => 'Descrizione',
             'required' => true,
             'filters' => array('StringTrim'),
-            'validators' => array(array('StringLength',true, array(1,30))),
+            'validators' => array(array('StringLength',true, array(1,300))),
 		));
             
-            $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi Azienda',
+            $this->addElement('submit', 'modifica', array(
+            'label' => 'modifica',
 		));
-                
-                 
-	}
+        /*
+        $this->P_Iva->setValue($this->azienda->P_Iva);
+        $this->nome->setValue($this->azienda->nome);
+        $this->logo->setValue($this->azienda->logo);
+        $this->citta->setValue($this->azienda->citta);
+        $this->indirizzo->setValue($this->azienda->indirizzo);
+        $this->tipologia->setValue($this->azienda->tipologia);
+        $this->descrizione->setValue($this->azienda->descrizione);
+         */
+         
+}
 }

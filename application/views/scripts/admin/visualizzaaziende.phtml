@@ -1,0 +1,28 @@
+<div class="static">
+ <h3>Aziende</h3>
+ <div>
+ <?php 
+ echo '<table class="tabella">';
+	echo "<tr><th>Partita Iva</th><th>Nome Azienda</th><th>logo</th><th>Citta</th><th>Indirizzo</th><th>Descrizione</th><th>Modifica</th><th>Cancella</th></tr>";
+  foreach ($this->azienda as $azienda) {
+      echo "<tr><td>".$azienda->P_Iva."</td>"
+              . "<td>".$azienda->nome."</td>"
+              . "<td>".$azienda->logo."</td>"
+              . "<td>".$azienda->citta."</td>"
+              . "<td>".$azienda->indirizzo."</td>"
+              . "<td>".$azienda->descrizione."</td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'modificaaziende',
+                                                        'piva'=> $azienda->P_Iva), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'cancella',
+                                                        'piva'=> $azienda->P_Iva), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
+  }
+ echo '</table>';
+ ?>
+     
+ </div>
+ 
+</div>
