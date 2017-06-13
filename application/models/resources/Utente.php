@@ -51,6 +51,7 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
     }
     
     public function getUtente(){
+    
         $select= $this->select();
         
         return $this->fetchAll($select);

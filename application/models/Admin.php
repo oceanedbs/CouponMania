@@ -53,4 +53,9 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Promozione')->getProds($paged);
     }
+    
+    public function getCouponPromo($idpromo)
+    {
+        return $this->getResource('Coupon')->getCouponPromo($idpromo);
+    }
 }

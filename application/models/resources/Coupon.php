@@ -39,5 +39,32 @@ class Application_Resource_Coupon extends Zend_Db_Table_Abstract
         return  $rowCount;
     }
     
+    public function getCouponUtente($idutente){
+    
+    $select = $this->select()
+                    ->from('coupon', array('cod_promozione' => 'cod_promozione'))
+                    ->where('coupon.ID_utente IN (?)', $idutente)
+                    ->join('promozione', 'coupon.cod_promozione = promozione.cod_promozione')
+                    ->setIntegrityCheck(false);
+                    
+                
+    return $this->fetchAll($select);
+    
+    }
+    
+    public function getCouponPromo($idpromo)
+    {
+        $select  = $this -> select() 
+                          ->where('cod_promozione = ?', $idpromo);
+                        
+        $rowCount = count($this->fetchAll());
+        
+        return $rowCount;
+
+     
+    }
+
+
+    
 
 }

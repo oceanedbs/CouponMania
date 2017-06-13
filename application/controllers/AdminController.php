@@ -100,16 +100,20 @@ class AdminController extends Zend_Controller_Action
 				));
 		return $this->_form2;
 	}
-	
+	public function statAction()
+	{
+	}
 	public function statisticaAction()
 	{
             $mod=$this->_getParam('mod', null);
             $couponutente=array();
+            $couponpromo=array();
             
             $utente = $this->_adminModel->getUtente();
                         
             $idutente = $this->_getParam('idutente', null);
             $paged=$this->_getParam('page', null);
+            $idpromo = $this ->_getParam('idpromo', null);
             
             $promozioni=$this->_adminModel->getProds($paged);
             
@@ -118,12 +122,19 @@ class AdminController extends Zend_Controller_Action
                 $couponutente = $this->_adminModel->getCouponUtente($idutente);
             
             }
+            else{
+            
+                $couponpromo = $this->_adminModel->getCouponPromo($idpromo);
+            
+            }
             $this->view->assign(array(
             		'mod' => $mod,
             		'utente' => $utente,
             		'idutente'=>$idutente,
             		'couponutente' => $couponutente,
-            		'promozioni' => $promozioni,)
+            		'promozioni' => $promozioni,
+            		'idpromo'=> $idpromo,
+                        'couponpromo'=>$couponpromo,)
             		);
             }
 }

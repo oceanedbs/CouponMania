@@ -7,9 +7,14 @@
   <div class="grid_4">
             <div class="gall_block">
                         <div class="gall_bot">
-                            <div class="text1"><h1>Numero di Coupon Emessi</h1></div> <br>
+                            <a href='<?= $this->url(array('controller' => 'admin',
+                                                        'action' => 'statistica',
+                                                                 'mod'=> 1,), 
+                                                                'default', true); ?>
+                                        '>
+                            <div class="text1"><h1>Numero di Coupon Emessi</h1></div> <br> </a>
                             <hr>
-                            <div class="statistica"> <h1><?= $this->coupon ?></h1></div>
+                            <div> <h1><?= $this->coupon ?></h1></div>
 
 
                         </div>
@@ -21,11 +26,11 @@
                             <div class="gall_bot">
                                 <a href='<?= $this->url(array('controller' => 'admin',
                                                                 'action' => 'statistica',
-                                                                'mod'=> 0,), 'default', true) ?>
+                                                                'mod'=> 0,), 'default', true); ?>
                                         '>
-                                <div class="text1"><h1>Numero di Utenti registrati</h1></div> <br>
+                                <div class="text1"><h1>Numero di Utenti registrati</h1></div> <br> </a>
                                 <hr>
-                                <div class="statistica"> <h1><?= $this->utenti ?></h1></div>
+                                <div> <h1><?= $this->utenti ?></h1></div>
 
 
                             </div>
@@ -38,7 +43,7 @@
                             <div class="gall_bot">
                                 <div class="text1"><h1>Numero di Aziende iscritta</h1></div> <br>
                                 <hr>
-                                <div class="statistica"> <h1><?= $this->aziende ?></h1></div>
+                                <div> <h1><?= $this->aziende ?></h1></div>
 
 
                             </div>
