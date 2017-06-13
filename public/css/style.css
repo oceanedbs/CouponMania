@@ -488,6 +488,36 @@ header h1 a img {
   width: 70px;
 }
 
+
+.tabella
+{ border: 1px solid #000000;
+    width: 100%;
+    line-height: 40px;
+    position: relative;
+    top: 2px;
+ background-color: #ffffff;}
+.tabella tr {
+    border: 1px solid #333333;    
+}
+
+.tabella td{
+   border: 1px solid #333333; 
+}
+
+.tabella th {
+    font-weight: bold;
+    font-size: large;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.icon {
+  width: 30px;
+ height: 30px;  
+    
+    
+}
+
 /**Menu**/
 
 
