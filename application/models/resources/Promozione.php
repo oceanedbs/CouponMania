@@ -86,6 +86,8 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
         $where="cod_promozione = $idprodotto";
         $this->delete($where);
         
+    }
+        
 
     
     public function  getRisultatiRicerca($parole, $paged)

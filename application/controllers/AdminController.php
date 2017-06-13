@@ -18,7 +18,15 @@ class AdminController extends Zend_Controller_Action
 	}
 
 	public function indexAction()
-	{}
+	{
+            $coupon=$this->_adminModel->numeroCoupon();
+            
+            $this->view->assign(array(
+            		'coupon' => $coupon,)
+            		);
+	
+	
+	}
 	
 	public function logoutAction()
 	{
