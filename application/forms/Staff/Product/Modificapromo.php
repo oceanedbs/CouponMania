@@ -63,7 +63,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 			'destination' => APPLICATION_PATH . '/../public/images/products',
 			'validators' => array( 
 			//array('Count', false, 1),
-			array('Size', false, 102400),
+			array('Size', false, 9000000),
 			array('Extension', true, array('jpg', 'gif'))),
 			));
 
@@ -86,20 +86,19 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 
 		$this->addElement('text', 'data_inizio', array(
             'label' => 'Data inizio',
-            'filters' => array('LocalizedToNormalized'),            
+                       
             'required' => true,
             'validators' => array(),
 		));
                 
                 $this->addElement('text', 'data_fine', array(
-            'label' => 'Data fine',
-            'filters' => array('LocalizedToNormalized'),            
+            'label' => 'Data fine',            
             'required' => true,
             'validators' => array(),
 		));
 
 		$this->addElement('submit', 'modifica', array(
-            'label' => 'Modifica Prodotto',
+            'label' => 'Invia',
 		));
 	
         /*
