@@ -7,6 +7,8 @@ class AdminController extends Zend_Controller_Action
 	protected $_newstaff;
         protected $_newazienda;
         protected $_modifica;
+        protected $_form3;
+        protected $_form4;
 
         protected $_updateuser;
 
@@ -23,16 +25,14 @@ class AdminController extends Zend_Controller_Action
                 $this->_authService = new Application_Service_Auth();       
                 $this->view->staffForm = $this->getStaffForm();
                 $this->view->aziendeForm = $this->getAziendeForm();
-                $this->view->newfaqForm=$this->newfaqAction();
+                $this->view->categoryForm = $this->getCategoryForm();
                 if($this->hasParam('piva'))
                 $this->view->modificaaziendeForm = $this->getModificaAziendeForm();
 
                 if($this->hasParam('idutente'))
                 $this->view->modificautentiForm = $this->getModificaUtenteForm();
-
-                if($this->hasParam('idfaq'))
-                $this->view->modificafaqpost = $this->modificafaqAction();
-
+                if($this->hasParam('idcat'))
+                $this->view->modificacategoryForm = $this->getModificaCategoryForm();
                 
 	}
 
@@ -231,126 +231,87 @@ private function getModificaUtenteForm()
     
 		
     }
-
-	public function statAction()
+    
+    public function newcategoryAction()
+	{}
+        
+        public function addcategoryAction()
 	{
+		if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form4;
+		if (!$form->isValid($_POST)) {
+			return $this->render('newcategory');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->saveCategory($values);
+		$this->_helper->redirector('visualizzacategory');
 	}
-	public function statisticaAction()
+        
+        
+        private function getCategoryForm()
 	{
-            $mod=$this->_getParam('mod', null);
-            $couponutente=array();
-            $couponpromo=array();
-            
-            $utente = $this->_adminModel->getUtente();
-                        
-            $idutente = $this->_getParam('idutente', null);
-            $paged=$this->_getParam('page', null);
-            $idpromo = $this->_getParam('idpromo', 0);
-            
-            $promozioni=$this->_adminModel->getProds($paged);
-            
-            if($mod == 2){
-            
-                $couponutente = $this->_adminModel->getCouponUtente($idutente);
-            
-            }
-            else{
-            
-                $couponpromo = $this->_adminModel->getCouponPromo($idpromo);
-            
-            }
-            $this->view->assign(array(
-            		'mod' => $mod,
-            		'utente' => $utente,
-            		'idutente'=>$idutente,
-            		'couponutente' => $couponutente,
-            		'promozioni' => $promozioni,
-            		'idpromo'=> $idpromo,
-                        'couponpromo'=>$couponpromo,)
-            		);
-            }
-            
-            public function visualizzafaqAction(){
-                
-                $faq=$this->_adminModel->getFaq();
-                
-                $this->view->assign(array(
-            		'faq' => $faq,
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form4 = new Application_Form_Admin_Category_Add();
+		$this->_form4->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'addcategory'),
+				'default'
+				));
+		return $this->_form4;
+	}
+        
+      
+    
+            public function modificacategoryAction(){
+    
+    }
+    public function modificacatAction(){
+    if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form5;
+		if (!$form->isValid($_POST)) {
+			return $this->render('modificacategory');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->modificaCategory($values,$this->getParam('idcat'));
+		$this->_helper->redirector('visualizzacategory');
+    }
+private function getModificaCategoryForm()
+	{
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form5 = new Application_Form_Admin_Category_Modificacategory();
+		$this->_form5->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificacat'),
+				'default'
+				));
+                $idcat=$this->_getParam('idcat',null);
+                $cat=$this->_adminModel->getInfoCategory($idcat)->current()->toArray();
+		return $this->_form5->populate($cat);
+             
+	}
+
+ public function cancellacategoryAction(){
+     $this->_adminModel->cancellaCategory($this->getParam('idcat'));
+     $this->_helper->redirector('visualizzacategory');
+     
+ }
+
+
+    
+    
+
+    //visualizzazione promozioni
+    public function visualizzacategoryAction(){
+    $page=null;
+    $category=$this->_adminModel->getCategory($page);
+    
+    $this->view->assign(array(
+            		'category' => $category,
                         )
             );
-            }
-            
-         
-            public function modificafaqAction(){
-                $urlHelper = $this->_helper->getHelper('url');
-		$this->_faq = new Application_Form_Admin_Faq();
-		$this->_faq->setAction($urlHelper->url(array(
-				'controller' => 'admin',
-				'action' => 'modificafaqpost'
-                                ),
-				'default'
-				));
-                $idfaq=$this->_getParam('idfaq',null);
-                $questions=$this->_adminModel->getInfoFaq($idfaq)->current()->toArray();
-               
-		return $this->_faq->populate($questions);
-               
-                
-            }
-
-            public function modificafaqpostAction(){
-                
-                if (!$this->getRequest()->isPost()) {
-                   
-			$this->_helper->redirector('index');
-		}
-		$form=$this->_faq;
-               
-		if (!$form->isValid($_POST)) {
-			return $this->render('modificafaq');
-		}
-		$values = $form->getValues();
-		$this->_adminModel->modificafaq($values,$this->_getParam('idfaq',null));
-		$this->_helper->redirector('visualizzafaq');
-            }
-            
-            public function cancellafaqAction() {
-                $this->_adminModel->cancellafaq($this->_getParam('idfaq',null));
-                $this->_helper->redirector('visualizzafaq');
-            }
-            
-             public function newfaqAction(){
-                $urlHelper = $this->_helper->getHelper('url');
-		$this->_newfaq = new Application_Form_Admin_Faq();
-		$this->_newfaq->setAction($urlHelper->url(array(
-				'controller' => 'admin',
-				'action' => 'addfaqpost'
-                                ),
-				'default'
-				));
-                
-               
-		return $this->_newfaq;
-               
-                
-            }
-
-            public function addfaqpostAction(){
-                
-                if (!$this->getRequest()->isPost()) {
-                   
-			$this->_helper->redirector('index');
-		}
-		$form=$this->_newfaq;
-               
-		if (!$form->isValid($_POST)) {
-			return $this->render('newfaq');
-		}
-		$values = $form->getValues();
-		$this->_adminModel->savefaq($values);
-		$this->_helper->redirector('visualizzafaq');
-            }
-            
-            
-
+}
 }

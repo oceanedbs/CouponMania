@@ -68,6 +68,32 @@ class Application_Model_Admin extends App_Model_Abstract
 
     }
     
+   public function getCategory($paged)
+    {
+       return $this->getResource('Category')->getCategory($paged);
+       
+    }
+    
+    public function saveCategory($info)
+    {
+    	return $this->getResource('Category')->insertCategory($info);
+    }
+    
+     public function modificaCategory($values,$idcat)
+    {
+        return $this->getResource('Category')->modificaCategory($values,$idcat);
+    }
+    
+    public function getInfoCategory($idcategory){
+        return $this->getResource('Category')->getInfoCategory($idcategory);
+    }
+    
+    public function cancellaCategory($idcategory)
+    {
+        return $this->getResource('Category')->cancellaCategory($idcategory);
+
+    }
+    
     public function numeroCoupon()
     {
         return $this->getResource('Coupon')->numeroCoupon();
