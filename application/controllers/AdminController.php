@@ -4,11 +4,11 @@ class AdminController extends Zend_Controller_Action
 {
 	protected $_adminModel;
         protected $_authService;
-	protected $_form1;
-        protected $_form2;
+	protected $_newstaff;
+        protected $_newazienda;
         protected $_modifica;
 
-        protected $_form3;
+        protected $_updateuser;
 
         protected $_faq;
          protected $_newfaq;
@@ -70,7 +70,7 @@ class AdminController extends Zend_Controller_Action
 		if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form1;
+		$form=$this->_newstaff;
 		if (!$form->isValid($_POST)) {
 			return $this->render('newstaff');
 		}
@@ -82,13 +82,13 @@ class AdminController extends Zend_Controller_Action
 	private function getStaffForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form1 = new Application_Form_Admin_Staff_Add();
-		$this->_form1->setAction($urlHelper->url(array(
+		$this->_newstaff = new Application_Form_Admin_Staff_Add();
+		$this->_newstaff->setAction($urlHelper->url(array(
 				'controller' => 'admin',
 				'action' => 'addstaff'),
 				'default'
 				));
-		return $this->_form1;
+		return $this->_newstaff;
 	}
         
         public function newaziendeAction()
@@ -99,7 +99,7 @@ class AdminController extends Zend_Controller_Action
 		if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form2;
+		$form=$this->_newazienda;
 		if (!$form->isValid($_POST)) {
 			return $this->render('newaziende');
 		}
@@ -112,13 +112,13 @@ class AdminController extends Zend_Controller_Action
         private function getAziendeForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form2 = new Application_Form_Admin_Aziende_Add();
-		$this->_form2->setAction($urlHelper->url(array(
+		$this->_newazienda = new Application_Form_Admin_Aziende_Add();
+		$this->_newazienda->setAction($urlHelper->url(array(
 				'controller' => 'admin',
 				'action' => 'addaziende'),
 				'default'
 				));
-		return $this->_form2;
+		return $this->_newazienda;
 	}
         
       
@@ -186,7 +186,7 @@ private function getModificaAziendeForm()
     if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form3;
+		$form=$this->_updateuser;
 		if (!$form->isValid($_POST)) {
 			return $this->render('modificautenti');
 		}
@@ -197,15 +197,15 @@ private function getModificaAziendeForm()
 private function getModificaUtenteForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
-		$this->_form3 = new Application_Form_Admin_Utenti_Modificautenti();
-		$this->_form3->setAction($urlHelper->url(array(
+		$this->_updateuser = new Application_Form_Admin_Utenti_Modificautenti();
+		$this->_updateuser->setAction($urlHelper->url(array(
 				'controller' => 'admin',
 				'action' => 'modificauser'),
 				'default'
 				));
                 $idutente=$this->_getParam('idutente',null);
                 $utente=$this->_adminModel->getInfoUtente($idutente)->current()->toArray();
-		return $this->_form3->populate($utente);
+		return $this->_updateuser->populate($utente);
              
 	}
 
