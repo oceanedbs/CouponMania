@@ -1,0 +1,57 @@
+<div class="static">
+
+    <?php if($this->mod ==0) :?>
+
+       <h2>Seleziona un utente per vedere i coupon che ha stampato</h2>
+       <ul>
+        <?php foreach($this->utente as $utente) :?>
+            <h3><a href='<?= $this->url(array('controller' => 'admin',
+                                            'action' => 'statistica',
+                                            'mod'=> 2,
+                                            'idutente'=> $utente->ID_utente), 'default', true) ?>
+                        '>
+            <li> <?= $utente->nome ." ". $utente->cognome; ?> </li></a></h3>
+            
+        <?php endforeach ?>
+        </ul>
+       
+       
+
+    <?php elseif($this->mod == 1) :?>
+
+        <h2>Seleziona una promozione per vedere quanto volta è stato stampato </h2>
+        
+        <ul>
+        <?php foreach($this->promozioni as $promozioni) :?>
+            <h3><a href='<?= $this->url(array('controller' => 'admin',
+                                            'action' => 'statistica',
+                                            'mod'=> 3,
+                                            'idpromo'=> $promozioni->cod_promozione,), 
+                                            'default', true) ?>
+                        '>
+            <li> <?= $promozioni->prodotto ; ?> </li></a></h3>
+            
+        <?php endforeach ?>
+        </ul>
+        
+    <?php elseif($this->mod ==  2):?>
+    
+       <h2> Eleco dei coupon stampato dal l'utente selezionato :<h2>
+        <ul>
+        <?php foreach($this->couponutente as $couponutente) :?>
+            <h3><li> <?=  $couponutente->prodotto; ?> </li></h3>
+            
+        <?php endforeach ?>
+        </ul>
+        
+    <?php elseif($this->mod == 3) :?>
+    
+    <h2>Statistiche promozione selezionata </h2>
+        
+        <br>
+        <h3>Questo coupon è stato stampato <?= $this->couponpromo; ?> volta ! <h3> 
+        
+
+    <?php endif ?>
+
+</div>

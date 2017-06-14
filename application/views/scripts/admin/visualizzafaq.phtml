@@ -1,0 +1,27 @@
+<div class="static">
+ <h3>Faq</h3>
+ <div>
+ <?php 
+ echo '<table class="tabella">';
+	echo "<tr><th>Codice</th><th>Domanda</th><th>Risposta</th><th>Modifica</th><th>Cancella</th></tr>";
+  foreach ($this->faq as $faq) {
+      echo "<tr><td>".$faq->id_faq."</td>"
+              . "<td>".$faq->domanda."</td>"
+              . "<td>".$faq->risposta."</td>"
+              
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'modificafaq',
+                                                        'idfaq'=> $faq->id_faq), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'cancellafaq',
+                                                        'idfaq'=> $faq->id_faq), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
+  }
+ echo '</table>';
+ ?>
+     
+ </div>
+  
+     
+</div>

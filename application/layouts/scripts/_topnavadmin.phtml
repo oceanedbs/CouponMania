@@ -34,6 +34,17 @@
                     ); 
                  ?>">Inserisci Azienda </a>
                     </li>
+                    
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'newfaq',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Inserisci Faq </a>
+                    </li>
+                    
                     <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',
@@ -65,6 +76,17 @@
                     ); 
                  ?>">Gestione Utenti</a>
                     </li>
+                    
+                     <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'visualizzafaq',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Gestire Faq</a>
+                    </li>
+                    
                      <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',

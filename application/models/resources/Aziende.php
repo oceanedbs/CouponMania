@@ -39,6 +39,14 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
         $where="P_Iva = $idazienda";
         $this->update($values,$where);
     }
+     public function numeroAziende()
+    {
+        $rowset   = $this->fetchAll();
+ 
+        $rowCount = count($rowset);
+                                
+        return  $rowCount;
+    }
     
      public function cancellaAzienda($idazienda)
     {
@@ -46,6 +54,7 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
         $this->delete($where);
         
     }
+    
     
 }
  

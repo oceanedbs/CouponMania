@@ -72,4 +72,53 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('Coupon')->numeroCoupon();
     }
+
+    public function numeroUtenti()
+    {
+        return $this->getResource('Utente')->numeroUtenti();
+    }
+    public function numeroAziende()
+    {
+        return $this->getResource('Aziende')->numeroAziende();
+    }
+    public function getUtente()
+    {
+        return $this->getResource('Utente')->getUtente();
+    }
+    
+    public function getCouponUtente($idutente)
+    {
+        return $this->getResource('Coupon')->getCouponUtente($idutente);
+    }
+     public function getProds($paged)
+    {
+        return $this->getResource('Promozione')->getProds($paged);
+    }
+    
+    public function getCouponPromo($idpromo)
+    {
+        return $this->getResource('Coupon')->getCouponPromo($idpromo);
+    }
+    
+    public function modificafaq($values,$idfaq){
+       return $this->getResource('Faq')->modificafaq($values,$idfaq); 
+    }
+    
+    public function getFaq()
+    {
+        return $this->getResource('Faq')->getFaq();
+    }
+    
+    public function getInfofaq($idfaq)
+    {
+        return $this->getResource('Faq')->getInfoFaq($idfaq);
+    }
+    
+    public function cancellafaq($idfaq) {
+        return $this->getResource('Faq')->cancellafaq($idfaq);
+    }
+    
+    public function savefaq($values) {
+        return $this->getResource('Faq')->insertfaq($values);
+    }
 }
