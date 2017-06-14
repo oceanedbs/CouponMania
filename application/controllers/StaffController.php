@@ -9,7 +9,7 @@ class StaffController extends Zend_Controller_Action
         protected $_publicModel;
         protected $_promo;
         protected $_profilo;
-        protected $_form3;
+        protected $_updateprofilo;
         
         
 
@@ -46,7 +46,7 @@ class StaffController extends Zend_Controller_Action
 		}
 
 		$form=$this->_promo;
-                print_r($form->getValues());
+                
 
 		if (!$form->isValid($_POST)) {
 			return $this->render('newproduct');
@@ -167,13 +167,13 @@ private function getProfiloForm(){
     private function getCambiareprofiloForm(){
     
                 $urlHelper = $this->_helper->getHelper('url');
-		$this->_form3 = new Application_Form_Staff_Profile_Cambiareprofilo();
-    		$this->_form3->setAction($urlHelper->url(array(
+		$this->_updateprofilo = new Application_Form_Staff_Profile_Cambiareprofilo();
+    		$this->_updateprofilo->setAction($urlHelper->url(array(
 			'controller' => 'staff',
 			'action' => 'cambia'),
 			'default'
 		));
-		return $this->_form3;
+		return $this->_updateprofilo;
     
     }
     
@@ -183,7 +183,7 @@ private function getProfiloForm(){
                 if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
-		$form=$this->_form3;
+		$form=$this->_updateprofilo;
 
 		if (!$form->isValid($_POST)) {
 			return $this->render('cambiareprofilo');
