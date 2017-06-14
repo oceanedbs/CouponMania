@@ -1,0 +1,32 @@
+<div class="static">
+ <h3>Utenti</h3>
+ <div>
+ <?php 
+ echo '<table class="tabella">';
+	echo "<tr><th>ID Utente</th><th>Nome</th><th>Cognome</th><th>Data Nascita</th><th>Telefono</th><th>Mail</th><th>Ruolo</th><th>Citta</th><th>Username</th><th>Password</th><th>Modifica</th><th>Cancella</th></tr>";
+  foreach ($this->utente as $utente) {
+      echo "<tr><td>".$utente->ID_utente."</td>"
+              . "<td>".$utente->nome."</td>"
+              . "<td>".$utente->cognome."</td>"
+              . "<td>".$utente->data_nascita."</td>"
+              . "<td>".$utente->telefono."</td>"
+              . "<td>".$utente->email."</td>"
+              . "<td>".$utente->role."</td>"
+              . "<td>".$utente->citta."</td>"
+              . "<td>".$utente->username."</td>"
+              . "<td>".$utente->password."</td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'modificautente',
+                                                        'idutente'=> $utente->ID_utente), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'cancellautente',
+                                                        'idutente'=> $utente->ID_utente), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
+  }
+ echo '</table>';
+ ?>
+     
+ </div>
+ 
+</div>
