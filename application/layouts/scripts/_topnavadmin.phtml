@@ -65,6 +65,24 @@
                     ); 
                  ?>">Gestione Utenti</a>
                     </li>
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'newcategory',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Inserisci Categoria</a>
+                    </li>
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'visualizzacategory',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Gestione Categorie</a>
+                    </li>
                      <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',

@@ -8,6 +8,7 @@ class AdminController extends Zend_Controller_Action
         protected $_form2;
         protected $_modifica;
         protected $_form3;
+        protected $_form4;
 
 
         public function init()
@@ -18,10 +19,13 @@ class AdminController extends Zend_Controller_Action
                 $this->_authService = new Application_Service_Auth();       
                 $this->view->staffForm = $this->getStaffForm();
                 $this->view->aziendeForm = $this->getAziendeForm();
+                $this->view->categoryForm = $this->getCategoryForm();
                 if($this->hasParam('piva'))
                 $this->view->modificaaziendeForm = $this->getModificaAziendeForm();
                 if($this->hasParam('idutente'))
                 $this->view->modificautentiForm = $this->getModificaUtenteForm();
+                if($this->hasParam('idcat'))
+                $this->view->modificacategoryForm = $this->getModificaCategoryForm();
                 
 	}
 
@@ -210,4 +214,87 @@ private function getModificaUtenteForm()
     
 		
     }
+    
+    public function newcategoryAction()
+	{}
+        
+        public function addcategoryAction()
+	{
+		if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form4;
+		if (!$form->isValid($_POST)) {
+			return $this->render('newcategory');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->saveCategory($values);
+		$this->_helper->redirector('visualizzacategory');
+	}
+        
+        
+        private function getCategoryForm()
+	{
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form4 = new Application_Form_Admin_Category_Add();
+		$this->_form4->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'addcategory'),
+				'default'
+				));
+		return $this->_form4;
+	}
+        
+      
+    
+            public function modificacategoryAction(){
+    
+    }
+    public function modificacatAction(){
+    if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form5;
+		if (!$form->isValid($_POST)) {
+			return $this->render('modificacategory');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->modificaCategory($values,$this->getParam('idcat'));
+		$this->_helper->redirector('visualizzacategory');
+    }
+private function getModificaCategoryForm()
+	{
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form5 = new Application_Form_Admin_Category_Modificacategory();
+		$this->_form5->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'modificacat'),
+				'default'
+				));
+                $idcat=$this->_getParam('idcat',null);
+                $cat=$this->_adminModel->getInfoCategory($idcat)->current()->toArray();
+		return $this->_form5->populate($cat);
+             
+	}
+
+ public function cancellacategoryAction(){
+     $this->_adminModel->cancellaCategory($this->getParam('idcat'));
+     $this->_helper->redirector('visualizzacategory');
+     
+ }
+
+
+    
+    
+
+    //visualizzazione promozioni
+    public function visualizzacategoryAction(){
+    $page=null;
+    $category=$this->_adminModel->getCategory($page);
+    
+    $this->view->assign(array(
+            		'category' => $category,
+                        )
+            );
+}
 }

@@ -1,0 +1,28 @@
+<div class="static">
+ <h3>Categorie</h3>
+ <div>
+ <?php 
+ echo '<table class="tabella">';
+	echo "<tr><th>Cat ID</th><th>Nome Categoria</th><th>Par ID</th><th>Descrizione</th><th>Immagine</th><th>Logo</th><th>Modifica</th><th>Cancella</th></tr>";
+  foreach ($this->category as $category) {
+      echo "<tr><td>".$category->catId."</td>"
+              . "<td>".$category->name."</td>"
+              . "<td>".$category->parId."</td>"
+              . "<td>".$category->desc."</td>"
+              . "<td>".$category->image."</td>"
+              . "<td>".$category->logo."</td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'modificacategory',
+                                                        'idcat'=> $category->catId), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
+              . "<td><a href=" . $this->url(array('controller' => 'admin',
+                                                        'action' => 'cancellacategory',
+                                                        'idcat'=> $category->catId), 
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
+  }
+ echo '</table>';
+ ?>
+     
+ </div>
+ 
+</div>
