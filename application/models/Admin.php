@@ -40,9 +40,9 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Utente')->getInfoUtente2($idutente);
     }
     
-    public function modificaUtente($values,$idutente)
+    public function modificaUtente2($values,$idutente)
     {
-        return $this->getResource('Utente')->modificaUtente($values,$idutente);
+        return $this->getResource('Utente')->modificaUtente2($values,$idutente);
     }
     
    public function cancellaUtente($utente)

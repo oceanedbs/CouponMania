@@ -200,7 +200,7 @@ private function getModificaAziendeForm()
 			return $this->render('modificautenti');
 		}
 		$values = $form->getValues();
-		$this->_adminModel->modificaUtente($values,$this->getParam('idutente'));
+		$this->_adminModel->modificaUtente2($values,$this->getParam('idutente'));
 		$this->_helper->redirector('visualizzautenti');
     }
 private function getModificaUtenteForm()
