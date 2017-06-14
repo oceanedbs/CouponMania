@@ -177,7 +177,7 @@ class PublicController extends Zend_Controller_Action
         $risultati=array();
         if($form->isValid($this->getRequest()->getPost())){
 
-           if(empty($form->getValue('paroleChiave'))){
+           if(!$form->getValue('paroleChiave')){
                     if($form->getValue('catId') === '0')
                     {
                         $paged = $this->_getParam('page', 1);

@@ -45,16 +45,28 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
     	$this->insert($info);
     }
     
-   public function getInfoUtente($idutente){
+    public function getInfoUtente(){
+    
+        $username=$this->_authService->getIdentity()->username;
+        return $this->fetchRow($this->select()->where('username= ?', $username));
+     }
+     
+      public function getInfoUtente2($idutente){
     
         return $this->find($idutente);
      }
     
-    public function modificaUtente($values,$idutente)
+    public function modificaUtente2($values,$idutente)
     {
         $where="ID_utente = $idutente";
         $this->update($values,$where);
     }
+    
+     public function modificaUtente($values) 
+    { 
+        $where="ID_utente = ".$this->_authService->getIdentity()->ID_utente; 
+        $this->update($values,$where); 
+    } 
     
 
     public function cancellaUtente($utente)

@@ -32,8 +32,12 @@ class Application_Model_Admin extends App_Model_Abstract
        return $this->getResource('Utente')->getUtentiById($paged);
     } 
     
-    public function getInfoUtente($idutente){
-        return $this->getResource('Utente')->getInfoUtente($idutente);
+    public function getInfoUtente(){
+        return $this->getResource('Utente')->getInfoUtente();
+    }
+    
+    public function getInfoUtente2($idutente){
+        return $this->getResource('Utente')->getInfoUtente2($idutente);
     }
     
     public function modificaUtente($values,$idutente)
@@ -147,4 +151,5 @@ class Application_Model_Admin extends App_Model_Abstract
     public function savefaq($values) {
         return $this->getResource('Faq')->insertfaq($values);
     }
+    
 }
