@@ -26,9 +26,15 @@ class AdminController extends Zend_Controller_Action
                 $this->view->staffForm = $this->getStaffForm();
                 $this->view->aziendeForm = $this->getAziendeForm();
                 $this->view->categoryForm = $this->getCategoryForm();
+                $this->view->newfaqForm=$this->newfaqAction(); 
+
+                
+                
+                
                 if($this->hasParam('piva'))
                 $this->view->modificaaziendeForm = $this->getModificaAziendeForm();
-
+                 if($this->hasParam('idfaq')) 
+                $this->view->modificafaqpost = $this->modificafaqAction(); 
                 if($this->hasParam('idutente'))
                 $this->view->modificautentiForm = $this->getModificaUtenteForm();
                 if($this->hasParam('idcat'))
@@ -314,4 +320,88 @@ private function getModificaCategoryForm()
                         )
             );
 }
+
+    public function visualizzafaqAction(){ 
+                 
+                $faq=$this->_adminModel->getFaq(); 
+                 
+                $this->view->assign(array( 
+                'faq' => $faq, 
+                        ) 
+            ); 
+            } 
+            
+      public function modificafaqAction(){ 
+                $urlHelper = $this->_helper->getHelper('url'); 
+    $this->_faq = new Application_Form_Admin_Faq(); 
+    $this->_faq->setAction($urlHelper->url(array( 
+        'controller' => 'admin', 
+        'action' => 'modificafaqpost' 
+                                ), 
+        'default' 
+        )); 
+                $idfaq=$this->_getParam('idfaq',null); 
+                $questions=$this->_adminModel->getInfoFaq($idfaq)->current()->toArray(); 
+                
+    return $this->_faq->populate($questions); 
+                
+                 
+            } 
+            
+            public function modificafaqpostAction(){ 
+                 
+                if (!$this->getRequest()->isPost()) { 
+                    
+      $this->_helper->redirector('index'); 
+    } 
+    $form=$this->_faq; 
+                
+    if (!$form->isValid($_POST)) { 
+      return $this->render('modificafaq'); 
+    } 
+    $values = $form->getValues(); 
+    $this->_adminModel->modificafaq($values,$this->_getParam('idfaq',null)); 
+    $this->_helper->redirector('visualizzafaq'); 
+            } 
+             
+            public function cancellafaqAction() { 
+                $this->_adminModel->cancellafaq($this->_getParam('idfaq',null)); 
+                $this->_helper->redirector('visualizzafaq'); 
+            } 
+            
+               public function newfaqAction(){ 
+                $urlHelper = $this->_helper->getHelper('url'); 
+    $this->_newfaq = new Application_Form_Admin_Faq(); 
+    $this->_newfaq->setAction($urlHelper->url(array( 
+        'controller' => 'admin', 
+        'action' => 'addfaqpost' 
+                                ), 
+        'default' 
+        )); 
+                 
+                
+    return $this->_newfaq; 
+                
+                 
+            } 
+            
+             public function addfaqpostAction(){ 
+                 
+                if (!$this->getRequest()->isPost()) { 
+                    
+      $this->_helper->redirector('index'); 
+    } 
+    $form=$this->_newfaq; 
+                
+    if (!$form->isValid($_POST)) { 
+      return $this->render('newfaq'); 
+    } 
+    $values = $form->getValues(); 
+    $this->_adminModel->savefaq($values); 
+    $this->_helper->redirector('visualizzafaq'); 
+            } 
+
+ 
+            
+
 }
