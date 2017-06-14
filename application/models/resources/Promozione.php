@@ -11,10 +11,15 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     }
 
 	// Estrae i prodotti della categoria $categoryId, eventualmente paginati ed ordinati
-    public function getProdsByCat($categoryId, $paged=null, $order=null)
+   public function getProdsByCat($categoryId, $paged=null, $order=null)
     {
-        $select = $this->select()
-                       ->where('tipo_prom IN(?)', $categoryId);
+         $select = $this->select()
+                        ->from('promozione')
+                       ->where('promozione.tipo_prom IN(?)', $categoryId)
+                       ->join('category', 'promozione.catId = category.catId')
+                        ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                        ->where('category.parId IN(?)', 1)
+                        ->setIntegrityCheck(false);
         if (true === is_array($order)) {
             $select->order($order);
         }
@@ -24,7 +29,12 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     
     public function getProdsByOfferte($cat, $paged, $order){
         $select = $this->select()
-                     ->where('catId IN(?)', $cat);
+                    ->from('promozione')
+                     ->where('promozione.catId IN(?)', $cat)
+                     ->join('category', 'promozione.catId = category.catId')
+                    ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                    ->where('category.parId IN(?)', 1)
+                    ->setIntegrityCheck(false);
         if (true === is_array($order)) {
             $select->order($order);
         }
@@ -42,7 +52,11 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 	// Estrae tutti i prodotti
     public function getProds($paged)
     {
-        $select = $this->select();
+        $select = $this->select()
+                        ->from('promozione')
+                        ->join('category', 'promozione.tipo_prom = category.catId')
+                        ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                        ->setIntegrityCheck(false);
         
         if (null !== $paged) {
 			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
@@ -59,14 +73,26 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     public function getPromobyAzienda($idazienda)
     {
         $select = $this->select()
-                        ->where('P_Iva IN(?)', $idazienda);
+                        ->from('promozione')
+                        ->where('promozione.P_Iva IN(?)', $idazienda)
+                        ->join('category', 'promozione.catId = category.catId')
+                        ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                        ->where('category.parId IN(?)', 1)
+                        ->setIntegrityCheck(false);
         return $this->fetchAll($select);
     }
-    
-    public function getInfoprodotto($idprodotto)
+     public function getInfoprodotto($idprodotto)
     {
-        // metodo find esegue una select * where $primary = parametro passato
-        return $this->find($idprodotto);
+         $select = $this->select()
+                    ->from('promozione')
+                    ->where('promozione.cod_promozione IN (?)', $idprodotto)
+                    ->join('category', 'promozione.catId = category.catId')
+                    ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                    ->where('category.parId IN(?)', 1)
+                    ->setIntegrityCheck(false);
+                    
+                
+    return $this->fetchAll($select);
 
     
     }

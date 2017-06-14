@@ -67,7 +67,9 @@
                                         ); 
                                     ?>"
                                     title="Product"><?php echo'<h3 class="title">' . $promoazienda->prodotto . '</h3>' ?></a></div> 
-                                    <?php echo  $promoazienda->descrizione  ?><br>
+                                    <?php echo  $promoazienda->descrizione_prom  ?><br>
+                                     Tipo di promozione : <?= $promoazienda->name ; ?><br>
+                                    Azienda :<?= $promoazienda->nome ;?><br>
 
                                     <a class="btn" href=" <?= $this->url(array(
                                             'controller' => 'user',

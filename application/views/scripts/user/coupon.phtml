@@ -12,12 +12,15 @@
                         
                         
                     </div>
-                        <h2> Nome :  <?= $infoprodotto->prodotto ; ?> </h2> <br>
-                        Tipo di promozione : <?= $infoprodotto->tipo_prom ; ?><br>
+                       <h2> Nome :  <?= $infoprodotto->prodotto ; ?> </h2> <br>
+                        Tipo di promozione : <?= $infoprodotto->name ; ?><br>
+                        Azienda :<?= $infoprodotto->nome ;?><br>
+                        Per Usarlo, dovete andare : <?= $infoprodotto->indirizzo. " ". $infoprodotto->citta; ?>
                         Data Inizio : <?= $infoprodotto->data_inizio ; ?><br>
                         Data Fine : <?= $infoprodotto->data_fine ; ?><br>
-                        Descrizione : <?= $infoprodotto->descrizione ; ?><br>
+                        Descrizione : <?= $infoprodotto->descrizione_prom ; ?><br>
                         Prezzo : <?= $infoprodotto->prezzo_unitario_prod ; ?> € <br>
+                        Utente :  <?php echo $this->authInfo('nome') . ' ' . $this->authInfo('cognome'); ?><br>
                         Codice : <?= $infoprodotto->cod_promozione; ?> <?= $this->authInfo('ID_utente') ?><br>
                     </div>
                     

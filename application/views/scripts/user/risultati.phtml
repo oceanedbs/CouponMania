@@ -28,7 +28,9 @@
                         ); 
                     ?>"
                     title="Product"><?php echo'<h3 class="title">' . $result->prodotto . '</h3>' ?></a></div> 
-                    <?php echo  $result->descrizione  ?><br>
+                    <?php echo  $result->descrizione_prom  ?><br>
+                    Tipo di promozione : <?= $result->name ; ?><br>
+                    Azienda :<?= $result->nome ;?><br>
 
                     <a class="btn" href=" <?= $this->url(array(
                             'controller' => 'user',

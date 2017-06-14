@@ -400,6 +400,45 @@ private function getModificaCategoryForm()
     $this->_adminModel->savefaq($values); 
     $this->_helper->redirector('visualizzafaq'); 
             } 
+            
+            
+            public function statAction() 
+  { 
+  } 
+  public function statisticaAction() 
+  { 
+            $mod=$this->_getParam('mod', null); 
+            $couponutente=array(); 
+            $couponpromo=array(); 
+             
+            $utente = $this->_adminModel->getUtente(); 
+                         
+            $idutente = $this->_getParam('idutente', null); 
+            $paged=$this->_getParam('page', null); 
+            $idpromo = $this ->_getParam('idpromo', null); 
+             
+            $promozioni=$this->_adminModel->getProds($paged); 
+             
+            if($mod == 2){ 
+             
+                $couponutente = $this->_adminModel->getCouponUtente($idutente); 
+             
+            } 
+            else{ 
+             
+                $couponpromo = $this->_adminModel->getCouponPromo($idpromo); 
+             
+            } 
+            $this->view->assign(array( 
+                'mod' => $mod, 
+                'utente' => $utente, 
+                'idutente'=>$idutente, 
+                'couponutente' => $couponutente, 
+                'promozioni' => $promozioni, 
+                'idpromo'=> $idpromo, 
+                        'couponpromo'=>$couponpromo,) 
+                ); 
+            } 
 
  
             
