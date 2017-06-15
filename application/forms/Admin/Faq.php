@@ -21,15 +21,14 @@ class Application_Form_Admin_Faq extends Zend_Form
             'validators' => array(array('StringLength',true, array(1,200))),
 		));
                 
-                
-                
-                $this->addElement('textarea', 'risposta', array(
-            'label' => 'Risposta',            
+                 $this->addElement('textarea', 'risposta', array(
+            'label' => 'Risposta',
             'filters' => array('StringTrim'),
-            'validators' => array(array('StringLength',true, array(1,200))),
             'required' => true,
-                    ));
+            'validators' => array(array('StringLength',true, array(1,200))),
+		));
                 
+               
                
                 
                
