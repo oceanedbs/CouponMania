@@ -36,5 +36,6 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract
      public function insertfaq($values){
          $this->insert($values);
      }
+     
     }
 ?>

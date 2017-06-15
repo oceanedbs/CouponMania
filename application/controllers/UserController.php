@@ -3,7 +3,7 @@
 class UserController extends Zend_Controller_Action
 {
     protected $_authService;
-    protected $_publicModel;
+    protected $_utenteModel;
     protected $_form1;
     protected $_form2;
     protected $_form3;
@@ -19,7 +19,7 @@ class UserController extends Zend_Controller_Action
                 $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
 		$this->_helper->layout->setLayout('user');
 		$this->_authService = new Application_Service_Auth();
-		$this->_publicModel = new Application_Model_Public();
+		$this->_utenteModel = new Application_Model_Utente();
     }
 
     public function logoutAction()
@@ -32,7 +32,7 @@ class UserController extends Zend_Controller_Action
     {    	    	
     	//  Estrae le Categorie Top    	    	
         $paged = $this->_getParam('page', 1);
-    	$topCats=$this->_publicModel->getTopCats($paged);
+    	$topCats=$this->_utenteModel->getTopCats($paged);
     	
     	// Definisce le variabili per il viewer
     	$this->view->assign(array(
@@ -49,7 +49,7 @@ class UserController extends Zend_Controller_Action
     
        $paged = $this->_getParam('page', 1);
         $cat = $this->_getParam('selTopCat', null);
-        $topCats=$this->_publicModel->getTopCats($paged);
+        $topCats=$this->_utenteModel->getTopCats($paged);
         $idprodotto = $this->_getParam('idprodotto', null);
         $infoprodotto=array();
         $prods1=array();
@@ -57,22 +57,22 @@ class UserController extends Zend_Controller_Action
 
         if (!is_null($cat)) {
 			
-			$prods1=$this->_publicModel->getProdsByCat($cat, $paged);
-			$prods2= $this->_publicModel->getProdsByOfferte($cat, $paged);
+			$prods1=$this->_utenteModel->getProdsByCat($cat, $paged);
+			$prods2= $this->_utenteModel->getProdsByOfferte($cat, $paged);
          }else {
                         //estrare tutti i prodotti
-                        $prods1=$this->_publicModel->getProds($paged);			   	
+                        $prods1=$this->_utenteModel->getProds($paged);			   	
         }
 
         if (!is_null($idprodotto)) {
 			
-            $infoprodotto=$this->_publicModel->getInfoprodotto($idprodotto);
+            $infoprodotto=$this->_utenteModel->getInfoprodotto($idprodotto);
 			
          }
     
-        $topCats=$this->_publicModel->getTopCats($paged);
+        $topCats=$this->_utenteModel->getTopCats($paged);
         
-        $topOfferte=$this -> _publicModel->getTopOfferte($paged);
+        $topOfferte=$this -> _utenteModel->getTopOfferte($paged);
 
   
              
@@ -96,12 +96,12 @@ class UserController extends Zend_Controller_Action
         $promoazienda='';
 
         
-        $aziende=$this->_publicModel->getAziende($paged);
+        $aziende=$this->_utenteModel->getAziende($paged);
         
         if (!is_null($idazienda)) {
 			
-            $infoazienda=$this->_publicModel->getInfoAzienda($idazienda);
-            $promoazienda=$this->_publicModel->getPromobyAzienda($idazienda);
+            $infoazienda=$this->_utenteModel->getInfoAzienda($idazienda);
+            $promoazienda=$this->_utenteModel->getPromobyAzienda($idazienda);
 			
          }
          
@@ -147,27 +147,27 @@ class UserController extends Zend_Controller_Action
                     if($form->getValue('catId') === '0')
                     {
                         $paged = $this->_getParam('page', 1);
-                        $risultati=$this->_publicModel->getProds($paged);
+                        $risultati=$this->_utenteModel->getProds($paged);
                     }
                     else{
 
                         $paged = $this->_getParam('page', 1);
                         $catId = $form->getValue('catId');
-                        $risultati=$this->_publicModel->getProdsByCat($catId, $paged);
+                        $risultati=$this->_utenteModel->getProdsByCat($catId, $paged);
                     }
             }else{
                 if($form->getValue('catId')=== '0')
                     {
                         $paged = $this->_getParam('page', 1);
                         $parole = $form->getValue('paroleChiave');
-                        $risultati=$this->_publicModel->getRisultatiRicerca($parole, $paged);
+                        $risultati=$this->_utenteModel->getRisultatiRicerca($parole, $paged);
                     }
                 else{
                 
                         $paged = $this->_getParam('page', 1);
                         $parole = $form->getValue('paroleChiave');
                         $catId = $form->getValue('catId');
-                        $risultati = $this->_publicModel->getRisultatiRicerca2($catId, $parole, $paged);
+                        $risultati = $this->_utenteModel->getRisultatiRicerca2($catId, $parole, $paged);
                     
                 }
             }
@@ -202,12 +202,12 @@ class UserController extends Zend_Controller_Action
         $iduser= $this->_authService->getIdentity()->ID_utente;
         $messagio=0;
         
-        $infoprodotto=$this->_publicModel->getInfoprodotto($idprodotto);
+        $infoprodotto=$this->_utenteModel->getInfoprodotto($idprodotto);
         
         $data = array( 'cod_promozione' => $idprodotto ,
                       'ID_utente' =>$iduser  );
                       
-        $verificare= $this->_publicModel->verificareCoupon($idprodotto, $iduser);
+        $verificare= $this->_utenteModel->verificareCoupon($idprodotto, $iduser);
                       
         if( $verificare == 0)
         {
@@ -215,7 +215,7 @@ class UserController extends Zend_Controller_Action
         }
         else 
         {
-            $this->_publicModel->registraCoupon($data);
+            $this->_utenteModel->registraCoupon($data);
         }
 
         
@@ -271,8 +271,15 @@ class UserController extends Zend_Controller_Action
 			return $this->render('cambiareprofilo');
 		}
 		$values = $form->getValues();
-		$this->_publicModel->modficaUtente($values);
+		$this->_utenteModel->modficaUtente($values);
 		$this->_helper->redirector('index');
 
+    }
+    
+    public function faqAction(){
+       
+     $this->_utenteModel->getFaq(); 
+     $this->view->assign(array(
+            		'faq' => $faq,));
     }
 }

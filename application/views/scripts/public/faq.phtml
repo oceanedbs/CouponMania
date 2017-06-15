@@ -2,41 +2,14 @@
 
     
     <h2>FAQ</h2>
-    <p> Clicca sulla domanda per leggere la risposta </p>
+ 
+    <?php foreach ($this->faq as $faq) :?>
     
-<h5 onclick="toggleMenu('menu1')">Come posso cambiare i miei dati?</h5>
-    <div class="menufaq" id="menu1">
-        Puoi modificare i tuoi dati personali nella sezione del tuo profilo. Per accederci basta cliccare sul vostro nome in alto a sinistra. Da lì potrete accedere al vostro profilo e modificare i vostri dati personali
+    <h4> <?php echo $faq->domanda ?></h4>
+    <div>
+      <?php echo $faq->risposta ?>  
     </div>
     
-    <h5 onclick="toggleMenu('menu2')">Come ottengo i coupon?</h5>
-    <div class="menufaq" id="menu2">
-        Per poter ottenere i coupon è necessario essere un utente registrato. Una volta eseguito l'accesso, basterà accedere alla pagina della promozione desiderata e cliccare sul pulsante "ottieni coupon", dopodichè basterà scaricarlo sul proprio computer.
-    </div>
-    
-    <h5 onclick="toggleMenu('menu3')">Come utilizzare il mio coupon?</h5>
-    <div class="menufaq" id="menu3">
-        Una volta scaricato il coupon basterà stamparlo ed esibirlo presso la sede dell'azienda
-    </div>
-    
-    <h5 onclick="toggleMenu('menu4')">Quali sono le aziende convenzionate?</h5>
-    <div class="menufaq" id="menu4">
-        Per vedere l'elenco delle aziende convenzionate <a href="<?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'aziende',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>">clicca qui</a>
-    </div>
-    
-    <h5 onclick="toggleMenu('menu5')">Newsletter: iscrizioni e modifiche</h5>
-    <div class="menufaq" id="menu5">
-        Per iscriversi alla newsletter basta...
-    </div>    
-    <h5 onclick="toggleMenu('menu6')">Quando scade il mio coupon?</h5>
-    <div class="menufaq" id="menu6">
-        Il coupon emesso è valido per tutta la durata della promozione
-    </div>
+    <?php endforeach;?>
     <br>
 </section>

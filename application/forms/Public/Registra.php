@@ -2,10 +2,10 @@
 
 class Application_Form_Public_Registra extends App_Form_Abstract
 {
-    protected $_publicModel;
+    protected $_utenteModel;
 	public function init()
     {               
-        $this->_publicModel = new Application_Model_Public();
+        $this->_utenteModel = new Application_Model_Utente();
         $this->setMethod('post');
         $this->setName('authenticatereg');
         $this->setAction('');
