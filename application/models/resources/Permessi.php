@@ -23,7 +23,7 @@ class Application_Resource_Permessi extends Zend_Db_Table_Abstract
             else {
             
             $data=array('ID_utente' => $idstaff,
-                         'P_Iva' => $values,
+                          'P_Iva' => $values,
                         );
     	
             $this->insert($data);
@@ -48,8 +48,9 @@ class Application_Resource_Permessi extends Zend_Db_Table_Abstract
     
     public function cancellaPermessi($idpermessi)
     {
-        $where="ID_utente = $idpermessi";
-        $this->delete($where);
+            $delete=$this->delete('permessi', array('ID_utente = ?', $idpermessi));
+            
+    
         
     }
     

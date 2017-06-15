@@ -1,27 +1,27 @@
 <div class="static">
  <h3>Utenti</h3>
  <div>
- <?php 
- echo '<table class="tabella">';
-	echo "<tr><th>Nome</th><th>Cancella</th></tr>";
-  foreach ($this->permessi as $permessi) {
-      echo "<tr><td>".$permessi->nome."</td>"                       
-              . "<td><a href=" . $this->url(array('controller' => 'admin',
+ 
+
+  <table class="tabella">
+ <tr><th>Nome</th><th>Cancella</th></tr>
+  <?php foreach ($this->permessi as $permessi) :?>
+      <tr><td>"<?=$permessi->nome ?></td>                     
+        <td><a href="<?= $this->url(array('controller' => 'admin',
                                                         'action' => 'cancellapermessi',
                                                         'idazienda'=> $permessi->P_Iva), 
-                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
-  }
-  echo '</table>
-  
-  <br>
-  <br>';
-  
-  echo "<a href=" . $this->url(array('controller' => 'admin',
-                                                        'action' => 'newstaffpermessi',
-                                                        'idstaff'=> $permessi->ID_utente), 
-                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Aggiungi Azienda'></a>";
+                                                        'default', true) ?>"><img class='icon' src='<?=$this->baseUrl('images/cancella.png')?>' alt='Cancella'></a></td></tr>";
+ <?php endforeach ?>
+ </table>
  
- ?>
+  <br><br>
+  
+  <a href="<?= $this->url(array('controller' => 'admin',
+                                'action' => 'newstaffpermessi',
+                                'idstaff'=> $permessi->ID_utente), 
+                                'default', true) ?>"><img class='icon' src='<?=$this->baseUrl('images/modifica.png')?>' alt='Aggiungi Azienda'>Aggiungere uno permesso </a>
+  
+
      
  </div>
  

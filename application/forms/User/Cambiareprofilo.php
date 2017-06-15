@@ -17,7 +17,7 @@ class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
         
         $info = $this->_publicModel->getInfoUtente();
 
-    	 $this->addElement('text', 'nome', array(
+    	 $this->addElement('text', 'nome_utente', array(
             'filters'    => array('StringTrim'),
             'validators' => array(
                 array('StringLength', true, array(1, 25))
@@ -122,7 +122,7 @@ class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
             'Form'
         ));
         
-        $this->nome->setValue($info->nome);
+        $this->nome_utente->setValue($info->nome_utente);
         $this->cognome->setValue($info->cognome);
         $this->sesso->setValue($info->sesso);
         $this->data_nascita->setValue($info->data_nascita);

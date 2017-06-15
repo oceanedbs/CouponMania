@@ -347,7 +347,7 @@ public function newstaffpermessiAction()
 		if (!$form->isValid($_POST)) {
 			return $this->render('newstaffpermessi');
 		}
-		$values = $form->getValues();
+		$values = $form->getValue('P_Iva');
 		$this->_adminModel->savepermesso($idstaff, $values);
 		$this->_helper->redirector('index');
 		
@@ -379,8 +379,9 @@ public function newstaffpermessiAction()
 
 
  public function cancellapermessiAction(){
-     $this->_adminModel->cancellaPermessi($this->getParam('idstaff'));
-     $this->_helper->redirector('visualizzapermessi');
+     $this->_adminModel->cancellaPermessi($this->getParam('idazienda', null));
+     
+     $this->_helper->redirector('index');
      
  }
 

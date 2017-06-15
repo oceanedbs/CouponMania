@@ -58,13 +58,6 @@ class Application_Form_Admin_Category_Modificacategory extends Zend_Form
                 
                  
 	
-        /*
-        $this->name->setValue($this->category->name);
-        $this->desc->setValue($this->category->desc);
-        $this->parId->setValue($this->category->parId);
-        $this->image->setValue($this->category->image);
-        $this->logo->setValue($this->category->logo);
-         */
-         
+       
 }
 }
