@@ -9,6 +9,12 @@ class AdminController extends Zend_Controller_Action
         protected $_modifica;
         protected $_form3;
         protected $_form4;
+        protected $_form5;
+        protected $_form6;
+        protected $_form7;
+        
+        
+        
 
         protected $_updateuser;
 
@@ -27,7 +33,7 @@ class AdminController extends Zend_Controller_Action
                 $this->view->aziendeForm = $this->getAziendeForm();
                 $this->view->categoryForm = $this->getCategoryForm();
                 $this->view->newfaqForm=$this->newfaqAction();
- 
+             
 
                 
                 
@@ -42,6 +48,9 @@ class AdminController extends Zend_Controller_Action
                 $this->view->modificautentiForm = $this->getModificaUtenteForm();
                 if($this->hasParam('idcat'))
                 $this->view->modificacategoryForm = $this->getModificaCategoryForm();
+                
+                   if($this->hasParam('idstaff'))
+                $this->view->permessiForm= $this->getPermessiForm();
                 
 	}
 
@@ -320,6 +329,77 @@ private function getModificaCategoryForm()
     
     $this->view->assign(array(
             		'category' => $category,
+                        )
+            );
+}
+
+public function newstaffpermessiAction()
+	{}
+        
+        public function addpermessiAction()
+	{
+		if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form6;
+		if (!$form->isValid($_POST)) {
+			return $this->render('newstaffpermessi');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->savePermesso($values);
+		$this->_helper->redirector('visualizzapermessi');
+	}
+        
+        
+        private function getPermessiForm()
+	{
+		$urlHelper = $this->_helper->getHelper('url');
+		$this->_form6 = new Application_Form_Admin_Permessi_Add();
+		$this->_form6->setAction($urlHelper->url(array(
+				'controller' => 'admin',
+				'action' => 'addpermessi'),
+				'default'
+				));
+                $idstaff=$this->_getParam('idstaff',null);
+                $aziende=$this->_adminModel->getAziendeStaff($idstaff)->toArray();
+                print_f($aziende);die;
+                               
+		return $this->_form6->populate($aziende);
+	}
+        
+      
+    
+            public function modificapermessiAction(){
+    
+    }
+   
+
+
+ public function cancellapermessiAction(){
+     $this->_adminModel->cancellaPermessi($this->getParam('idstaff'));
+     $this->_helper->redirector('visualizzapermessi');
+     
+ }
+
+
+    
+    
+
+    //visualizzazione permessi
+    public function visualizzapermessiAction(){
+       $idutente=$this->_getParam('idstaff',null); 
+    $permessi=$this->_adminModel->getInfoPermessi($idutente)->current()->toArray();
+    
+    $this->view->assign(array(
+            		'permessi' => $permessi,
+                        )
+            );
+}
+   public function visualizzastaffAction(){
+    $staff=$this->_adminModel->getStaff();
+    
+    $this->view->assign(array(
+            		'staff' => $staff,
                         )
             );
 }

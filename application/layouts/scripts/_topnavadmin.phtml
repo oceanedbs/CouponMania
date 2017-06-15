@@ -65,16 +65,25 @@
                         'default', true
                     ); 
                  ?>"></i>Inserisci Staff</a>
-                            </li>
-                         
-                      <li>
+                     </li>
+                     <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',
-                        'action'     => 'visualizzautenti',
+                        'action'     => 'visualizzastaff',
                         ), 
                         'default', true
                     ); 
                  ?>">Gestione Utenti</a>
+                    </li>
+                         
+                      <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'visualizzastaff',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Gestione Permessi Staff</a>
                     </li>
                     <li>
                         <a href="<?= $this->url(array(
