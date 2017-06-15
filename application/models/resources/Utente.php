@@ -23,9 +23,8 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
      
      public function getUtentiById($paged) {
         $select = $this->select()
-                       // ->where('role IN(?)', 'staff')
-                        //->where('role IN(?)', 'user');
-                       ->order('role');
+                        ->where('role != ?', 'admin')
+                        ->order('role');
                        
         if (null !== $paged) {
             $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);

@@ -144,20 +144,21 @@ class AdminController extends Zend_Controller_Action
         
         public function modificaaziendeAction(){
     
-    }
-    public function modificaAction(){
-    if (!$this->getRequest()->isPost()) {
-			$this->_helper->redirector('index');
-		}
-		$form=$this->_modifica;
-		if (!$form->isValid($_POST)) {
-			return $this->render('modificaaziende');
-		}
-		$values = $form->getValues();
-		$this->_adminModel->modificaAziende($values,$this->getParam('piva'));
-		$this->_helper->redirector('visualizzaaziende');
-    }
-private function getModificaAziendeForm()
+        }
+        public function modificaAction(){
+            if (!$this->getRequest()->isPost()) {
+                                $this->_helper->redirector('index');
+                        }
+                        $form=$this->_modifica;
+                        if (!$form->isValid($_POST)) {
+                                return $this->render('modificaaziende');
+                        }
+                        $values = $form->getValues();
+                        $this->_adminModel->modificaAziende($values,$this->getParam('piva'));
+                        $this->_helper->redirector('visualizzaaziende');
+        }
+        
+        private function getModificaAziendeForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
 		$this->_modifica = new Application_Form_Admin_Aziende_Modificaaziende();
@@ -172,11 +173,11 @@ private function getModificaAziendeForm()
              
 	}
 
- public function cancellaAction(){
-     $this->_adminModel->cancellaAzienda($this->getParam('piva'));
-     $this->_helper->redirector('visualizzaaziende');
+        public function cancellaAction(){
+            $this->_adminModel->cancellaAzienda($this->getParam('piva'));
+            $this->_helper->redirector('visualizzaaziende');
      
- }
+        }
 
 
     
@@ -184,11 +185,11 @@ private function getModificaAziendeForm()
 
     //visualizzazione promozioni
     public function visualizzaaziendeAction(){
-    $paged=$this->_getParam('page', 0);
-    $aziende=$this->_adminModel->getAziende($paged);
-    
-    $this->view->assign(array(
-            		'azienda' => $aziende,
+            $paged=$this->_getParam('page', 0);
+            $aziende=$this->_adminModel->getAziende($paged);
+        
+            $this->view->assign(array(
+                            'azienda' => $aziende,
                         )
             );
     
@@ -390,13 +391,13 @@ public function newstaffpermessiAction()
    
 
 
- public function cancellapermessiAction(){
-     $this->_adminModel->cancellaPermessi($this->getParam('idutente'),$this->getParam('idazienda'));
-     $this->_helper->redirector('visualizzastaff');
+    public function cancellapermessiAction(){
+        $this->_adminModel->cancellaPermessi($this->getParam('idutente'),$this->getParam('idazienda'));
+        $this->_helper->redirector('visualizzastaff');
      
-     $this->_helper->redirector('index');
+      
      
- }
+    }
 
 
     
@@ -414,7 +415,7 @@ public function newstaffpermessiAction()
                         'idstaff'  => $idutente
                         )
             );
-}
+    }
    public function visualizzastaffAction(){
     $staff=$this->_adminModel->getStaff();
     
@@ -468,9 +469,7 @@ public function newstaffpermessiAction()
                
  
     return $this->_faq->populate($questions);
- 
-               
- 
+
                 
  
             }
@@ -482,27 +481,23 @@ public function newstaffpermessiAction()
  
                 if (!$this->getRequest()->isPost()) {
  
-                   
+                $this->_helper->redirector('index');
  
-      $this->_helper->redirector('index');
+                }
  
-    }
+                $form=$this->_faq;
  
-    $form=$this->_faq;
+                if (!$form->isValid($_POST)) {
  
-               
+                return $this->render('modificafaq');
  
-    if (!$form->isValid($_POST)) {
+                }   
  
-      return $this->render('modificafaq');
- 
-    }
- 
-    $values = $form->getValues();
- 
-    $this->_adminModel->modificafaq($values,$this->_getParam('idfaq',null));
- 
-    $this->_helper->redirector('visualizzafaq');
+                $values = $form->getValues();
+    
+                $this->_adminModel->modificafaq($values,$this->_getParam('idfaq',null));
+    
+                $this->_helper->redirector('visualizzafaq');
  
             }
  
@@ -517,34 +512,24 @@ public function newstaffpermessiAction()
             }
  
             
-               public function newfaqAction(){
+            public function newfaqAction(){
  
                 $urlHelper = $this->_helper->getHelper('url');
  
-    $this->_newfaq = new Application_Form_Admin_Faq();
+                $this->_newfaq = new Application_Form_Admin_Faq();
  
-    $this->_newfaq->setAction($urlHelper->url(array(
+                $this->_newfaq->setAction($urlHelper->url(array(
  
-        'controller' => 'admin',
+                                                            'controller' => 'admin',
  
-        'action' => 'addfaqpost'
+                                                            'action' => 'addfaqpost'),
  
-                                ),
+                                                            'default'
  
-        'default'
- 
-        ));
- 
-                
- 
+                                                        ));
                
  
-    return $this->_newfaq;
- 
-               
- 
-                
- 
+                return $this->_newfaq;
             }
  
             
@@ -556,84 +541,78 @@ public function newstaffpermessiAction()
  
                    
  
-      $this->_helper->redirector('index');
+                    $this->_helper->redirector('index');
  
-    }
+                    }
  
-    $form=$this->_newfaq;
+                $form=$this->_newfaq;
  
                
  
-    if (!$form->isValid($_POST)) {
+                if (!$form->isValid($_POST)) {
  
-      return $this->render('newfaq');
+                        return $this->render('newfaq');
  
-    }
+                }
  
-    $values = $form->getValues();
+                $values = $form->getValues();
  
-    $this->_adminModel->savefaq($values);
+                $this->_adminModel->savefaq($values);
  
-    $this->_helper->redirector('visualizzafaq');
- 
-            }
- 
-            
-            
-            public function statAction()
- 
-  {
- 
-  }
- 
-  public function statisticaAction()
- 
-  {
- 
-            $mod=$this->_getParam('mod', null);
- 
-            $couponutente=array();
- 
-            $couponpromo=array();
- 
-            
- 
-            $utente = $this->_adminModel->getUtente();
- 
-                        
- 
-            $idutente = $this->_getParam('idutente', null);
-            $paged=$this->_getParam('page', null);
-            $idpromo = $this ->_getParam('idpromo', 0);
-            
- 
-            $promozioni=$this->_adminModel->getProds($paged);
- 
-            
- 
-            if($mod == 2){
- 
-                $couponutente = $this->_adminModel->getCouponUtente($idutente);
+                $this->_helper->redirector('visualizzafaq');
  
             }
  
-            else{
+            
  
-                $couponpromo = $this->_adminModel->getCouponPromo($idpromo);
+            public function statisticaAction()
  
-            }
+            {
  
-            $this->view->assign(array(
- 
-                'mod' => $mod,
-                'utente' => $utente,
-                'idutente'=>$idutente,
-                'couponutente' => $couponutente,
-                'promozioni' => $promozioni,
-                'idpromo'=> $idpromo,
-                'couponpromo'=>$couponpromo,)
- 
-                );
+                $mod=$this->_getParam('mod', null);
+    
+                $couponutente=array();
+    
+                $couponpromo=array();
+    
+                
+    
+                $utente = $this->_adminModel->getUtente();
+    
+                            
+    
+                $idutente = $this->_getParam('idutente', null);
+                $paged=$this->_getParam('page', null);
+                $idpromo = $this ->_getParam('idpromo', 0);
+                
+    
+                $promozioni=$this->_adminModel->getProds($paged);
+    
+                
+    
+                if($mod == 2){
+    
+                    $couponutente = $this->_adminModel->getCouponUtente($idutente);
+    
+                }
+    
+                else{
+    
+                    $couponpromo = $this->_adminModel->getCouponPromo($idpromo);
+    
+                }
+    
+                $this->view->assign(array(
+    
+                    'mod' => $mod,
+                    'utente' => $utente,
+                    'idutente'=>$idutente,
+                    'couponutente' => $couponutente,
+                    'promozioni' => $promozioni,
+                    'idpromo'=> $idpromo,
+                    'couponpromo'=>$couponpromo,)
+    
+                    );
  
             }
  
