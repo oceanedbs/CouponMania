@@ -28,7 +28,7 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
         if (null !== $paged) {
             $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
             $paginator = new Zend_Paginator($adapter);
-            $paginator->setItemCountPerPage(6)
+            $paginator->setItemCountPerPage(10)
                         ->setCurrentPageNumber((int) $paged);
             return $paginator;
         }
@@ -62,11 +62,16 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
         $this->update($values,$where);
     }
     
-     public function modificaUtente($values) 
-    { 
-        $where="ID_utente = ".$this->_authService->getIdentity()->ID_utente; 
-        $this->update($values,$where); 
-    } 
+     public function modificaUtente($values)
+ 
+    {
+ 
+        $where="ID_utente = ".$this->_authService->getIdentity()->ID_utente;
+ 
+        $this->update($values,$where);
+ 
+    }
+ 
     
 
     public function cancellaUtente($utente)

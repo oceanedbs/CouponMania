@@ -133,9 +133,9 @@ class Application_Model_Admin extends App_Model_Abstract
        return $this->getResource('Faq')->modificafaq($values,$idfaq); 
     }
     
-    public function getFaq()
+    public function getFaq($paged)
     {
-        return $this->getResource('Faq')->getFaq();
+        return $this->getResource('Faq')->getFaq($paged);
     }
     
     public function getInfofaq($idfaq)

@@ -1,5 +1,5 @@
 
-<ul class="nav" id="main-menu">
+<ul class="nav nav-second-level" class="nav" id="main-menu">
                     <li>
                         <div class="user-img-div">
                             <img src="<?=$this->baseUrl('images/user.png')?>" class="img-thumbnail" />
@@ -25,7 +25,10 @@
                  ?>">  Home </a>
                          
                     </li>
-                     <li>
+                    <li>Azienda</li>
+                    
+                    <ul   class="nav nav-third-level">
+                    <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'newaziende',
@@ -34,17 +37,8 @@
                     ); 
                  ?>">Inserisci Azienda </a>
                     </li>
-                    
-                    <li>
-                        <a href="<?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'newfaq',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>">Inserisci Faq </a>
-                    </li>
-                    
+                   
+            
                     <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',
@@ -55,17 +49,41 @@
                  ?>">Gestione Aziende </a>
                         
                     </li>
-                     
+                    </ul>
+                    <li>FAQ</li>
+                    <ul class="nav nav-third-level">
                            
-                             <li>
-                                <a href="<?= $this->url(array(
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'newfaq',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Inserisci Faq </a>
+                    </li>  
+                    <li>
+                        <a href="<?= $this->url(array(
+                        'controller' => 'admin',
+                        'action'     => 'visualizzafaq',
+                        ), 
+                        'default', true
+                    ); 
+                 ?>">Gestire Faq</a>
+                    </li>
+                    </ul>
+                    
+                    <li> Staff e Utenti></li>
+                    <ul class="nav nav-third-level">
+                    <li>
+                        <a href="<?= $this->url(array(
                         'controller' => 'admin',
                         'action'     => 'newstaff',
                         ), 
                         'default', true
                     ); 
                  ?>"></i>Inserisci Staff</a>
-                            </li>
+                     </li>
                          
                       <li>
                         <a href="<?= $this->url(array(
@@ -76,6 +94,10 @@
                     ); 
                  ?>">Gestione Utenti</a>
                     </li>
+                    </ul>
+                    
+                    <li>Categorie e Offerte</li>
+                    <ul class="nav nav-third-level">
                     <li>
                         <a href="<?= $this->url(array(
                         'controller' => 'admin',
@@ -94,15 +116,7 @@
                     ); 
                  ?>">Gestione Categorie</a>
                     </li>
-                     <li>
-                        <a href="<?= $this->url(array(
-                        'controller' => 'admin',
-                        'action'     => 'visualizzafaq',
-                        ), 
-                        'default', true
-                    ); 
-                 ?>">Gestire Faq</a>
-                    </li>
+                </ul>
                     
                      <li>
                         <a href="<?= $this->url(array(

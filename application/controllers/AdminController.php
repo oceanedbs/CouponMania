@@ -173,7 +173,7 @@ private function getModificaAziendeForm()
 
     //visualizzazione promozioni
     public function visualizzaaziendeAction(){
-    $paged=$this->_getParam('paged', 1);
+    $paged=$this->_getParam('page', 0);
     $aziende=$this->_adminModel->getAziende($paged);
     
     $this->view->assign(array(
@@ -185,7 +185,7 @@ private function getModificaAziendeForm()
     }
 
     
-            public function modificautenteAction(){
+    public function modificautenteAction(){
     
     }
     public function modificauserAction(){
@@ -200,7 +200,7 @@ private function getModificaAziendeForm()
 		$this->_adminModel->modificaUtente2($values,$this->getParam('idutente'));
 		$this->_helper->redirector('visualizzautenti');
     }
-private function getModificaUtenteForm()
+    private function getModificaUtenteForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
 		$this->_updateuser = new Application_Form_Admin_Utenti_Modificautenti();
@@ -227,7 +227,7 @@ private function getModificaUtenteForm()
 
     //visualizzazione utenti
     public function visualizzautentiAction(){
-    $paged=$this->_getParam('paged', 1);
+    $paged=$this->_getParam('page', 1);
     $utenti=$this->_adminModel->getUtentiById($paged);
     
     $this->view->assign(array(
@@ -312,8 +312,8 @@ private function getModificaCategoryForm()
 
     //visualizzazione promozioni
     public function visualizzacategoryAction(){
-    $page=null;
-    $category=$this->_adminModel->getCategory($page);
+    $paged=$this->_getParam('page', 0);
+    $category=$this->_adminModel->getCategory($paged);
     
     $this->view->assign(array(
             		'category' => $category,
@@ -323,9 +323,9 @@ private function getModificaCategoryForm()
 
     public function visualizzafaqAction(){
  
-                
+                $paged=$this->_getParam('page', 1);
  
-                $faq=$this->_adminModel->getFaq();
+                $faq=$this->_adminModel->getFaq($paged);
  
                 
  

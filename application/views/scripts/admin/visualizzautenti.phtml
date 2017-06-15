@@ -26,6 +26,12 @@
   }
  echo '</table>';
  ?>
+ 
+   <?php if($this->utente instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->utente,'Sliding','admin/_paginatorutenti.phtml');
+            } 
+            
+    ?>
      
  </div>
  

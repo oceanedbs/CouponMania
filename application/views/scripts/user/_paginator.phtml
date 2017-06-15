@@ -11,7 +11,8 @@
 
 <!-- Link alla pagina precedente -->
 <?php if (isset($this->previous)): ?>
-  <a href="<?= $this->url(array('controller' => 'user', 'action' => 'prodotti', 'page' => $this->previous)); ?>">&lt; Precedente</a> |
+  <a href="<?= $this->url(array('controller' => 'user', 'action' => 'prodotti', 'page' => $this->previous)); ?>">&lt; Precedente</a>
+  |
 <?php else: ?>
   &lt; Precedente |
 <?php endif; ?>

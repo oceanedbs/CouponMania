@@ -22,6 +22,12 @@
  ?>
      
  </div>
+ 
+  <?php if($this->faq instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->faq,'Sliding','admin/_paginatorfaq.phtml');
+            } 
+            
+    ?>
   
      
 </div>

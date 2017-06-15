@@ -23,6 +23,11 @@
  echo '</table>';
  ?>
      
+     <?php if($this->category instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->category,'Sliding','admin/_paginatorcat.phtml');
+            } 
+            
+    ?>
  </div>
  
 </div>
