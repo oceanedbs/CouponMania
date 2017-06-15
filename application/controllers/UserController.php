@@ -278,7 +278,7 @@ class UserController extends Zend_Controller_Action
     
     public function faqAction(){
        
-     $this->_utenteModel->getFaq(); 
+     $faq=$this->_utenteModel->getFaq(); 
      $this->view->assign(array(
             		'faq' => $faq,));
     }
