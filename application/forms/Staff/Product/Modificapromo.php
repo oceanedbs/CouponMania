@@ -10,12 +10,10 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 		$this->setName('modificapromo');
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
-            $this->_staffModel = new Application_Model_Staff();
+                $this->_staffModel = new Application_Model_Staff();
             
             
-		
-             //   $this->addElement('hidden', 'cod_promozione');
-		
+                
                 
                 
 		$this->addElement('text', 'prodotto', array(

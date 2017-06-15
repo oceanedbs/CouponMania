@@ -7,11 +7,10 @@ class Application_Model_Admin extends App_Model_Abstract
     {
     }
 
-    public function getSubCats()
+     public function getTopCats($paged)
     {
-        return $this->getResource('Category')->getSubCats();
+		return $this->getResource('Category')->getTopCats($paged);
     }
-    
     public function saveStaff($info)
     {
     	return $this->getResource('Utente')->insertStaff($info);
