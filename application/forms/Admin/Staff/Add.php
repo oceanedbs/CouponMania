@@ -11,7 +11,7 @@ class Application_Form_Admin_Staff_Add extends Zend_Form
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
 
-		$this->addElement('text', 'nome', array(
+		$this->addElement('text', 'nome_utente', array(
             'label' => 'Nome',
             'filters' => array('StringTrim'),
             'required' => true,

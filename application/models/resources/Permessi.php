@@ -18,7 +18,7 @@ class Application_Resource_Permessi extends Zend_Db_Table_Abstract
     	 
     	  if(!empty($result)){
     	  
-            return 0;
+            return 1;
             }
             else {
             
@@ -46,12 +46,11 @@ class Application_Resource_Permessi extends Zend_Db_Table_Abstract
          return $this->fetchAll($select);
     }
     
-    public function cancellaPermessi($idpermessi)
-    {
-            $delete=$this->delete('permessi', array('ID_utente = ?', $idpermessi));
-            
-    
-        
+    public function cancellaPermessi($idutente,$idazienda)
+    {$where="ID_utente = $idutente AND P_Iva = $idazienda";
+     
+        $this->delete($where);
+             
     }
     
    
