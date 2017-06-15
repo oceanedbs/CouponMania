@@ -29,6 +29,8 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
         return $this->fetchAll($select);
     } 
     
+    
+    
     public function getProdsByOfferte($cat, $paged, $order){
      $date = new Zend_Db_Expr('CURDATE()');
         $select = $this->select()
@@ -62,6 +64,27 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
                         ->join('category', 'promozione.tipo_prom = category.catId')
                         ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
                         ->where('promozione.data_fine > ?', $date)
+                        ->setIntegrityCheck(false);
+        
+        if (null !== $paged) {
+			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+			$paginator = new Zend_Paginator($adapter);
+			$paginator->setItemCountPerPage(6)
+		          	  ->setCurrentPageNumber((int) $paged);
+			return $paginator;
+        }
+        
+        return $this->fetchAll($select);
+       
+    } 
+    
+    public function getProdsStaff($paged, $order)
+    {
+        $select = $this->select()
+                        ->from('promozione')
+                        ->join('category', 'promozione.tipo_prom = category.catId')
+                        ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                        ->order("data_fine")
                         ->setIntegrityCheck(false);
         
         if (null !== $paged) {
