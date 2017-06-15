@@ -347,11 +347,23 @@ public function newstaffpermessiAction()
 		if (!$form->isValid($_POST)) {
 			return $this->render('newstaffpermessi');
 		}
-		$values = $form->getValues();
-		$this->_adminModel->savepermesso($idstaff, $values);
-		$this->_helper->redirector('index');
+		$values = $form->getValue('P_Iva');
+		$newpermessi=$this->_adminModel->savepermesso($idstaff, $values);
+                if($newpermessi == 1){
+                    
+                    $this->_helper->redirector('error1');
+                }
+                 else    {
+                    $this->_helper->redirector('visualizzastaff');
+                 }
+                
+                 
 		
 	}
+        
+        public function error1Action(){
+            
+        }
         
         
         private function getPermessiForm()
@@ -379,8 +391,8 @@ public function newstaffpermessiAction()
 
 
  public function cancellapermessiAction(){
-     $this->_adminModel->cancellaPermessi($this->getParam('idstaff'));
-     $this->_helper->redirector('visualizzapermessi');
+     $this->_adminModel->cancellaPermessi($this->getParam('idutente'),$this->getParam('idazienda'));
+     $this->_helper->redirector('visualizzastaff');
      
  }
 
@@ -397,6 +409,7 @@ public function newstaffpermessiAction()
     
         $this->view->assign(array(
             		'permessi' => $permessi,
+                        'idstaff'  => $idutente
                         )
             );
 }

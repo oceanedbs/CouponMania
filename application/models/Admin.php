@@ -164,8 +164,8 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Permessi')->getInfoPermessi($idutente);
     }
     
-     public function cancellaPermessi($idpermessi) {
-        return $this->getResource('Permessi')->cancellapermessi($idpermessi);
+     public function cancellaPermessi($idutente, $idazienda) {
+        return $this->getResource('Permessi')->cancellapermessi($idutente, $idazienda);
     }
     
      public function getStaff()

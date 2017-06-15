@@ -12,7 +12,7 @@ class Application_Form_Admin_Utenti_Modificautenti extends Zend_Form
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
 
-		$this->addElement('text', 'nome', array(
+		$this->addElement('text', 'nome_utente', array(
             'label' => 'Nome',
             'filters' => array('StringTrim'),
             'required' => true,
@@ -102,7 +102,7 @@ class Application_Form_Admin_Utenti_Modificautenti extends Zend_Form
 		));
         /*
         $this->ID_utente->setValue($this->utente->ID_utente);
-        $this->nome->setValue($this->utente->nome);
+        $this->nome_utente->setValue($this->utente->nome_utente);
         $this->cognome->setValue($this->utente->cognome);
         $this->sesso->setValue($this->utente->sesso);
         $this->data_nascita->setValue($this->utente->data_nascita);

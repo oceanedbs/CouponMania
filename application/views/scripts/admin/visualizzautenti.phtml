@@ -17,7 +17,7 @@
               . "<td>".$utente->password."</td>"
               . "<td><a href=" . $this->url(array('controller' => 'admin',
                                                         'action' => 'modificautente',
-                                                        'idutente'=> $utente->ID_utente), 
+                                                        'idstaff'=> $utente->ID_utente), 
                                                         'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Modifica'></a></td>"
               . "<td><a href=" . $this->url(array('controller' => 'admin',
                                                         'action' => 'cancellautente',

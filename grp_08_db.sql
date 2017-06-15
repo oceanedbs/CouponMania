@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Client :  localhost
--- Généré le :  Jeu 15 Juin 2017 à 15:47
--- Version du serveur :  5.7.18-0ubuntu0.16.04.1
--- Version de PHP :  7.0.18-0ubuntu0.16.04.1
+-- Host: 127.0.0.1
+-- Generation Time: Jun 15, 2017 at 06:10 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `grp_08_db`
+-- Database: `grp_08_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `abbinamento`
+-- Table structure for table `abbinamento`
 --
 
 CREATE TABLE `abbinamento` (
@@ -34,33 +34,33 @@ CREATE TABLE `abbinamento` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `aziende`
+-- Table structure for table `aziende`
 --
 
 CREATE TABLE `aziende` (
   `P_Iva` varchar(11) NOT NULL,
   `nome` varchar(30) NOT NULL,
-  `logo` varchar(15) DEFAULT NULL,
+  `logo` varchar(15) NOT NULL,
   `citta` varchar(30) NOT NULL,
   `indirizzo` varchar(50) NOT NULL,
+  `tipologia` varchar(10) NOT NULL,
   `descrizione` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `aziende`
+-- Dumping data for table `aziende`
 --
 
-INSERT INTO `aziende` (`P_Iva`, `nome`, `logo`, `citta`, `indirizzo`, `descrizione`) VALUES
-('00000000000', 'Decathlon', 'decathlon.jpg', 'Ancona', 'Piazza Camillo Benso di Cavour, 29, ', 'Negozio di articoli sportivi'),
-('00000000001', 'Coop', NULL, 'Milano', 'Piazza Lima', 'Supermercato di articoli alimentari.'),
-('00000000002', 'H&M', 'HM.jpg', 'Roma', 'Via Cristoforo Colombo 714', 'Negozio di vestiti'),
-('166', 'Niente', NULL, 'Niente2', '54,via niente', 'no lo so'),
-('5', 'Pull&Bear', NULL, 'Torino', 'via palombare, 8', 'Azienda di vestiti');
+INSERT INTO `aziende` (`P_Iva`, `nome`, `logo`, `citta`, `indirizzo`, `tipologia`, `descrizione`) VALUES
+('00000000000', 'Decathlon', 'decathlon.jpg', 'Ancona', 'Piazza Camillo Benso di Cavour, 29, ', 'sport', 'Negozio di articoli sportivi'),
+('00000000001', 'Coop', 'coop.jpg', 'Milano', 'Piazza Lima', 'cibo', 'Supermercato di articoli alimentari.'),
+('00000000002', 'H&M', 'HM.jpg', 'Roma', 'Via Cristoforo Colombo 714', 'vestiti', 'Negozio di vestiti'),
+('5', 'Pull&Bear', 'pullandbear.jpg', 'Torino', 'via palombare, 8', 'vestiti', 'ghrzjiohabriahgù');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -73,7 +73,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`catId`, `name`, `parId`, `desc`, `image`, `logo`) VALUES
@@ -87,7 +87,7 @@ INSERT INTO `category` (`catId`, `name`, `parId`, `desc`, `image`, `logo`) VALUE
 -- --------------------------------------------------------
 
 --
--- Structure de la table `coupon`
+-- Table structure for table `coupon`
 --
 
 CREATE TABLE `coupon` (
@@ -95,17 +95,10 @@ CREATE TABLE `coupon` (
   `ID_utente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `coupon`
---
-
-INSERT INTO `coupon` (`cod_promozione`, `ID_utente`) VALUES
-(6, 1);
-
 -- --------------------------------------------------------
 
 --
--- Structure de la table `coupon abbinati`
+-- Table structure for table `coupon abbinati`
 --
 
 CREATE TABLE `coupon abbinati` (
@@ -116,7 +109,7 @@ CREATE TABLE `coupon abbinati` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `faq`
+-- Table structure for table `faq`
 --
 
 CREATE TABLE `faq` (
@@ -126,32 +119,41 @@ CREATE TABLE `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `faq`
+-- Dumping data for table `faq`
 --
 
 INSERT INTO `faq` (`id_faq`, `domanda`, `risposta`) VALUES
 (1, 'Come posso cambiare i miei dati?', 'viuabji'),
-(2, 'Come ottengo i coupon?', 'Puoi ottenere i coupon solo se sei un utente registrato, dopodichÃ¨ basta selezionare l\'offerta desiderata e cliccare sul bottone "stampa coupon"'),
+(2, 'Come ottengo i coupon?', 'Puoi ottenere i coupon solo se sei un utente registrato, dopodichÃ¨ basta selezionare l\'offerta desiderata e cliccare sul bottone \"stampa coupon\"'),
 (3, 'Come utilizzare il mio coupon?', 'Una volta scaricato il coupon basterà stamparlo ed esibirlo presso la sede dell\'azienda\r\n    '),
-(4, 'Quali sono le aziende convenzionate?', 'Per vedere l\'elenco delle aziende convenzionate <a href="<?= $this->url(array(\r\n                        \'controller\' => \'user\',\r\n                        \'action\'     => \'aziende\',\r\n                        ), \r\n                        \'default\', true\r\n                    ); \r\n                 ?>">clicca qui</a>'),
+(4, 'Quali sono le aziende convenzionate?', 'Per vedere l\'elenco delle aziende convenzionate <a href=\"<?= $this->url(array(\r\n                        \'controller\' => \'user\',\r\n                        \'action\'     => \'aziende\',\r\n                        ), \r\n                        \'default\', true\r\n                    ); \r\n                 ?>\">clicca qui</a>'),
 (6, 'Quando scade il mio coupon?', 'Il coupon emesso è valido per tutta la durata della promozione'),
-(7, 'Come contattarci', 'nella sezione chi siamo, cliccare su "contattaci"');
+(7, 'Come contattarci', 'nella sezione chi siamo, cliccare su \"contattaci\"');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `permessi`
+-- Table structure for table `permessi`
 --
 
 CREATE TABLE `permessi` (
   `ID_utente` int(11) NOT NULL,
   `P_Iva` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `permessi`
+--
+
+INSERT INTO `permessi` (`ID_utente`, `P_Iva`) VALUES
+(3, '00000000000'),
+(3, '00000000001'),
+(5, '00000000002');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -167,7 +169,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`prodId`, `name`, `catId`, `descShort`, `descLong`, `price`, `discountPerc`, `discounted`, `image`) VALUES
@@ -184,7 +186,7 @@ INSERT INTO `product` (`prodId`, `name`, `catId`, `descShort`, `descLong`, `pric
 -- --------------------------------------------------------
 
 --
--- Structure de la table `promozione`
+-- Table structure for table `promozione`
 --
 
 CREATE TABLE `promozione` (
@@ -195,35 +197,33 @@ CREATE TABLE `promozione` (
   `prodotto` varchar(30) NOT NULL,
   `catId` int(11) NOT NULL,
   `descrizione_prom` text NOT NULL,
+  `parole chiave` text NOT NULL,
   `immagine` varchar(40) DEFAULT NULL,
   `P_Iva` varchar(11) NOT NULL,
   `prezzo_unitario_prod` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `promozione`
+-- Dumping data for table `promozione`
 --
 
-INSERT INTO `promozione` (`cod_promozione`, `tipo_prom`, `data_inizio`, `data_fine`, `prodotto`, `catId`, `descrizione_prom`, `immagine`, `P_Iva`, `prezzo_unitario_prod`) VALUES
-(2, '2', '2017-07-15', '2017-07-30', 'Tshirt', 5, 'maglietta a maniche corte', NULL, '00000000002', 17),
-(3, '1', '2017-05-19', '2017-07-14', 'macarons', 4, 'dolcetti francesi', 'bbig7.jpg', '00000000001', 16),
-(4, '1', '2017-05-26', '2017-11-08', 'prodotto 4', 2, 'fhjeiozhgm', 'page2_img1.jpg', '00000000001', 12),
-(5, '3', '2017-05-10', '2017-07-08', 'prodotto 5', 1, 'higoezhag', 'page2_img3.jpg', '00000000001', 43),
-(6, '1', '2017-05-19', '2017-07-14', 'prodotto 3', 5, 'ghreha', 'page1_img6.jpg', '00000000000', 67),
-(7, '2', '2017-06-08', '2017-07-01', 'ciaone', 5, 'allora non so che scrivere', 'cover.jpg', '00000000000', 10),
-(10, '1', '2017-07-15', '2017-07-30', 'Andrea', 4, 'Andrea', NULL, '00000000001', 1.48),
-(15, '1', '1994-08-17', '1995-08-18', 'Patate', 4, 'patate novelle', NULL, '00000000001', 16),
-(16, '3', '2017-06-15', '2017-06-22', 'alex', 5, 'alex', 'bbig4.jpg', '00000000000', 9),
-(17, '3', '2017-07-09', '2017-07-19', 'Racchetta', 6, 'racchetta', NULL, '00000000000', 5.2),
-(18, '3', '2013-05-21', '3017-12-23', 'pallone di calcio', 6, 'per giocare al calcio', NULL, '00000000000', 5),
-(19, '1', '2013-05-21', '2019-05-04', 'niente', 4, 'hieao', NULL, '00000000001', 5),
-(20, '3', '2017-03-06', '2017-06-05', 'prodotto', 6, 'prodotto che dovete comprare ! ', NULL, '00000000002', 45),
-(21, '2', '2017-01-12', '2017-05-13', 'Orolofio', 6, 'orologio per vedere l\'ora', 'vintageowl3.jpg', '00000000002', 34);
+INSERT INTO `promozione` (`cod_promozione`, `tipo_prom`, `data_inizio`, `data_fine`, `prodotto`, `catId`, `descrizione_prom`, `parole chiave`, `immagine`, `P_Iva`, `prezzo_unitario_prod`) VALUES
+(2, '2', '2017-07-15', '2017-07-30', 'Tshirt', 6, 'maglietta a maniche corte', 'tshirt, T-shirt, maglia, maglietta, maniche', 'tshirt.jpg', '00000000002', 16),
+(3, '1', '2017-05-19', '2017-07-14', 'macarons', 4, 'dolcetti francesi', 'ugez_ohoa', 'bbig7.jpg', '00000000001', 16),
+(4, '1', '2017-05-26', '2017-11-08', 'prodotto 4', 2, 'fhjeiozhgm', 'grzjioh', 'page2_img1.jpg', '00000000001', 12),
+(5, '3', '2017-05-10', '2017-07-08', 'prodotto 5', 1, 'higoezhag', 'ngjezabg', 'page2_img3.jpg', '00000000001', 43),
+(6, '1', '2017-05-19', '2017-07-14', 'prodotto 3', 5, 'ghreha', 'ugez_ohoa', 'page1_img6.jpg', '00000000000', 67),
+(7, '2', '2017-06-08', '2017-07-01', 'ciaone', 5, 'allora non so che scrivere', '', 'cover.jpg', '00000000000', 10),
+(8, '2', '2017-06-08', '2017-08-08', 'promo333', 6, 'idhofhdÃ²sf', '', 'cover.jpg', '00000000001', 34),
+(10, '1', '2017-07-15', '2017-07-30', 'Andrea', 4, 'Andrea', '', NULL, '00000000001', 1.48),
+(15, '1', '1994-08-17', '1995-08-18', 'Patate', 4, 'patate novelle', '', NULL, '00000000001', 16),
+(16, '3', '2017-06-15', '2017-06-22', 'alex', 5, 'alex', '', 'bbig4.jpg', '00000000000', 9),
+(17, '3', '2017-07-09', '2017-07-19', 'Racchetta', 6, 'racchetta', '', NULL, '00000000000', 5.2);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `promozioni abbinate`
+-- Table structure for table `promozioni abbinate`
 --
 
 CREATE TABLE `promozioni abbinate` (
@@ -234,7 +234,7 @@ CREATE TABLE `promozioni abbinate` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utente`
+-- Table structure for table `utente`
 --
 
 CREATE TABLE `utente` (
@@ -252,146 +252,147 @@ CREATE TABLE `utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `utente`
+-- Dumping data for table `utente`
 --
 
 INSERT INTO `utente` (`ID_utente`, `nome_utente`, `cognome`, `sesso`, `data_nascita`, `telefono`, `email`, `role`, `citta`, `username`, `password`) VALUES
-(1, 'utente1', 'utente1', 'm', '1995-08-15', 333221133, 'user@gmail.com', 'user', 'ancona', 'user', 'pass'),
-(3, 'Mario', 'Rossi', 'm', '1995-08-15', 333221133, 'mariorossi@gmail.com', 'staff', 'ancona', 'staff', 'staff'),
-(4, 'admin', 'admin', 'f', '1987-08-12', 333221133, 'admin@gmail.com', 'admin', 'ancona', 'admin', 'adminpass');
+(1, 'utente1', 'utente145', 'm', '1995-08-15', 333221133, 'user@gmail.com', 'user', 'ancona', 'user', 'pass'),
+(3, 'Mario', 'Rossi', 'f', '1995-08-15', 333221133, 'mariorossi@gmail.com', 'staff', 'ancona', 'staff', 'staff'),
+(4, 'admin', 'admin', 'f', '1987-08-12', 333221133, 'admin@gmail.com', 'admin', 'ancona', 'admin', 'adminpass'),
+(5, 'valentina', 'amandonico', 'f', '1998-03-16', 33345323, 'staff@gmail.com', 'staff', 'ancona', 'valestaff', 'psss');
 
 --
--- Index pour les tables exportées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `abbinamento`
+-- Indexes for table `abbinamento`
 --
 ALTER TABLE `abbinamento`
   ADD PRIMARY KEY (`cod_prom_abb`,`cod_prom`),
   ADD KEY `cod_prom` (`cod_prom`);
 
 --
--- Index pour la table `aziende`
+-- Indexes for table `aziende`
 --
 ALTER TABLE `aziende`
   ADD PRIMARY KEY (`P_Iva`);
 
 --
--- Index pour la table `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`catId`);
 
 --
--- Index pour la table `coupon`
+-- Indexes for table `coupon`
 --
 ALTER TABLE `coupon`
   ADD PRIMARY KEY (`cod_promozione`,`ID_utente`),
   ADD KEY `ID_utente` (`ID_utente`);
 
 --
--- Index pour la table `coupon abbinati`
+-- Indexes for table `coupon abbinati`
 --
 ALTER TABLE `coupon abbinati`
   ADD PRIMARY KEY (`ID_utente`,`cod_prom_abb`),
   ADD KEY `cod_prom_abb` (`cod_prom_abb`);
 
 --
--- Index pour la table `faq`
+-- Indexes for table `faq`
 --
 ALTER TABLE `faq`
   ADD PRIMARY KEY (`id_faq`);
 
 --
--- Index pour la table `permessi`
+-- Indexes for table `permessi`
 --
 ALTER TABLE `permessi`
   ADD PRIMARY KEY (`ID_utente`,`P_Iva`),
   ADD KEY `P_Iva` (`P_Iva`);
 
 --
--- Index pour la table `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`prodId`);
 
 --
--- Index pour la table `promozione`
+-- Indexes for table `promozione`
 --
 ALTER TABLE `promozione`
   ADD PRIMARY KEY (`cod_promozione`),
   ADD KEY `P_Iva` (`P_Iva`);
 
 --
--- Index pour la table `promozioni abbinate`
+-- Indexes for table `promozioni abbinate`
 --
 ALTER TABLE `promozioni abbinate`
   ADD PRIMARY KEY (`cod_prom_abb`);
 
 --
--- Index pour la table `utente`
+-- Indexes for table `utente`
 --
 ALTER TABLE `utente`
   ADD PRIMARY KEY (`ID_utente`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `catId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT pour la table `faq`
+-- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT pour la table `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `prodId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
--- AUTO_INCREMENT pour la table `promozione`
+-- AUTO_INCREMENT for table `promozione`
 --
 ALTER TABLE `promozione`
-  MODIFY `cod_promozione` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `cod_promozione` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT pour la table `utente`
+-- AUTO_INCREMENT for table `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `abbinamento`
+-- Constraints for table `abbinamento`
 --
 ALTER TABLE `abbinamento`
   ADD CONSTRAINT `abbinamento_ibfk_1` FOREIGN KEY (`cod_prom_abb`) REFERENCES `promozioni abbinate` (`cod_prom_abb`),
   ADD CONSTRAINT `abbinamento_ibfk_2` FOREIGN KEY (`cod_prom`) REFERENCES `promozione` (`cod_promozione`);
 
 --
--- Contraintes pour la table `coupon`
+-- Constraints for table `coupon`
 --
 ALTER TABLE `coupon`
   ADD CONSTRAINT `coupon_ibfk_1` FOREIGN KEY (`ID_utente`) REFERENCES `utente` (`ID_utente`),
   ADD CONSTRAINT `coupon_ibfk_2` FOREIGN KEY (`cod_promozione`) REFERENCES `promozione` (`cod_promozione`);
 
 --
--- Contraintes pour la table `coupon abbinati`
+-- Constraints for table `coupon abbinati`
 --
 ALTER TABLE `coupon abbinati`
   ADD CONSTRAINT `coupon abbinati_ibfk_1` FOREIGN KEY (`ID_utente`) REFERENCES `utente` (`ID_utente`),
   ADD CONSTRAINT `coupon abbinati_ibfk_2` FOREIGN KEY (`cod_prom_abb`) REFERENCES `promozioni abbinate` (`cod_prom_abb`);
 
 --
--- Contraintes pour la table `promozione`
+-- Constraints for table `promozione`
 --
 ALTER TABLE `promozione`
   ADD CONSTRAINT `P_Iva` FOREIGN KEY (`P_Iva`) REFERENCES `aziende` (`P_Iva`);
