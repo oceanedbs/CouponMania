@@ -12,8 +12,6 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 		$this->setAttrib('enctype', 'multipart/form-data');
                 $this->_staffModel = new Application_Model_Staff();
             
-            
-                
                 
                 
 		$this->addElement('text', 'prodotto', array(
@@ -47,7 +45,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
                 
                 $page='';
 		$aziende = array();
-		$aznd = $this->_staffModel->getAziende($page);
+		$aznd = $this->_staffModel->getAziendeStaff( $page);
 		foreach ($aznd as $azi) {
 			$aziende[$azi -> P_Iva] = $azi->nome;
 		}

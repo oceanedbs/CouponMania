@@ -6,8 +6,10 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
     protected $_primary  = 'P_Iva';
     protected $_rowClass = 'Application_Resource_Aziende_Item';
     
-    public function init()
+   public function init()
     {
+        $this->_authService = new Application_Service_Auth();
+
     }
     
     public function getAziende($paged) {
@@ -53,6 +55,27 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
         $where="P_Iva = $idazienda";
        return $this->delete($where);
         
+    }
+    
+    public function getAziendeStaff( $paged)
+    {
+        $idstaff=$this->_authService->getIdentity()->ID_utente;          
+        $select = $this->select()
+                        ->from('aziende')
+                        ->join('permessi', 'aziende.P_Iva=permessi.P_Iva')
+                        ->where('permessi.ID_utente = ?', $idstaff)
+                        ->setIntegrityCheck(false)
+                       ->order('nome');
+                       
+         if (null !== $paged) {
+            $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+            $paginator = new Zend_Paginator($adapter);
+            $paginator->setItemCountPerPage(3)
+                        ->setCurrentPageNumber((int) $paged);
+            return $paginator;
+        }
+        return $this->fetchAll($select);
+    
     }
   
     

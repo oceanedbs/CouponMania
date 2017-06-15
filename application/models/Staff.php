@@ -3,6 +3,7 @@
 class Application_Model_Staff extends App_Model_Abstract
 { 
 
+
 	public function __construct()
     {
     }
@@ -22,9 +23,9 @@ class Application_Model_Staff extends App_Model_Abstract
        return $this->getResource('Promozione')->getProds($paged);
     } 
     
-    public function getProdsStaff($paged, $order)
+    public function getProdsStaff($paged, $idstaff, $order)
     {
-         return $this->getResource('Promozione')->getProdsStaff($paged, $order);
+         return $this->getResource('Promozione')->getProdsStaff($paged, $idstaff,$order);
     }
     public function getInfoprodotto($idprodotto){
         return $this->getResource('Promozione')->getInfoprodotto($idprodotto);
@@ -49,6 +50,10 @@ class Application_Model_Staff extends App_Model_Abstract
     {
         return $this->getResource('Promozione')->cancellaPromo($idpromo);
 
+    }
+    public function getAziendeStaff($page)
+    {
+        return $this->getResource('Aziende')->getAziendeStaff($page);
     }
      
     public function modficaUtente($values)

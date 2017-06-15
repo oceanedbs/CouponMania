@@ -125,15 +125,13 @@ class StaffController extends Zend_Controller_Action
 
     //visualizzazione promozioni
     public function visualizzapromoAction(){
-    
-        $idstaff=$this->authInfo('ID_utente');
+        $idstaff=$this->_getParam('idstaff', null);
         $order = null;
         $paged=$this->getParam('page', 1);
-        $prodotti=$this->_staffModel->getProdsStaff($paged, $order);
+        $prodotti=$this->_staffModel->getProdsStaff($paged, $idstaff, $order);
         
         $this->view->assign(array(
-                            'prodotto' => $prodotti,
-                            'idstaff' => $idstaff)
+                            'prodotto' => $prodotti,)
                 );
         
 		

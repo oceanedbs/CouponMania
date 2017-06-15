@@ -33,6 +33,8 @@
                                 <a href="<?= $this->url(array(
                         'controller' => 'staff',
                         'action'     => 'visualizzapromo',
+                        'idstaff' =>    $this->authInfo('ID_utente')
+,
                         ), 
                         'default', true
                         ); 

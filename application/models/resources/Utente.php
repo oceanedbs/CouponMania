@@ -23,6 +23,8 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
      
      public function getUtentiById($paged) {
         $select = $this->select()
+                       // ->where('role IN(?)', 'staff')
+                        //->where('role IN(?)', 'user');
                        ->order('role');
                        
         if (null !== $paged) {

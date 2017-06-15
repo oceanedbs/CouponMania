@@ -78,12 +78,14 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
        
     } 
     
-    public function getProdsStaff($paged, $order)
+    public function getProdsStaff($paged,$idstaff, $order)
     {
         $select = $this->select()
                         ->from('promozione')
                         ->join('category', 'promozione.tipo_prom = category.catId')
                         ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                        ->join('permessi', 'permessi.P_Iva=aziende.P_Iva')
+                        ->where('permessi.ID_utente = ?', $idstaff)
                         ->order("data_fine")
                         ->setIntegrityCheck(false);
         
