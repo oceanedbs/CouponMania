@@ -87,9 +87,9 @@ class StaffController extends Zend_Controller_Action
         
         public function modificapromoAction(){
     
-    }
-    public function modificaAction(){
-    if (!$this->getRequest()->isPost()) {
+        }
+        public function modificaAction(){
+            if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
 		$form=$this->_update;
@@ -99,8 +99,8 @@ class StaffController extends Zend_Controller_Action
 		$values = $form->getValues();
 		$this->_staffModel->modificaPromo($values,$this->getParam('codprod'));
 		$this->_helper->redirector('visualizzapromo');
-    }
-    private function getModificaPromoForm()
+        }
+        private function getModificaPromoForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
 		$this->_update = new Application_Form_Staff_Product_Modificapromo();
@@ -125,14 +125,17 @@ class StaffController extends Zend_Controller_Action
 
     //visualizzazione promozioni
     public function visualizzapromoAction(){
-    $order = null;
-    $paged=$this->getParam('page', 1);
-    $prodotti=$this->_staffModel->getProdsStaff($paged, $order);
     
-    $this->view->assign(array(
-            		'prodotto' => $prodotti,)
-            );
-    
+        $idstaff=$this->authInfo('ID_utente');
+        $order = null;
+        $paged=$this->getParam('page', 1);
+        $prodotti=$this->_staffModel->getProdsStaff($paged, $order);
+        
+        $this->view->assign(array(
+                            'prodotto' => $prodotti,
+                            'idstaff' => $idstaff)
+                );
+        
 		
     }
     
