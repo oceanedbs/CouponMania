@@ -151,4 +151,31 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Faq')->insertfaq($values);
     }
     
+    public function savepermesso($values) {
+        return $this->getResource('Permessi')->insertpermesso($values);
+    }
+    
+    public function modificapermessi($values,$idper){
+       return $this->getResource('Permessi')->modificapermessi($values,$idper); 
+    }
+    
+    public function getInfoPermessi($idutente)
+    {
+        return $this->getResource('Faq')->getInfoPermessi($idutente);
+    }
+    
+     public function cancellaPermessi($idpermessi) {
+        return $this->getResource('Permessi')->cancellapermessi($idpermessi);
+    }
+    
+     public function getStaff()
+    {
+        return $this->getResource('Utente')->getStaff();
+    }
+    
+    public function getAziendeStaff($idstaff)
+    {
+        return $this->getResource('Aziende')->getAziendeStaff($idstaff);
+    }
+    
 }

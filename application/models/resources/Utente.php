@@ -97,6 +97,14 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
         return $this->fetchAll($select);
     }
     
+    public function getStaff(){
+    
+        $select= $this->select()
+                      ->where('role= ?','staff');
+        
+        return $this->fetchAll($select);
+    }
+    
 
 }
 

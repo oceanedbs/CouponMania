@@ -31,13 +31,13 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
     
     public function insertAziende($info)
     {
-    	$this->insert($info);
+    	return $this->insert($info);
     }
     
      public function modificaAziende($values,$idazienda)
     {
         $where="P_Iva = $idazienda";
-        $this->update($values,$where);
+       return $this->update($values,$where);
     }
      public function numeroAziende()
     {
@@ -51,9 +51,20 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
      public function cancellaAzienda($idazienda)
     {
         $where="P_Iva = $idazienda";
-        $this->delete($where);
+       return $this->delete($where);
         
     }
+    
+    public function getAziendeStaff($idstaff)
+    {
+        $select=$this->select()
+                ->from('aziende', 'nome')                                 
+                 ->join('permessi', 'aziende.P_Iva=permessi.P_Iva')
+                 ->where('permessi.ID_utente != ?',$idstaff)
+                 ->setIntegrityCheck(false);
+         return $this->fetchAll($select);
+    }
+    
     
     
 }
