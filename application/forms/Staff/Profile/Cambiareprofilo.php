@@ -2,7 +2,7 @@
 
 class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
 
-{       protected $_utenteModel;
+{       protected $_publicModel;
 
 	public function init()
     {               
@@ -10,10 +10,10 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
         $this->setName('cambiareprofilo');
         $this->setAction('');
 
-        $this->_utenteModel = new Application_Model_Utente();
+        $this->_publicModel = new Application_Model_Public();
         
         
-        $info = $this->_utenteModel->getInfoUtente();
+        $info = $this->_publicModel->getInfoUtente();
 
         
     	 $this->addElement('text', 'nome', array(

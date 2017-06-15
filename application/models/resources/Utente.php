@@ -62,16 +62,11 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract
         $this->update($values,$where);
     }
     
-     public function modificaUtente($values)
- 
-    {
- 
-        $where="ID_utente = ".$this->_authService->getIdentity()->ID_utente;
- 
-        $this->update($values,$where);
- 
-    }
- 
+     public function modificaUtente($values) 
+    { 
+        $where="ID_utente = ".$this->_authService->getIdentity()->ID_utente; 
+        $this->update($values,$where); 
+    } 
     
 
     public function cancellaUtente($utente)

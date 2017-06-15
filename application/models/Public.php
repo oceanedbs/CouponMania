@@ -3,9 +3,8 @@
 class Application_Model_Public extends App_Model_Abstract
 { 
 
-    public function __construct()
+	public function __construct()
     {
-        $this->_logger = Zend_Registry::get('log');  	
     }
 
     public function getTopCats($paged)
@@ -18,25 +17,9 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Category')->getTopOfferte($paged);
     }
     
-    public function getCatById($id)
+     public function getInfoprodotto($idprodotto) 
     {
-        return $this->getResource('Category')->getCatById($id);
-    }
-
-    public function getCatsByParId($parId)
-    {
-        return $this->getResource('Category')->getCatsByParId($parId);
-    }
-
-    
-    public function getProdsByCat($catId, $paged=null, $order=null)
-    {
-       return $this->getResource('Promozione')->getProdsByCat($catId, $paged, $order);
-    }
-    
-    public function getProdsByOfferte($cat, $paged=null, $order=null)
-    {
-        return $this->getResource('Promozione')->getProdsByOfferte($cat, $paged, $order);
+        return $this->getResource('Promozione')->getInfoprodotto($idprodotto);
     }
     
     public function getProds($paged)
@@ -49,6 +32,16 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Aziende')->getAziende($paged);
     }
     
+     public function getProdsByCat($catId, $paged=null, $order=null)
+    {
+       return $this->getResource('Promozione')->getProdsByCat($catId, $paged, $order);
+    }
+    
+    public function getProdsByOfferte($cat, $paged=null, $order=null)
+    {
+        return $this->getResource('Promozione')->getProdsByOfferte($cat, $paged, $order);
+    }
+    
     public function getInfoAzienda($idazienda)
     {
         return $this->getResource('Aziende')->getInfoAzienda($idazienda);
@@ -59,12 +52,32 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Promozione')->getPromobyAzienda($idazienda);
     }
     
-    public function getInfoprodotto($idprodotto) 
+    public function saveProduct($info)
     {
-        return $this->getResource('Promozione')->getInfoprodotto($idprodotto);
+    	return $this->getResource('Promozione')->insertProduct($info);
     }
     
-    public function getRisultatiRicerca($parole, $paged)
+    public function saveUtente($info)
+    {
+    	return $this->getResource('Utente')->insertUtente($info);
+    }
+    
+     public function getInfoUtente()
+    {
+    	return $this->getResource('Utente')->getInfoUtente();
+    }
+    
+    public function modficaUtente($values)
+    {
+        return $this->getResource('Utente')->modificaUtente($values);
+    }
+    
+    public function registraCoupon($data)
+    {
+        return $this->getResource('Coupon')->registraCoupon($data);
+    }
+    
+     public function getRisultatiRicerca($parole, $paged)
     {
         return $this->getResource('Promozione')->getRisultatiRicerca($parole, $paged);
     }
@@ -74,9 +87,8 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Promozione')->getRisultatiRicerca2($catId,$parole, $paged);
     }
     
-     public function getFaq()
+    public function verificareCoupon($idprodotto, $idutente)
     {
-        return $this->getResource('Faq')->getFaq();
+        return $this->getResource('Coupon')->verificareCoupon($idprodotto, $idutente);
     }
-    
 }

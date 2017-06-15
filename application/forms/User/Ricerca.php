@@ -1,11 +1,11 @@
 <?php
 class Application_Form_User_Ricerca extends Zend_Form
 {
-	protected $_utenteModel;
+	protected $_publicModel;
 
 	public function init()
 	{
-		$this->_utenteModel = new Application_Model_Utente();
+		$this->_publicModel = new Application_Model_Public();
 		$this->setMethod('post');
 		$this->setName('ricerca');
 		$this->setAction('');
@@ -14,7 +14,7 @@ class Application_Form_User_Ricerca extends Zend_Form
                 $paged="";
 		$categories = array();
                 $categories[0]= '-';
-		$cats = $this->_utenteModel->getTopCats($paged);
+		$cats = $this->_publicModel->getTopCats($paged);
 		foreach ($cats as $cat) {
 			$categories[$cat -> catId] = $cat->name;
 		}		

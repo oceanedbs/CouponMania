@@ -3,7 +3,7 @@
 class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
 {
 
-        protected $_utenteModel;
+        protected $_publicModel;
 
             
 	public function init()
@@ -11,11 +11,11 @@ class Application_Form_User_Cambiareprofilo extends App_Form_Abstract
         $this->setMethod('post');
         $this->setName('cambiareprofilo');
         $this->setAction('');
-        $this->_utenteModel = new Application_Model_Utente();
+        $this->_publicModel = new Application_Model_Public();
 
         
         
-        $info = $this->_utenteModel->getInfoUtente();
+        $info = $this->_publicModel->getInfoUtente();
 
     	 $this->addElement('text', 'nome', array(
             'filters'    => array('StringTrim'),
