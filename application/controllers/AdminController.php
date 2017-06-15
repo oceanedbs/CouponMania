@@ -12,7 +12,9 @@ class AdminController extends Zend_Controller_Action
         protected $_form5;
         protected $_form6;
         protected $_form7;
-        
+        protected $_form8;
+        protected $_form9;
+
         
         
 
@@ -33,6 +35,10 @@ class AdminController extends Zend_Controller_Action
                 $this->view->aziendeForm = $this->getAziendeForm();
                 $this->view->categoryForm = $this->getCategoryForm();
                 $this->view->newfaqForm=$this->newfaqAction();
+                $this->view->profiloForm = $this->getProfiloForm();
+                $this->view->cambiareprofiloForm = $this->getCambiareprofiloForm();
+
+
              
 
                 
@@ -615,6 +621,55 @@ public function newstaffpermessiAction()
                     );
  
             }
+            
+            public function profiloAction(){
+    
+            }
+            
+             private function getProfiloForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form8 = new Application_Form_User_Profilo();
+    		$this->_form8->setAction($urlHelper->url(array(
+			'controller' => 'admin',
+			'action' => 'cambiareprofilo'),
+			'default'
+		));
+		return $this->_form8;
+    
+        }
+    
+        public function cambiareprofiloAction() {
+    
+        }
+    
+        private function getCambiareprofiloForm(){
+    
+                $urlHelper = $this->_helper->getHelper('url');
+		$this->_form9 = new Application_Form_User_Cambiareprofilo();
+    		$this->_form9->setAction($urlHelper->url(array(
+			'controller' => 'admin',
+			'action' => 'cambia'),
+			'default'
+		));
+		return $this->_form9;
+    
+    }
+    
+    public function cambiaAction() {
+   
+      if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('index');
+		}
+		$form=$this->_form9;
+		if (!$form->isValid($_POST)) {
+			return $this->render('cambiareprofilo');
+		}
+		$values = $form->getValues();
+		$this->_adminModel->modficaUtente($values);
+		$this->_helper->redirector('index');
+
+    }
  
 
 

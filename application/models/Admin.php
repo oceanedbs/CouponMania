@@ -178,4 +178,9 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Aziende')->getAziendeStaff($idstaff);
     }
     
+    public function modficaUtente($values)
+    {
+        return $this->getResource('Utente')->modificaUtente($values);
+    }
+    
 }
