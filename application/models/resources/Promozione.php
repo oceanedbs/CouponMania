@@ -116,8 +116,13 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     {
     
         $select=$this->select()
-                    ->where('prodotto IN(?)',$parole)
-                    ->orWhere('descrizione LIKE ?', "%$parole%");
+                    ->from('promozione')
+                    ->where('promozione.prodotto IN(?)',$parole) 
+                    ->orWhere('promozione.descrizione_prom LIKE ?', "%$parole%")
+                    ->join('category', 'promozione.catId = category.catId')
+                    ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                    ->where('category.parId IN(?)', 1)
+                    ->setIntegrityCheck(false);
         return $this->fetchAll($select);
         
          if (null !== $paged) {
@@ -133,9 +138,15 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     {
     
         $select=$this->select()
-                    ->where('prodotto IN(?)',$parole)
-                    ->orWhere('descrizione LIKE ?', "%$parole%")
-                    ->where('tipo_prom IN(?)', $catId);
+                    ->from('promozione')
+                    ->where('promozione.prodotto IN(?)',$parole)
+                    ->orWhere('promozione.descrizione_prom LIKE ?', "%$parole%")
+                    ->where('promozione.tipo_prom IN(?)', $catId)
+                    ->join('category', 'promozione.catId = category.catId')
+                    ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                    ->where('category.parId IN(?)', 1)
+                    ->setIntegrityCheck(false);
+                   
         return $this->fetchAll($select);
         
          if (null !== $paged) {

@@ -27,9 +27,6 @@ class AdminController extends Zend_Controller_Action
                 $this->view->aziendeForm = $this->getAziendeForm();
                 $this->view->categoryForm = $this->getCategoryForm();
                 $this->view->newfaqForm=$this->newfaqAction();
- 
-
-                
                 
                 
                 if($this->hasParam('piva'))
@@ -503,11 +500,8 @@ private function getModificaCategoryForm()
                         
  
             $idutente = $this->_getParam('idutente', null);
- 
             $paged=$this->_getParam('page', null);
- 
             $idpromo = $this ->_getParam('idpromo', null);
- 
             
  
             $promozioni=$this->_adminModel->getProds($paged);
@@ -516,39 +510,25 @@ private function getModificaCategoryForm()
  
             if($mod == 2){
  
-            
- 
                 $couponutente = $this->_adminModel->getCouponUtente($idutente);
- 
-            
  
             }
  
             else{
  
-            
- 
                 $couponpromo = $this->_adminModel->getCouponPromo($idpromo);
- 
-            
  
             }
  
             $this->view->assign(array(
  
                 'mod' => $mod,
- 
                 'utente' => $utente,
- 
                 'idutente'=>$idutente,
- 
                 'couponutente' => $couponutente,
- 
                 'promozioni' => $promozioni,
- 
                 'idpromo'=> $idpromo,
- 
-                        'couponpromo'=>$couponpromo,)
+                'couponpromo'=>$couponpromo,)
  
                 );
  

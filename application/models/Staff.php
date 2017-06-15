@@ -46,4 +46,9 @@ class Application_Model_Staff extends App_Model_Abstract
         return $this->getResource('Promozione')->cancellaPromo($idpromo);
 
     }
+     
+    public function modficaUtente($values)
+    {
+        return $this->getResource('Utente')->modificaUtente($values);
+    }
 }

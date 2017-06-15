@@ -67,7 +67,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 			array('Extension', true, array('jpg', 'gif'))),
 			));
 
-		$this->addElement('text', 'descrizione', array(
+		$this->addElement('text', 'descrizione_prom', array(
             'label' => 'Descrizione Breve',
             'required' => true,
             'filters' => array('StringTrim'),

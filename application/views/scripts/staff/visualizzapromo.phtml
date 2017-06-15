@@ -10,11 +10,11 @@
               . "<td>".$prodotto->data_inizio."</td>"
               . "<td>".$prodotto->data_fine."</td>"
               . "<td>".$prodotto->prodotto."</td>"
-              . "<td>".$prodotto->catId."</td>"
-              . "<td>".$prodotto->descrizione."</td>"
+              . "<td>".$prodotto->name."</td>"
+              . "<td>".$prodotto->descrizione_prom."</td>"
               . "<td>".$prodotto->immagine."</td>"
-              . "<td>".$prodotto->P_Iva."</td>"
-              . "<td>".$prodotto->prezzo_unitario_prod."</td>"
+              . "<td>".$prodotto->nome."</td>"
+              . "<td>".$prodotto->prezzo_unitario_prod." € </td>"
               . "<td><a href=" . $this->url(array('controller' => 'staff',
                                                         'action' => 'modificapromo',
                                                         'codprod'=> $prodotto->cod_promozione), 

@@ -42,7 +42,7 @@ class Application_Resource_Coupon extends Zend_Db_Table_Abstract
     public function getCouponUtente($idutente){ 
      
     $select = $this->select() 
-                    ->from('coupon', array('cod_promozione' => 'cod_promozione')) 
+                    ->from('coupon') 
                     ->where('coupon.ID_utente IN (?)', $idutente) 
                     ->join('promozione', 'coupon.cod_promozione = promozione.cod_promozione') 
                     ->setIntegrityCheck(false); 
