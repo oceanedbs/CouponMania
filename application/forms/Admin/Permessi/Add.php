@@ -12,24 +12,22 @@ class Application_Form_Admin_Permessi_Add extends Zend_Form
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
 
-		
-                
-                
-                
               
+              
+		$page=null;
 		$aziende = array();
-                //$azienda=$this->_adminModel->getAziendeStaff($idstaff);
-		
-		foreach ($aziende as $azi) {
-			$aziende[$az ->P_Iva] = $azi->nome;
+		$azi = $this->_adminModel->getAziende($page);
+		foreach ($azi as $az) {
+			$aziende[$az -> P_Iva] = $az->nome;
 		}
 		$this->addElement('select', 'P_Iva', array(
-            'label' => 'Assegna azienda',
-            'multiOptions' => $aziende,
+                    'label' => 'Assegna azienda',
+                    'multiOptions' => $aziende,
 		));
                 
                 $this->addElement('submit', 'add', array(
                        'label' => 'Aggiungi Permesso',
 		       ));
+		       
         }
 }

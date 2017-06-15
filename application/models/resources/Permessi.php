@@ -5,12 +5,29 @@ class Application_Resource_Permessi extends Zend_Db_Table_Abstract
     protected $_name    = 'permessi';
     protected $_primary  = 'ID_utente';
     protected $_rowClass = 'Application_Resource_Permessi_Item';
-    protected $_authService;
+   // protected $_authService;
 
     
-    public function insertPermesso($info)
+    public function savepermesso($idstaff, $values)
     {
-    	$this->insert($info);
+    	$select=$this->select()
+                    ->where('ID_utente IN (?)', $idstaff)
+                    ->where('P_Iva IN (?)',$values);
+    	
+    	 $result=$this->fetchRow($select);
+    	 
+    	  if(!empty($result)){
+    	  
+            return 0;
+            }
+            else {
+            
+            $data=array('ID_utente' => $idstaff,
+                         'P_Iva' => $values,
+                        );
+    	
+            $this->insert($data);
+    	}
     }
     
     public function modificapermessi($values,$idper)

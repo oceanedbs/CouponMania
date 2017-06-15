@@ -54,16 +54,7 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
        return $this->delete($where);
         
     }
-    
-    public function getAziendeStaff($idstaff)
-    {
-        $select=$this->select()
-                ->from('aziende', 'nome')                                 
-                 ->join('permessi', 'aziende.P_Iva=permessi.P_Iva')
-                 ->where('permessi.ID_utente != ?',$idstaff)
-                 ->setIntegrityCheck(false);
-         return $this->fetchAll($select);
-    }
+  
     
     
     

@@ -3,7 +3,7 @@
  <div>
  <?php 
  echo '<table class="tabella">';
-	echo "<tr><th>ID Utente</th><th>Nome</th><th>Cognome</th><th>Data Nascita</th><th>Telefono</th><th>Mail</th><th>Ruolo</th><th>Citta</th><th>Username</th><th>Password</th><th>Modifica</th><th>Cancella</th></tr>";
+	echo "<tr><th>Nome</th><th>Cancella</th></tr>";
   foreach ($this->permessi as $permessi) {
       echo "<tr><td>".$permessi->nome."</td>"                       
               . "<td><a href=" . $this->url(array('controller' => 'admin',
@@ -11,11 +11,16 @@
                                                         'idazienda'=> $permessi->P_Iva), 
                                                         'default', true) ."><img class='icon' src='".$this->baseUrl('images/cancella.png')."' alt='Cancella'></a></td></tr>";
   }
-  echo "<td><a href=" . $this->url(array('controller' => 'admin',
+  echo '</table>
+  
+  <br>
+  <br>';
+  
+  echo "<a href=" . $this->url(array('controller' => 'admin',
                                                         'action' => 'newstaffpermessi',
                                                         'idstaff'=> $permessi->ID_utente), 
-                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Aggiungi Azienda'></a></td>";
- echo '</table>';
+                                                        'default', true) ."><img class='icon' src='".$this->baseUrl('images/modifica.png')."' alt='Aggiungi Azienda'></a>";
+ 
  ?>
      
  </div>

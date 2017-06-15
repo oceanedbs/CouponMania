@@ -336,7 +336,10 @@ public function newstaffpermessiAction()
 	{}
         
         public function addpermessiAction()
+        
 	{
+                               
+		$idstaff=$this->_getParam('idstaff', null);
 		if (!$this->getRequest()->isPost()) {
 			$this->_helper->redirector('index');
 		}
@@ -345,25 +348,26 @@ public function newstaffpermessiAction()
 			return $this->render('newstaffpermessi');
 		}
 		$values = $form->getValues();
-		$this->_adminModel->savePermesso($values);
-		$this->_helper->redirector('visualizzapermessi');
+		$this->_adminModel->savepermesso($idstaff, $values);
+		$this->_helper->redirector('index');
+		
 	}
         
         
         private function getPermessiForm()
 	{
+                $idstaff=$this->_getParam('idstaff', null);
 		$urlHelper = $this->_helper->getHelper('url');
 		$this->_form6 = new Application_Form_Admin_Permessi_Add();
 		$this->_form6->setAction($urlHelper->url(array(
 				'controller' => 'admin',
-				'action' => 'addpermessi'),
+				'action' => 'addpermessi',
+				'idstaff'=> $idstaff),
 				'default'
 				));
-                $idstaff=$this->_getParam('idstaff',null);
-                $aziende=$this->_adminModel->getAziendeStaff($idstaff)->toArray();
-                print_f($aziende);die;
-                               
-		return $this->_form6->populate($aziende);
+				
+                return $this->_form6;
+                
 	}
         
       
@@ -386,10 +390,12 @@ public function newstaffpermessiAction()
 
     //visualizzazione permessi
     public function visualizzapermessiAction(){
-       $idutente=$this->_getParam('idstaff',null); 
-    $permessi=$this->_adminModel->getInfoPermessi($idutente)->current()->toArray();
     
-    $this->view->assign(array(
+        $idutente=$this->_getParam('idstaff',null); 
+        $permessi=$this->_adminModel->getInfoPermessi($idutente);
+        //->current()->toArray();
+    
+        $this->view->assign(array(
             		'permessi' => $permessi,
                         )
             );

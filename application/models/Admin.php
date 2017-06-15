@@ -151,8 +151,8 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Faq')->insertfaq($values);
     }
     
-    public function savepermesso($values) {
-        return $this->getResource('Permessi')->insertpermesso($values);
+    public function savepermesso($idstaff, $values) {
+        return $this->getResource('Permessi')->savepermesso($idstaff, $values);
     }
     
     public function modificapermessi($values,$idper){
@@ -161,7 +161,7 @@ class Application_Model_Admin extends App_Model_Abstract
     
     public function getInfoPermessi($idutente)
     {
-        return $this->getResource('Faq')->getInfoPermessi($idutente);
+        return $this->getResource('Permessi')->getInfoPermessi($idutente);
     }
     
      public function cancellaPermessi($idpermessi) {
