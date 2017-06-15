@@ -47,9 +47,17 @@
     <?php elseif($this->mod == 3) :?>
     
     <h2>Statistiche promozione selezionata </h2>
-        
-        <br>
-        <h3>Questo coupon è stato stampato <?= $this->couponpromo; ?> volta ! <h3> 
+    
+        <?php foreach($this->couponpromo as $couponpromo) :?>
+            <br>
+            <?php if($couponpromo->CouponPromo == 0) :?>
+                <h3>Il coupon non è stato mai stampato </h3>
+            <?php elseif($couponpromo->CouponPromo == 1) :?>
+                <h3>Questo coupon è stato stampato <?= $couponpromo->CouponPromo; ?> volta ! <h3> 
+            <?php else :?>
+                <h3>Questo coupon è stato stampato <?= $couponpromo->CouponPromo; ?> volte ! <h3> 
+            <?php endif  ?>
+        <?php endforeach ?>
         
 
     <?php endif ?>
