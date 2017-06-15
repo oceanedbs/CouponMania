@@ -20,7 +20,6 @@ class Application_Model_Staff extends App_Model_Abstract
     public function getProds($paged)
     {
        return $this->getResource('Promozione')->getProds($paged);
-       
     } 
     public function getInfoprodotto($idprodotto){
         return $this->getResource('Promozione')->getInfoprodotto($idprodotto);

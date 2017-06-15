@@ -26,6 +26,13 @@
   }
  echo '</table>';
  ?>
+ 
+
+  <?php if($this->prodotto instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->prodotto,'Sliding','staff/_paginator.phtml');
+            } 
+            
+    ?>
      
  </div>
   

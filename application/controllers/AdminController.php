@@ -173,8 +173,8 @@ private function getModificaAziendeForm()
 
     //visualizzazione promozioni
     public function visualizzaaziendeAction(){
-    $page=null;
-    $aziende=$this->_adminModel->getAziende($page);
+    $paged=$this->_getParam('paged', 1);
+    $aziende=$this->_adminModel->getAziende($paged);
     
     $this->view->assign(array(
             		'azienda' => $aziende,
@@ -227,8 +227,8 @@ private function getModificaUtenteForm()
 
     //visualizzazione utenti
     public function visualizzautentiAction(){
-    $page=null;
-    $utenti=$this->_adminModel->getUtentiById($page);
+    $paged=$this->_getParam('paged', 1);
+    $utenti=$this->_adminModel->getUtentiById($paged);
     
     $this->view->assign(array(
             		'utente' => $utenti,

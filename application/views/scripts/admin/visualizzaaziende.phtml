@@ -22,6 +22,12 @@
   }
  echo '</table>';
  ?>
+ 
+  <?php if($this->azienda instanceof Zend_Paginator) {
+                            echo $this->paginationControl($this->azienda,'Sliding','admin/_paginatoraziende.phtml');
+            } 
+            
+    ?>
      
  </div>
  

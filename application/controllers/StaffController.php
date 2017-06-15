@@ -100,7 +100,7 @@ class StaffController extends Zend_Controller_Action
 		$this->_staffModel->modificaPromo($values,$this->getParam('codprod'));
 		$this->_helper->redirector('visualizzapromo');
     }
-private function getModificaPromoForm()
+    private function getModificaPromoForm()
 	{
 		$urlHelper = $this->_helper->getHelper('url');
 		$this->_update = new Application_Form_Staff_Product_Modificapromo();
@@ -115,20 +115,18 @@ private function getModificaPromoForm()
              
 	}
 
- public function cancellaAction(){
+    public function cancellaAction(){
      $this->_staffModel->cancellaPromo($this->getParam('codprod'));
      $this->_helper->redirector('visualizzapromo');
      
  }
 
-
-    
     
 
     //visualizzazione promozioni
     public function visualizzapromoAction(){
-    $page=null;
-    $prodotti=$this->_staffModel->getProds($page);
+    $paged=$this->getParam('page', 1);
+    $prodotti=$this->_staffModel->getProds($paged);
     
     $this->view->assign(array(
             		'prodotto' => $prodotti,
