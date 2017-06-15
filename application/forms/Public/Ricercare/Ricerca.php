@@ -1,11 +1,11 @@
 <?php
 class Application_Form_Public_Ricercare_Ricerca extends Zend_Form
 {
-	protected $_catalogModel;
+	protected $_publicModel;
 
 	public function init()
 	{
-		$this->_catalogModel = new Application_Model_Catalog();
+		$this->_publicModel = new Application_Model_Public();
 		$this->setMethod('post');
 		$this->setName('ricerca');
 		$this->setAction('');
@@ -14,7 +14,7 @@ class Application_Form_Public_Ricercare_Ricerca extends Zend_Form
                 $paged="";
 		$categories = array();
                 $categories[0]= '-';
-		$cats = $this->_catalogModel->getTopCats($paged);
+		$cats = $this->_publicModel->getTopCats($paged);
 		foreach ($cats as $cat) {
 			$categories[$cat -> catId] = $cat->name;
 		}		

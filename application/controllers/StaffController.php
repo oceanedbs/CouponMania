@@ -6,7 +6,7 @@ class StaffController extends Zend_Controller_Action
 	
         protected $_authService;
         protected $_update;
-        protected $_publicModel;
+        protected $_utenteModel;
         protected $_promo;
         protected $_profilo;
         protected $_updateprofilo;
@@ -26,7 +26,7 @@ class StaffController extends Zend_Controller_Action
                 if($this->hasParam('codprod'))
                 $this->view->modificapromoForm=$this->getModificaPromoForm();                
                 $this->_authService = new Application_Service_Auth();       
-                $this->_publicModel = new Application_Model_Public();
+                $this->_utenteModel = new Application_Model_Public();
 	}
 
 	public function indexAction()

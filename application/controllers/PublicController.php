@@ -2,8 +2,8 @@
 
 class PublicController extends Zend_Controller_Action
 {
-	protected $_catalogModel;
-        protected $_publicModel;
+	protected $_publicModel;
+        protected $_utenteModel;
 	protected $_authService;
         protected $_form1;
         protected $_form2;
@@ -16,8 +16,8 @@ class PublicController extends Zend_Controller_Action
         $this->view->loginForm = $this->getLoginForm();
         $this->view->registraForm = $this->getRegistraForm();
         $this->_helper->layout->setLayout('main');
-        $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
+        $this->_utenteModel = new Application_Model_Utente();
         $this->_authService = new Application_Service_Auth();
     }
 
@@ -27,7 +27,7 @@ class PublicController extends Zend_Controller_Action
     	
         $paged = $this->_getParam('page', 1);
         
-    	$topCats=$this->_catalogModel->getTopCats($paged);
+    	$topCats=$this->_publicModel->getTopCats($paged);
     	
 
     	
@@ -47,7 +47,7 @@ class PublicController extends Zend_Controller_Action
     
         $paged = $this->_getParam('page', 1);
         $cat = $this->_getParam('selTopCat', null);
-        $topCats=$this->_catalogModel->getTopCats($paged);
+        $topCats=$this->_publicModel->getTopCats($paged);
         $idprodotto = $this->_getParam('idprodotto', null);
         $infoprodotto=array();
         $prods1=array();
@@ -55,22 +55,22 @@ class PublicController extends Zend_Controller_Action
 
         if (!is_null($cat)) {
 			
-			$prods1=$this->_catalogModel->getProdsByCat($cat, $paged);
-			$prods2= $this->_catalogModel->getProdsByOfferte($cat, $paged);
+			$prods1=$this->_publicModel->getProdsByCat($cat, $paged);
+			$prods2= $this->_publicModel->getProdsByOfferte($cat, $paged);
          }else {
                         //estrare tutti i prodotti
-                        $prods1=$this->_catalogModel->getProds($paged);			   	
+                        $prods1=$this->_publicModel->getProds($paged);			   	
         }
 
         if (!is_null($idprodotto)) {
 			
-            $infoprodotto=$this->_catalogModel->getInfoprodotto($idprodotto);
+            $infoprodotto=$this->_publicModel->getInfoprodotto($idprodotto);
 			
          }
     
-        $topCats=$this->_catalogModel->getTopCats($paged);
+        $topCats=$this->_publicModel->getTopCats($paged);
         
-        $topOfferte=$this -> _catalogModel->getTopOfferte($paged);
+        $topOfferte=$this -> _publicModel->getTopOfferte($paged);
 
   
              
@@ -95,12 +95,12 @@ class PublicController extends Zend_Controller_Action
         $promoazienda='';
 
         
-        $aziende=$this->_catalogModel->getAziende($paged);
+        $aziende=$this->_publicModel->getAziende($paged);
         
         if (!is_null($idazienda)) {
 			
-            $infoazienda=$this->_catalogModel->getInfoAzienda($idazienda);
-            $promoazienda=$this->_catalogModel->getPromobyAzienda($idazienda);
+            $infoazienda=$this->_publicModel->getInfoAzienda($idazienda);
+            $promoazienda=$this->_publicModel->getPromobyAzienda($idazienda);
 			
          }
          
@@ -181,27 +181,27 @@ class PublicController extends Zend_Controller_Action
                     if($form->getValue('catId') === '0')
                     {
                         $paged = $this->_getParam('page', 1);
-                        $risultati=$this->_catalogModel->getProds($paged);
+                        $risultati=$this->_publicModel->getProds($paged);
                     }
                     else{
 
                         $paged = $this->_getParam('page', 1);
                         $catId = $form->getValue('catId');
-                        $risultati=$this->_catalogModel->getProdsByCat($catId, $paged);
+                        $risultati=$this->_publicModel->getProdsByCat($catId, $paged);
                     }
             }else{
                 if($form->getValue('catId')=== '0')
                     {
                         $paged = $this->_getParam('page', 1);
                         $parole = $form->getValue('paroleChiave');
-                        $risultati=$this->_catalogModel->getRisultatiRicerca($parole, $paged);
+                        $risultati=$this->_publicModel->getRisultatiRicerca($parole, $paged);
                     }
                 else{
                 
                         $paged = $this->_getParam('page', 1);
                         $parole = $form->getValue('paroleChiave');
                         $catId = $form->getValue('catId');
-                        $risultati = $this->_catalogModel->getRisultatiRicerca2($catId, $parole, $paged);
+                        $risultati = $this->_publicModel->getRisultatiRicerca2($catId, $parole, $paged);
                     
                 }
             }
@@ -232,7 +232,7 @@ class PublicController extends Zend_Controller_Action
 			return $this->render('registra');
  		}
 		$data = $form->getValues();
-		$this->_publicModel->saveUtente($data);
+		$this->_utenteModel->saveUtente($data);
 		$this->_helper->redirector('login', 'public');
 	}
 	
@@ -261,6 +261,15 @@ class PublicController extends Zend_Controller_Action
 		return $this->_form;
     
     }
+     public function faqAction() {
+         
+        $faq=$this->_publicModel->getFaq();
+        
+        $this->view->assign(array(
+            		'faq' => $faq,)
+            		);
+    }
+    
 
     
 }

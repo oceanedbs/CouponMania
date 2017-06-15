@@ -15,6 +15,7 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract
     public function getFaq()
     {
         $select = $this->select();
+      
                
         return $this->fetchAll($select);       
     } 
@@ -25,8 +26,9 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract
         $this->update($values,$where);
     }
      public function getInfoFaq($idfaq){
-    
+          
         return $this->find($idfaq);
+       
      }
      public function cancellafaq($idfaq)
      {  $where="id_faq= $idfaq";
