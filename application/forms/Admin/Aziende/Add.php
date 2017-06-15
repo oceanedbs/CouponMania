@@ -1,11 +1,9 @@
 <?php
 class Application_Form_Admin_Aziende_Add extends Zend_Form
 {
-	protected $_adminModel;
 
 	public function init()
 	{
-		$this->_adminModel = new Application_Model_Admin();
 		$this->setMethod('post');
 		$this->setName('addaziende');
 		$this->setAction('');
@@ -27,17 +25,6 @@ class Application_Form_Admin_Aziende_Add extends Zend_Form
             'validators' => array(array('StringLength',true, array(1,25))),
 		));
 		
-		$page='';
-                $tipologia = array();
-		$tipo = $this->_adminModel->getTopCats($page);
-		foreach ($tipo as $tipo) {
-			$tipologia[$tipo -> catId] = $tipo->name;
-		}
-		$this->addElement('select', 'tipologia', array(
-            'label' => 'Categoria',
-            'required' => true,
-			'multiOptions' => $tipologia,
-		));
                 
                 $this->addElement('file', 'logo', array(
 			'label' => 'Logo',

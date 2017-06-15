@@ -13,12 +13,14 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 	// Estrae i prodotti della categoria $categoryId, eventualmente paginati ed ordinati
    public function getProdsByCat($categoryId, $paged=null, $order=null)
     {
+         $date = new Zend_Db_Expr('CURDATE()');
          $select = $this->select()
                         ->from('promozione')
                        ->where('promozione.tipo_prom IN(?)', $categoryId)
                        ->join('category', 'promozione.catId = category.catId')
                         ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
                         ->where('category.parId IN(?)', 1)
+                        ->where('promozione.data_fine > ?', $date)
                         ->setIntegrityCheck(false);
         if (true === is_array($order)) {
             $select->order($order);
@@ -28,12 +30,14 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     } 
     
     public function getProdsByOfferte($cat, $paged, $order){
+     $date = new Zend_Db_Expr('CURDATE()');
         $select = $this->select()
                     ->from('promozione')
                      ->where('promozione.catId IN(?)', $cat)
                      ->join('category', 'promozione.catId = category.catId')
                     ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
                     ->where('category.parId IN(?)', 1)
+                    ->where('promozione.data_fine > ?', $date)
                     ->setIntegrityCheck(false);
         if (true === is_array($order)) {
             $select->order($order);
@@ -52,10 +56,12 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
 	// Estrae tutti i prodotti
     public function getProds($paged)
     {
+     $date = new Zend_Db_Expr('CURDATE()');
         $select = $this->select()
                         ->from('promozione')
                         ->join('category', 'promozione.tipo_prom = category.catId')
                         ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
+                        ->where('promozione.data_fine > ?', $date)
                         ->setIntegrityCheck(false);
         
         if (null !== $paged) {
@@ -72,12 +78,14 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     
     public function getPromobyAzienda($idazienda)
     {
+     $date = new Zend_Db_Expr('CURDATE()');
         $select = $this->select()
                         ->from('promozione')
                         ->where('promozione.P_Iva IN(?)', $idazienda)
                         ->join('category', 'promozione.catId = category.catId')
                         ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
                         ->where('category.parId IN(?)', 1)
+                        ->where('promozione.data_fine > ?', $date)
                         ->setIntegrityCheck(false);
         return $this->fetchAll($select);
     }
@@ -115,13 +123,17 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     public function  getRisultatiRicerca($parole, $paged)
     {
     
+        $date = new Zend_Db_Expr('CURDATE()');
+
         $select=$this->select()
                     ->from('promozione')
-                    ->where('promozione.prodotto IN(?)',$parole) 
+                    ->where('promozione.prodotto IN(?)',$parole)
+ 
                     ->orWhere('promozione.descrizione_prom LIKE ?', "%$parole%")
                     ->join('category', 'promozione.catId = category.catId')
                     ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
                     ->where('category.parId IN(?)', 1)
+                    ->where('promozione.data_fine > ?', $date)
                     ->setIntegrityCheck(false);
         return $this->fetchAll($select);
         
@@ -136,6 +148,9 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     
      public function  getRisultatiRicerca2($catId, $parole, $paged)
     {
+        
+        $date = new Zend_Db_Expr('CURDATE()');
+
     
         $select=$this->select()
                     ->from('promozione')
@@ -145,6 +160,7 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
                     ->join('category', 'promozione.catId = category.catId')
                     ->join('aziende', 'promozione.P_Iva = aziende.P_Iva')
                     ->where('category.parId IN(?)', 1)
+                    ->where('promozione.data_fine > ?', $date)
                     ->setIntegrityCheck(false);
                    
         return $this->fetchAll($select);

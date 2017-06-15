@@ -129,8 +129,7 @@ class StaffController extends Zend_Controller_Action
     $prodotti=$this->_staffModel->getProds($paged);
     
     $this->view->assign(array(
-            		'prodotto' => $prodotti,
-                        )
+            		'prodotto' => $prodotti,)
             );
     
 		
