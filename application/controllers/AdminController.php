@@ -15,8 +15,6 @@ class AdminController extends Zend_Controller_Action
         protected $_form8;
         protected $_form9;
 
-        
-        
 
         protected $_updateuser;
 

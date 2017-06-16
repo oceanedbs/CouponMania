@@ -51,7 +51,14 @@ class Application_Resource_Promozione extends Zend_Db_Table_Abstract
     
     public function insertProduct($info)
     {
-    	$this->insert($info);
+        $date = new Zend_Db_Expr('CURDATE()');
+        if(($info->data_inizio >= $date) & ($info->data_fine > $info->data_inizio) {
+    
+            $this->insert($info);
+        }
+        else {
+            return 1;
+            }
     }
 
 
