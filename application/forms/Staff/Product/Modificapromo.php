@@ -108,6 +108,19 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
         $this->data_inizio->setValue($this->prodotto->data_inizio);
         $this->data_fine->setValue($this->prodotto->data_fine);
          */
-         
+         $path=APPLICATION_PATH;
+
+$path.= "/services/it/Zend_Validate.php";
+
+$translator = new Zend_Translate(
+
+    array(
+        'adapter' => 'array',
+        'content' => $path,
+        'locale'  => "it_IT",
+        'scan' => Zend_Translate::LOCALE_DIRECTORY
+    )
+);
+Zend_Validate_Abstract::setDefaultTranslator($translator);
 }
 }

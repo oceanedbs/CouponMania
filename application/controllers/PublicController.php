@@ -263,8 +263,8 @@ class PublicController extends Zend_Controller_Action
     }
 
     public function faqAction(){
-       
-     $faq=$this->_publicModel->getFaq(); 
+      $page=1; 
+     $faq=$this->_publicModel->getFaq($page); 
      
      $this->view->assign(array(
             		'faq' => $faq,));

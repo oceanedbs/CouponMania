@@ -112,5 +112,19 @@ class Application_Form_Public_Registrare_Registra extends App_Form_Abstract
         		array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
+        $path=APPLICATION_PATH;
+
+$path.= "/services/it/Zend_Validate.php";
+
+$translator = new Zend_Translate(
+
+    array(
+        'adapter' => 'array',
+        'content' => $path,
+        'locale'  => "it_IT",
+        'scan' => Zend_Translate::LOCALE_DIRECTORY
+    )
+);
+Zend_Validate_Abstract::setDefaultTranslator($translator);
     }
 }

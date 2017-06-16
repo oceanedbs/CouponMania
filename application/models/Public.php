@@ -74,8 +74,8 @@ class Application_Model_Public extends App_Model_Abstract
         return $this->getResource('Promozione')->getRisultatiRicerca2($catId,$parole, $paged);
     }
     
-     public function getFaq() {
-        return $this->getResource('Faq')->getFaq();
+     public function getFaq($paged) {
+        return $this->getResource('Faq')->getFaq(null);
     }
     
 }
