@@ -126,7 +126,10 @@ class Application_Form_Staff_Profile_Cambiareprofilo extends App_Form_Abstract
         $this->cognome->setValue($info->cognome);
         $this->sesso->setValue('f');
 
-        $this->data_nascita->setValue($info->data_nascita);
+        $giorno = substr($info->data_nascita, 8, 2);
+        $mese = substr($info->data_nascita, 5, 2);
+        $anno = substr($info->data_nascita, 0, 4);
+        $this->data_nascita->setValue("$giorno-$mese-$anno");
         $this->telefono->setValue($info->telefono);
         $this->email->setValue($info->email);
         $this->citta->setValue($info->citta);
