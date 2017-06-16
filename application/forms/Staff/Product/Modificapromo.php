@@ -118,7 +118,8 @@ $translator = new Zend_Translate(
         'content' => $path,
         'locale'  => "it_IT",
         'scan' => Zend_Translate::LOCALE_DIRECTORY
-    )
-);
-Zend_Validate_Abstract::setDefaultTranslator($translator);
+        )
+    );
+    Zend_Validate_Abstract::setDefaultTranslator($translator);
+}
 }

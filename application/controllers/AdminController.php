@@ -124,17 +124,12 @@ class AdminController extends Zend_Controller_Action
 		if (!$form->isValid($_POST)) {
 			return $this->render('newaziende');
 		}
-		$value = $form->getValue('P_Iva');
-		$reuslt= $this->_adminModel->getAziendePIva($value);
 		
-		if($result==0){
-                            $this->_helper->redirector('error1');
-                }else{
-                                    $data=$form->getValues();
-                                    $this->_adminModel->saveAziende($data);
-                                    $this->_helper->redirector('visualizzaaziende');
+                    $data=$form->getValues();
+                    $this->_adminModel->saveAziende($data);
+                    $this->_helper->redirector('visualizzaaziende');
 
-                }
+                
 	}
         
         
@@ -652,7 +647,7 @@ public function newstaffpermessiAction()
         private function getCambiareprofiloForm(){
     
                 $urlHelper = $this->_helper->getHelper('url');
-		$this->_form9 = new Application_Form_User_Cambiareprofilo();
+		$this->_form9 = new Application_Form_Admin_Profilo_Cambiareprofilo();
     		$this->_form9->setAction($urlHelper->url(array(
 			'controller' => 'admin',
 			'action' => 'cambia'),

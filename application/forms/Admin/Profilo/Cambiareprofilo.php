@@ -1,9 +1,9 @@
 <?php
 
-class Application_Form_Admin_Cambiareprofilo extends App_Form_Abstract
+class Application_Form_Admin_Profilo_Cambiareprofilo extends App_Form_Abstract
 {
 
-        protected $_utenteModel;
+        protected $_adminModel;
 
             
 	public function init()
@@ -11,11 +11,11 @@ class Application_Form_Admin_Cambiareprofilo extends App_Form_Abstract
         $this->setMethod('post');
         $this->setName('cambiareprofilo');
         $this->setAction('');
-        $this->_utenteModel = new Application_Model_Utente();
+        $this->_adminModel = new Application_Model_Admin();
 
         
         
-        $info = $this->_utenteModel->getInfoUtente();
+        $info = $this->_adminModel->getInfoUtente();
 
     	 $this->addElement('text', 'nome_utente', array(
             'filters'    => array('StringTrim'),
