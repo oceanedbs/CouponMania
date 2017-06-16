@@ -42,7 +42,7 @@
             ?>
 
 
-        <?php elseif( !null == $this->idazienda) :?>
+        <?php elseif($this->idazienda) :?>
                     <?php foreach($this->infoazienda as $infoazienda) :?>
                         <h3>  Nome : <?= $infoazienda->nome ; ?></h3><br>
                         Città :  <?=  $infoazienda->citta  ; ?> <br>

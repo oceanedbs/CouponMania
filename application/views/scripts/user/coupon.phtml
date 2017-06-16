@@ -20,7 +20,7 @@
                         Data Fine : <?= $infoprodotto->data_fine ; ?><br>
                         Descrizione : <?= $infoprodotto->descrizione_prom ; ?><br>
                         Prezzo : <?= $infoprodotto->prezzo_unitario_prod ; ?> € <br>
-                        Utente :  <?php echo $this->authInfo('nome') . ' ' . $this->authInfo('cognome'); ?><br>
+                        Utente :  <?php echo $this->authInfo('nome_utente') . ' ' . $this->authInfo('cognome'); ?><br>
                         Codice : <?= $infoprodotto->cod_promozione; ?> <?= $this->authInfo('ID_utente') ?><br>
                     </div>
                     

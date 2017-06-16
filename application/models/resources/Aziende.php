@@ -37,20 +37,6 @@ class Application_Resource_Aziende extends Zend_Db_Table_Abstract
             return $this->insert($info);
     }
     
-    public function getAziendePIva($value)
-    { 
-        $select=$this->select()
-                    ->where('P_Iva = ?', $value->P_Iva);
-                    
-        if(empty($this->fetchRow($select))){
-            return 1;
-            
-        }
-        else {
-            return 0;
-        
-        }
-    }
     
      public function modificaAziende($values,$idazienda)
     {

@@ -20,6 +20,7 @@ class Application_Model_Admin extends App_Model_Abstract
     {
     	return $this->getResource('Aziende')->insertAziende($info);
     }
+
    
     public function getUserByName($info)
     {
