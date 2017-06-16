@@ -5,11 +5,18 @@
  
     <?php foreach ($this->faq as $faq) :?>
     
-    <h4> <?php echo $faq->domanda ?></h4>
-    <div>
+    <h4 class="domanda" id="<?php echo $faq->id_faq; ?>"> <?php echo $faq->domanda ?></h4>
+    <div class="risposta-faq" id="risposta<?php echo $faq->id_faq; ?>" style="display:none">
       <?php echo $faq->risposta ?>  
     </div>
     
     <?php endforeach;?>
     <br>
 </section>
+
+<script>
+    $(".domanda").click(function (event){
+        var id = event.target.id;
+        $("#risposta"+id).toggle();
+    })
+</script>
