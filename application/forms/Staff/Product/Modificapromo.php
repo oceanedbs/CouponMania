@@ -1,101 +1,99 @@
 <?php
 class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 {
-	protected $_staffModel;
+    protected $_staffModel;
 
-	public function init()
-	{
-		
-		$this->setMethod('post');
-		$this->setName('modificapromo');
-		$this->setAction('');
-		$this->setAttrib('enctype', 'multipart/form-data');
-                $this->_staffModel = new Application_Model_Staff();
-                            
-		$this->addElement('text', 'prodotto', array(
+    public function init()
+    {
+
+        $this->setMethod('post');
+        $this->setName('modificapromo');
+        $this->setAction('');
+        $this->setAttrib('enctype', 'multipart/form-data');
+        $this->_staffModel = new Application_Model_Staff();
+
+        $this->addElement('text', 'prodotto', array(
             'label' => 'Nome',
             'filters' => array('StringTrim'),
             'required' => true,
-        		
-            'validators' => array(array('StringLength',true, array(1,25))),
-		));
-                $page=null;
-		$categories = array();
-		$cats = $this->_staffModel->getTopCats($page);
-		foreach ($cats as $cat) {
-			$categories[$cat -> catId] = $cat->name;
-		}
-		$this->addElement('select', 'tipo_prom', array(
+
+            'validators' => array(array('StringLength', true, array(1, 25))),
+        ));
+        $page = null;
+        $categories = array();
+        $cats = $this->_staffModel->getTopCats($page);
+        foreach ($cats as $cat) {
+            $categories[$cat->catId] = $cat->name;
+        }
+        $this->addElement('select', 'tipo_prom', array(
             'label' => 'Categoria',
             'required' => true,
-			'multiOptions' => $categories,
-		));
-                $page='';
-		$categories = array();
-		$cats = $this->_staffModel->getTopOfferte($page);
-		foreach ($cats as $cat) {
-			$categories[$cat -> catId] = $cat->name;
-		}
-		$this->addElement('select', 'catId', array(
+            'multiOptions' => $categories,
+        ));
+        $page = '';
+        $categories = array();
+        $cats = $this->_staffModel->getTopOfferte($page);
+        foreach ($cats as $cat) {
+            $categories[$cat->catId] = $cat->name;
+        }
+        $this->addElement('select', 'catId', array(
             'label' => 'Tipo offerta',
             'multiOptions' => $categories,
-		));
-                
-                $page='';
-		$aziende = array();
-		$aznd = $this->_staffModel->getAziendeStaff( $page);
-		foreach ($aznd as $azi) {
-			$aziende[$azi -> P_Iva] = $azi->nome;
-		}
-		$this->addElement('select', 'P_Iva', array(
+        ));
+
+        $page = '';
+        $aziende = array();
+        $aznd = $this->_staffModel->getAziendeStaff($page);
+        foreach ($aznd as $azi) {
+            $aziende[$azi->P_Iva] = $azi->nome;
+        }
+        $this->addElement('select', 'P_Iva', array(
             'label' => 'Azienda',
             'required' => true,
-			'multiOptions' => $aziende,
-		));
-		$this->addElement('file', 'immagine', array(
-			'label' => 'Immagine',
-			'destination' => APPLICATION_PATH . '/../public/images/products',
-			'validators' => array( 
-			//array('Count', false, 1),
-			array('Size', false, 9000000),
-			array('Extension', true, array('jpg', 'gif'))),
-			));
+            'multiOptions' => $aziende,
+        ));
+        $this->addElement('file', 'immagine', array(
+            'label' => 'Immagine',
+            'destination' => APPLICATION_PATH . '/../public/images/products',
+            'validators' => array(
+                //array('Count', false, 1),
+                array('Size', false, 9000000),
+                array('Extension', true, array('jpg', 'gif'))),
+        ));
 
-		$this->addElement('text', 'descrizione_prom', array(
+        $this->addElement('text', 'descrizione_prom', array(
             'label' => 'Descrizione Breve',
             'required' => true,
             'filters' => array('StringTrim'),
-            'validators' => array(array('StringLength',true, array(1,30))),
-		));
+            'validators' => array(array('StringLength', true, array(1, 30))),
+        ));
 
-		$this->addElement('text', 'prezzo_unitario_prod', array(
+        $this->addElement('text', 'prezzo_unitario_prod', array(
             'label' => 'Prezzo',
             'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'validators' => array(array('Float', true, array('locale' => 'en_US'))),
-		));
+        ));
 
-		
-                
 
-		$this->addElement('text', 'data_inizio', array(
+        $this->addElement('text', 'data_inizio', array(
             'label' => 'Data inizio (aaaa-mm-gg)',
-                       
-            'required' => true,
-            'validators' => array(array('Date', true, array('format'=>'Y F j'),),)
-		));
-                
-                $this->addElement('text', 'data_fine', array(
-            'label' => 'Data fine (aaaa-mm-gg)',            
-            'required' => true,
-            'validators' => array(array('Date', true, array('format'=>'Y F j'),),)
-		));
-		
 
-		$this->addElement('submit', 'modifica', array(
+            'required' => true,
+            'validators' => array(array('Date', true, array('format' => 'Y F j'),),)
+        ));
+
+        $this->addElement('text', 'data_fine', array(
+            'label' => 'Data fine (aaaa-mm-gg)',
+            'required' => true,
+            'validators' => array(array('Date', true, array('format' => 'Y F j'),),)
+        ));
+
+
+        $this->addElement('submit', 'modifica', array(
             'label' => 'Invia',
-		));
-	
+        ));
+
         /*
         $this->prodotto->setValue($this->prodotto->prodotto);
         $this->tipo_prom->setValue($this->prodotto->tipo_prom);
@@ -107,19 +105,19 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
         $this->data_inizio->setValue($this->prodotto->data_inizio);
         $this->data_fine->setValue($this->prodotto->data_fine);
          */
-         $path=APPLICATION_PATH;
+        $path = APPLICATION_PATH;
 
-$path.= "/services/it/Zend_Validate.php";
+        $path .= "/services/it/Zend_Validate.php";
 
-$translator = new Zend_Translate(
+        $translator = new Zend_Translate(
 
-    array(
-        'adapter' => 'array',
-        'content' => $path,
-        'locale'  => "it_IT",
-        'scan' => Zend_Translate::LOCALE_DIRECTORY
-        )
-    );
-    Zend_Validate_Abstract::setDefaultTranslator($translator);
-}
+            array(
+                'adapter' => 'array',
+                'content' => $path,
+                'locale' => "it_IT",
+                'scan' => Zend_Translate::LOCALE_DIRECTORY
+            )
+        );
+        Zend_Validate_Abstract::setDefaultTranslator($translator);
+    }
 }

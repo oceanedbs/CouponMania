@@ -115,6 +115,7 @@ class UserController extends Zend_Controller_Action
     }
     
     public function profiloAction(){
+
     
     }
     
@@ -271,6 +272,11 @@ class UserController extends Zend_Controller_Action
 			return $this->render('cambiareprofilo');
 		}
 		$values = $form->getValues();
+       $dataInizio = $values['data_nascita'];
+       $giorno = substr($dataInizio, 0, 2);
+       $mese = substr($dataInizio, 3, 2);
+       $anno = substr($dataInizio, 6, 4);
+       $values['data_nascita'] = "$anno-$mese-$giorno";
 		$this->_utenteModel->modficaUtente($values);
 		$this->_helper->redirector('index');
 

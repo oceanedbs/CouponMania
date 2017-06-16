@@ -33,7 +33,6 @@ class Application_Form_Admin_Staff_Add extends Zend_Form
                 
                  $this->addElement('text', 'data_nascita', array(
             'label' => 'Data Nascita (yyyy-mm-gg)',
-            'filters' => array('LocalizedToNormalized'),            
             'required' => true,
             'validators' => array(),
 		));

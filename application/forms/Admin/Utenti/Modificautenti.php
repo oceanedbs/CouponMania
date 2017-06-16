@@ -34,7 +34,6 @@ class Application_Form_Admin_Utenti_Modificautenti extends Zend_Form
                 
                  $this->addElement('text', 'data_nascita', array(
             'label' => 'Data Nascita',
-            'filters' => array('LocalizedToNormalized'),            
             'required' => true,
             'validators' => array(),
 		));
