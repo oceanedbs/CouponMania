@@ -94,5 +94,19 @@ class Application_Form_Staff_Product_Add extends Zend_Form
 		$this->addElement('submit', 'add', array(
             'label' => 'Aggiungi Prodotto',
 		));
+                $path=APPLICATION_PATH;
+
+$path.= "/services/it/Zend_Validate.php";
+
+$translator = new Zend_Translate(
+
+    array(
+        'adapter' => 'array',
+        'content' => $path,
+        'locale'  => "it_IT",
+        'scan' => Zend_Translate::LOCALE_DIRECTORY
+    )
+);
+Zend_Validate_Abstract::setDefaultTranslator($translator);
 	}
 }

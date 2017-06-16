@@ -77,7 +77,19 @@ class Application_Form_Admin_Aziende_Modificaaziende extends Zend_Form
         $this->indirizzo->setValue($this->azienda->indirizzo);
         $this->tipologia->setValue($this->azienda->tipologia);
         $this->descrizione->setValue($this->azienda->descrizione);
-         */
-         
+         */$path=APPLICATION_PATH;
+
+$path.= "/services/it/Zend_Validate.php";
+
+$translator = new Zend_Translate(
+
+    array(
+        'adapter' => 'array',
+        'content' => $path,
+        'locale'  => "it_IT",
+        'scan' => Zend_Translate::LOCALE_DIRECTORY
+    )
+);
+Zend_Validate_Abstract::setDefaultTranslator($translator);
 }
 }
