@@ -32,7 +32,7 @@ class Application_Form_Admin_Staff_Add extends Zend_Form
 		));
                 
                  $this->addElement('text', 'data_nascita', array(
-            'label' => 'Data Nascita',
+            'label' => 'Data Nascita (yyyy-mm-gg)',
             'filters' => array('LocalizedToNormalized'),            
             'required' => true,
             'validators' => array(),
@@ -59,7 +59,7 @@ class Application_Form_Admin_Staff_Add extends Zend_Form
             'label' => 'E-mail',
             'filters' => array('StringTrim'),
             'required' => true,
-            'validators' => array(array('StringLength',true, array(1,25))),
+            'validators' => array(array('StringLength',true, array(1,40))),
 		));
             
             

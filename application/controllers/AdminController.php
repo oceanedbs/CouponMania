@@ -124,9 +124,17 @@ class AdminController extends Zend_Controller_Action
 		if (!$form->isValid($_POST)) {
 			return $this->render('newaziende');
 		}
-		$values = $form->getValues();
-		$this->_adminModel->saveAziende($values);
-		$this->_helper->redirector('visualizzaaziende');
+		$value = $form->getValue('P_Iva');
+		$reuslt= $this->_adminModel->getAziendePIva($value);
+		
+		if($result==0){
+                            $this->_helper->redirector('error1');
+                }else{
+                                    $data=$form->getValues();
+                                    $this->_adminModel->saveAziende($data);
+                                    $this->_helper->redirector('visualizzaaziende');
+
+                }
 	}
         
         
@@ -210,7 +218,7 @@ class AdminController extends Zend_Controller_Action
 		}
 		$form=$this->_updateuser;
 		if (!$form->isValid($_POST)) {
-			return $this->render('modificautenti');
+			return $this->render('modificautente');
 		}
 		$values = $form->getValues();
 		$this->_adminModel->modificaUtente2($values,$this->getParam('idutente'));

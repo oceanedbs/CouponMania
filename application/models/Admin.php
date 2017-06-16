@@ -183,4 +183,10 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Utente')->modificaUtente($values);
     }
     
+    public function getAziendePIva($value)
+    {
+    
+        return $this->getResource('Aziende')->getAziendePIva($value);
+    }
+    
 }

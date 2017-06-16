@@ -11,9 +11,7 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
 		$this->setAction('');
 		$this->setAttrib('enctype', 'multipart/form-data');
                 $this->_staffModel = new Application_Model_Staff();
-            
-                
-                
+                            
 		$this->addElement('text', 'prodotto', array(
             'label' => 'Nome',
             'filters' => array('StringTrim'),
@@ -81,33 +79,22 @@ class Application_Form_Staff_Product_Modificapromo extends Zend_Form
                 
 
 		$this->addElement('text', 'data_inizio', array(
-            'label' => 'Data inizio',
+            'label' => 'Data inizio (aaaa-mm-gg)',
                        
             'required' => true,
-            'validators' => array(),
+            'validators' => array(array('Date', true, array('format'=>'Y F j'),),)
 		));
                 
                 $this->addElement('text', 'data_fine', array(
-            'label' => 'Data fine',            
+            'label' => 'Data fine (aaaa-mm-gg)',            
             'required' => true,
-            'validators' => array(),
+            'validators' => array(array('Date', true, array('format'=>'Y F j'),),)
 		));
+		
 
 		$this->addElement('submit', 'modifica', array(
             'label' => 'Invia',
 		));
 	
-        /*
-        $this->prodotto->setValue($this->prodotto->prodotto);
-        $this->tipo_prom->setValue($this->prodotto->tipo_prom);
-        $this->catId->setValue($this->prodotto->catId);
-        $this->P_Iva->setValue($this->prodotto->P_Iva);
-        $this->immagine->setValue($this->prodotto->immagine);
-        $this->descrizione->setValue($this->prodotto->descrizione);
-        $this->prezzo_unitario_prod->setValue($this->prodotto->prezzo_unitario_prod);
-        $this->data_inizio->setValue($this->prodotto->data_inizio);
-        $this->data_fine->setValue($this->prodotto->data_fine);
-         */
-         
-}
+    }
 }

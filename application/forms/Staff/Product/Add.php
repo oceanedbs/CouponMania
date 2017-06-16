@@ -78,14 +78,14 @@ class Application_Form_Staff_Product_Add extends Zend_Form
                 
 
 		$this->addElement('text', 'data_inizio', array(
-            'label' => 'Data inizio',
+            'label' => 'Data inizio (gg-mm-aaaa)',
             'filters' => array('LocalizedToNormalized'),            
             'required' => true,
             'validators' => array(),
 		));
                 
                 $this->addElement('text', 'data_fine', array(
-            'label' => 'Data fine',
+            'label' => 'Data fine (gg-mm-aaaa)',
             'filters' => array('LocalizedToNormalized'),            
             'required' => true,
             'validators' => array(),

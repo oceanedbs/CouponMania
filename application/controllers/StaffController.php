@@ -53,7 +53,7 @@ class StaffController extends Zend_Controller_Action
 		}
 		$values = $form->getValues();
                 
-                //conversione data
+               /** //conversione data
                 $dataInizio = $values['data_inizio'];
                 $dataFine = $values['data_fine'];
        
@@ -64,9 +64,17 @@ class StaffController extends Zend_Controller_Action
                 $giorno = substr($dataFine,0,2);
                 $mese = substr($dataFine,3,2);
                 $anno = substr($dataFine,6,4);
-                $values['data_fine']="$anno-$mese-$giorno";
+                $values['data_fine']="$anno-$mese-$giorno";**/
+                
 		$this->_staffModel->saveProduct($values);
-		$this->_helper->redirector('visualizzapromo');
+            
+		
+                $this->_helper->redirector('index');
+		
+	}
+	
+	public function error1Action() {
+	
 	}
 
 	private function getProductForm()
@@ -97,8 +105,13 @@ class StaffController extends Zend_Controller_Action
 			return $this->render('modificapromo');
 		}
 		$values = $form->getValues();
+		
+		  
+		
+                
 		$this->_staffModel->modificaPromo($values,$this->getParam('codprod'));
-		$this->_helper->redirector('visualizzapromo');
+                $this->_helper->redirector('index');
+                
         }
         private function getModificaPromoForm()
 	{
@@ -117,7 +130,7 @@ class StaffController extends Zend_Controller_Action
 
     public function cancellaAction(){
      $this->_staffModel->cancellaPromo($this->getParam('codprod'));
-     $this->_helper->redirector('visualizzapromo');
+     $this->_helper->redirector('index');
      
  }
 
@@ -138,13 +151,13 @@ class StaffController extends Zend_Controller_Action
     }
     
  
-       
+
    
 //gestione profilo
         public function profiloAction(){
     
     }
-private function getProfiloForm(){
+    private function getProfiloForm(){
     
                 $urlHelper = $this->_helper->getHelper('url');
 		$this->_profilo = new Application_Form_Staff_Profile_Profilo();

@@ -21,17 +21,6 @@ class Application_Form_Admin_Aziende_Modificaaziende extends Zend_Form
             'label'      => 'Partita Iva',
             ));
             
-                $page='';
-                $tipologia = array();
-		$tipo = $this->_adminModel->getTopCats($page);
-		foreach ($tipo as $tipo) {
-			$tipologia[$tipo -> catId] = $tipo->name;
-		}
-		$this->addElement('select', 'tipologia', array(
-            'label' => 'Categoria',
-            'required' => true,
-			'multiOptions' => $tipologia,
-		));
                 
                 
                 $this->addElement('text', 'nome', array(
